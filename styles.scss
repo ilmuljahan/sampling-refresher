@@ -1,0 +1,158 @@
+/*-- scss:defaults --*/
+
+// Palette lifted from the source notes so the site matches the original
+// documents: navy headings, teal rules, near-black body, gray captions.
+$navy:      #23395b;
+$teal:      #2a7f7f;
+$ink:       #222222;
+$muted:     #707070;
+$tint-teal: #e0eeee;
+$tint-gray: #eef0f3;
+
+$body-color:      $ink;
+$link-color:      $teal;
+$headings-color:  $navy;
+
+$font-family-sans-serif: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+$font-family-serif: Cambria, Georgia, "Times New Roman", serif;
+
+$body-font-size: 1.02rem;
+$toc-color: $navy;
+
+/*-- scss:rules --*/
+
+body {
+  font-family: $font-family-serif;
+  line-height: 1.62;
+}
+
+h1, h2, h3, h4,
+.navbar-brand,
+.sidebar-title {
+  font-family: $font-family-sans-serif;
+  color: $navy;
+  font-weight: 700;
+}
+
+// Section heads carried the teal underline in the source documents.
+#quarto-document-content h2 {
+  border-bottom: 2px solid $teal;
+  padding-bottom: 0.25rem;
+  margin-top: 2.25rem;
+  margin-bottom: 0.9rem;
+  font-size: 1.45rem;
+}
+
+.title {
+  line-height: 1.2;
+}
+
+.subtitle {
+  color: $teal;
+  font-style: italic;
+  font-family: $font-family-sans-serif;
+  font-size: 1.05rem;
+  border-bottom: 1px solid rgba($teal, 0.45);
+  padding-bottom: 0.6rem;
+}
+
+// Centered key-takeaway line.
+.keyline {
+  text-align: center;
+  color: $navy;
+  font-family: $font-family-sans-serif;
+  font-weight: 600;
+  font-size: 1.06rem;
+  margin: 1.6rem auto;
+  padding: 0.75rem 1rem;
+  max-width: 46rem;
+  border-top: 1px solid rgba($teal, 0.4);
+  border-bottom: 1px solid rgba($teal, 0.4);
+}
+
+// Boxed aside ("In your CHOP work.", "Check yourself.") -- thick teal rule on
+// the left over a pale tint, the same as the source documents.
+.fieldnote {
+  background: $tint-teal;
+  border-left: 6px solid $teal;
+  padding: 0.85rem 1.1rem;
+  margin: 1.35rem 0;
+  border-radius: 0 4px 4px 0;
+
+  > p:last-child { margin-bottom: 0; }
+}
+
+.center { text-align: center; }
+
+.caption {
+  text-align: center;
+  color: $muted;
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+figure {
+  margin: 1.6rem auto;
+}
+
+figure img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+figcaption {
+  color: $muted !important;
+  font-size: 0.9rem !important;
+  font-style: italic;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+// Tables: shaded header, matching the source styling.
+#quarto-document-content table {
+  font-family: $font-family-sans-serif;
+  font-size: 0.92rem;
+  width: 100%;
+  margin: 1.4rem 0;
+}
+
+#quarto-document-content thead th {
+  background: $tint-teal;
+  color: $navy;
+  border-bottom: 2px solid $teal !important;
+  vertical-align: bottom;
+}
+
+#quarto-document-content tbody tr:nth-child(even) {
+  background: $tint-gray;
+}
+
+#quarto-document-content td,
+#quarto-document-content th {
+  padding: 0.45rem 0.6rem;
+}
+
+// Wide tables should scroll inside themselves, never the page.
+#quarto-document-content .table-responsive,
+#quarto-document-content table {
+  overflow-x: auto;
+  display: block;
+}
+
+blockquote {
+  border-left: 4px solid rgba($teal, 0.5);
+  color: $ink;
+  background: $tint-gray;
+  padding: 0.7rem 1rem;
+  margin: 1.2rem 0;
+  font-size: 1rem;
+}
+
+li { margin-bottom: 0.3rem; }
+
+#quarto-sidebar {
+  .sidebar-item-text { font-family: $font-family-sans-serif; }
+  a.active { color: $teal; font-weight: 600; }
+}

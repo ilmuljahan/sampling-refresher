@@ -1,0 +1,81 @@
+---
+title: "Sampling Refresher"
+subtitle: "A ground-up course in survey sampling · Course Syllabus"
+order: 0
+---
+
+A private, self-paced course to rebuild survey sampling from the very beginning, mapped onto the curriculum of **SURVMETH 625 (Applied Sampling)** and **SURVMETH 745 (Practical Sampling Design)**. The goal: turn a shaky, anxious relationship with sampling into a confident, interview-ready command of it, one small step at a time.
+
+## How this course works
+
+- **Go slow.** One small piece per exchange. We never move on until the current idea feels comfortable.
+- **Plain language first.** Every idea starts as an everyday story (rice pots, blood tests, lotteries) before any symbol appears.
+- **Examples and visuals.** Diagrams and worked mini-examples wherever they help the idea land.
+- **Interactive.** A conversation, not a lecture. You answer little checks; I give warm, specific feedback.
+- **Layered depth.** Intuition first, then the math on tiny numbers, and later hands-on in R. Concept-first for now; code is deferred until you ask.
+- **Kept in writing.** Every module becomes a formatted, illustrated Word-ready note in this folder.
+
+## The rhythm of each module
+
+- **1.** **Intuition + a visual** - see the idea before any math.
+- **2.** **The math on tiny numbers** - one traceable example.
+- **3.** **Hands-on in R** - deferred until you are ready.
+- **4.** **Coursework anchor** - revisit the matching 625/745 homework.
+- **5.** **Interview angle** - questions a hiring manager might ask.
+- **6.** **Quick check** - a couple of practice problems; you try, I give feedback.
+
+## The modules
+
+**[Module 0 — Foundations and Vocabulary](00-foundations.qmd)**
+
+Population, frame, sample, parameter, estimate; the sampling distribution; bias vs. variance; sampling vs. non-sampling error; what makes a sample a probability sample; notation.
+
+**[Module 1 — Simple Random Sampling (SRS)](01-simple-random-sampling.qmd)**
+
+The fair lottery; with/without replacement; estimating mean, total, proportion; standard error and the finite population correction; confidence intervals; sample size.
+
+**[Module 2 — Systematic Sampling](02-systematic-sampling.qmd)**
+
+The 1-in-k method; implicit stratification; the periodicity trap; how it compares to SRS.
+
+**[Module 3 — Stratified Sampling](03-stratified-sampling.qmd)**
+
+Sampling within groups; why stratify; allocation (equal, proportional, Neyman/optimal); precision gains over SRS.
+
+**[Module 4 — Cluster Sampling](04-cluster-sampling.qmd)**
+
+Sampling whole groups; intraclass correlation; the design effect; the precision-vs-cost tradeoff.
+
+**[Module 5 — Multistage and PPS/PPeS](05-multistage-pps.qmd)**
+
+Probability proportional to size; self-weighting designs; primary and secondary sampling units.
+
+**[Module 6 — Weighting](06-weighting.qmd)**
+
+Base weights = 1/inclusion probability; nonresponse adjustment; post-stratification and calibration.
+
+**[Module 7 — Design-Based Analysis and Variance Estimation](07-design-based-analysis.qmd)**
+
+Correct standard errors under complex designs; linearization vs. replication; the R survey package.
+
+**[Module 8 — Sample Size and Allocation in Practice](08-sample-size-allocation.qmd)**
+
+Turning precision and budget targets into a design with PracTools; cost models; optimization.
+
+**[Module 9 — Nonprobability Sampling](09-nonprobability-sampling.qmd)**
+
+When probability sampling is not feasible; quasi-randomization and pseudo-weights; MRP; assessing bias.
+
+**Capstone — The 745 Final Exam**
+
+Work through the real 745 final exam as a full design problem, tying everything together.
+
+**[Module 10 (Bonus) — Power and Sample Size](10-power-sample-size.qmd)**
+
+What statistical power means (Type I/II errors); the four levers — effect size, significance, power, n; effect size for two proportions; the AAMC two-proportion calc worked both ways (solve for n = sample-size determination); what eats power (deff, nonresponse); the design workflow; plus a hands-on seventh piece in R. Concept-first.
+
+## Tools and logistics
+
+- **Where these notes live:** this site; the module pages are generated from the original illustrated notes.
+- **Format:** every module is a page here, with all figures and tables carried over from the source notes.
+- **R:** not yet installed. Not needed for the concept-first modules; we will set it up before the hands-on coding layers (around Module 6).

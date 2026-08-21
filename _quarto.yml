@@ -1,0 +1,59 @@
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "Sampling Refresher"
+  description: "A ground-up refresher in survey sampling, rebuilt from SURVMETH 625 & 745."
+  search:
+    location: sidebar
+    type: textbox
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+  sidebar:
+    style: docked
+    search: true
+    collapse-level: 1
+    contents:
+      - href: index.qmd
+        text: "Syllabus"
+      - section: "Modules"
+        contents:
+          - href: 00-foundations.qmd
+            text: "0 · Foundations"
+          - href: 01-simple-random-sampling.qmd
+            text: "1 · Simple Random Sampling"
+          - href: 02-systematic-sampling.qmd
+            text: "2 · Systematic Sampling"
+          - href: 03-stratified-sampling.qmd
+            text: "3 · Stratified Sampling"
+          - href: 04-cluster-sampling.qmd
+            text: "4 · Cluster Sampling"
+          - href: 05-multistage-pps.qmd
+            text: "5 · Multistage & PPS"
+          - href: 06-weighting.qmd
+            text: "6 · Weighting"
+          - href: 07-design-based-analysis.qmd
+            text: "7 · Design-Based Analysis"
+          - href: 08-sample-size-allocation.qmd
+            text: "8 · Sample Size & Allocation"
+          - href: 09-nonprobability-sampling.qmd
+            text: "9 · Nonprobability Sampling"
+          - href: 10-power-sample-size.qmd
+            text: "10 · Power & Sample Size"
+  page-footer:
+    center: "Sampling Refresher · rebuilt from SURVMETH 625 & 745"
+
+format:
+  html:
+    theme:
+      - cosmo
+      - styles.scss
+    toc: true
+    toc-depth: 2
+    toc-title: "On this page"
+    anchor-sections: true
+    fig-align: center
+    link-external-newwindow: true

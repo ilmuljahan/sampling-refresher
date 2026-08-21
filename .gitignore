@@ -1,7 +1,16 @@
 # Quarto
 /.quarto/
+_site/
 *_files/
 *_cache/
+
+# Source notes: the .qmd pages and figures/ are generated from these,
+# which live outside the repo.
+*.rtf
+
+# Python
+__pycache__/
+*.pyc
 
 # R
 .Rproj.user/

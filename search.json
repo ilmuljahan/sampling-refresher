@@ -1,0 +1,1281 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Sampling Refresher",
+    "section": "",
+    "text": "A private, self-paced course to rebuild survey sampling from the very beginning, mapped onto the curriculum of SURVMETH 625 (Applied Sampling) and SURVMETH 745 (Practical Sampling Design). The goal: turn a shaky, anxious relationship with sampling into a confident, interview-ready command of it, one small step at a time.",
+    "crumbs": [
+      "Home",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "index.html#how-this-course-works",
+    "href": "index.html#how-this-course-works",
+    "title": "Sampling Refresher",
+    "section": "How this course works",
+    "text": "How this course works\n\nGo slow. One small piece per exchange. We never move on until the current idea feels comfortable.\nPlain language first. Every idea starts as an everyday story (rice pots, blood tests, lotteries) before any symbol appears.\nExamples and visuals. Diagrams and worked mini-examples wherever they help the idea land.\nInteractive. A conversation, not a lecture. You answer little checks; I give warm, specific feedback.\nLayered depth. Intuition first, then the math on tiny numbers, and later hands-on in R. Concept-first for now; code is deferred until you ask.\nKept in writing. Every module becomes a formatted, illustrated Word-ready note in this folder.",
+    "crumbs": [
+      "Home",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "index.html#the-rhythm-of-each-module",
+    "href": "index.html#the-rhythm-of-each-module",
+    "title": "Sampling Refresher",
+    "section": "The rhythm of each module",
+    "text": "The rhythm of each module\n\n1. Intuition + a visual - see the idea before any math.\n2. The math on tiny numbers - one traceable example.\n3. Hands-on in R - deferred until you are ready.\n4. Coursework anchor - revisit the matching 625/745 homework.\n5. Interview angle - questions a hiring manager might ask.\n6. Quick check - a couple of practice problems; you try, I give feedback.",
+    "crumbs": [
+      "Home",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "index.html#the-modules",
+    "href": "index.html#the-modules",
+    "title": "Sampling Refresher",
+    "section": "The modules",
+    "text": "The modules\nModule 0 — Foundations and Vocabulary\nPopulation, frame, sample, parameter, estimate; the sampling distribution; bias vs. variance; sampling vs. non-sampling error; what makes a sample a probability sample; notation.\nModule 1 — Simple Random Sampling (SRS)\nThe fair lottery; with/without replacement; estimating mean, total, proportion; standard error and the finite population correction; confidence intervals; sample size.\nModule 2 — Systematic Sampling\nThe 1-in-k method; implicit stratification; the periodicity trap; how it compares to SRS.\nModule 3 — Stratified Sampling\nSampling within groups; why stratify; allocation (equal, proportional, Neyman/optimal); precision gains over SRS.\nModule 4 — Cluster Sampling\nSampling whole groups; intraclass correlation; the design effect; the precision-vs-cost tradeoff.\nModule 5 — Multistage and PPS/PPeS\nProbability proportional to size; self-weighting designs; primary and secondary sampling units.\nModule 6 — Weighting\nBase weights = 1/inclusion probability; nonresponse adjustment; post-stratification and calibration.\nModule 7 — Design-Based Analysis and Variance Estimation\nCorrect standard errors under complex designs; linearization vs. replication; the R survey package.\nModule 8 — Sample Size and Allocation in Practice\nTurning precision and budget targets into a design with PracTools; cost models; optimization.\nModule 9 — Nonprobability Sampling\nWhen probability sampling is not feasible; quasi-randomization and pseudo-weights; MRP; assessing bias.\nCapstone — The 745 Final Exam\nWork through the real 745 final exam as a full design problem, tying everything together.\nModule 10 (Bonus) — Power and Sample Size\nWhat statistical power means (Type I/II errors); the four levers — effect size, significance, power, n; effect size for two proportions; the AAMC two-proportion calc worked both ways (solve for n = sample-size determination); what eats power (deff, nonresponse); the design workflow; plus a hands-on seventh piece in R. Concept-first.",
+    "crumbs": [
+      "Home",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "index.html#tools-and-logistics",
+    "href": "index.html#tools-and-logistics",
+    "title": "Sampling Refresher",
+    "section": "Tools and logistics",
+    "text": "Tools and logistics\n\nWhere these notes live: this site; the module pages are generated from the original illustrated notes.\nFormat: every module is a page here, with all figures and tables carried over from the source notes.\nR: not yet installed. Not needed for the concept-first modules; we will set it up before the hands-on coding layers (around Module 6).",
+    "crumbs": [
+      "Home",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "09-nonprobability-sampling.html",
+    "href": "09-nonprobability-sampling.html",
+    "title": "Module 9: Nonprobability Sampling",
+    "section": "",
+    "text": "Everything in Modules 0 through 8 rests on one foundation: a probability sample, where every unit has a known, nonzero chance of selection. That known random mechanism is what buys design weights, near-unbiased estimates, and honest standard errors. But a great deal of modern data has no such mechanism — opt-in web panels, social-media streams, customer lists, convenience and ‘river’ samples. Nobody drew them with a lottery; people selected themselves. Module 9 asks the uncomfortable question: when a probability sample is not feasible, can we still say something valid about the population? The answer is a careful ‘sometimes, if…’ — and this module is about the if. Six pieces of concept, then a hands-on seventh in R.",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "9 · Nonprobability Sampling"
+    ]
+  },
+  {
+    "objectID": "09-nonprobability-sampling.html#piece-1-what-breaks-without-probability-sampling",
+    "href": "09-nonprobability-sampling.html#piece-1-what-breaks-without-probability-sampling",
+    "title": "Module 9: Nonprobability Sampling",
+    "section": "Piece 1 — What breaks without probability sampling",
+    "text": "Piece 1 — What breaks without probability sampling\nStrip away the known selection mechanism and the whole machine from Modules 1-8 stops turning.\n\nNo selection probabilities, no design weights. The estimator loses its built-in guarantee of pointing at the population value — there is no 1/pi to expand the sample back to the whole.\nThe real danger is selection bias. Self-selection is usually correlated with what we measure: politically engaged people answer political polls; healthy people join health apps. The sample tilts, and the estimate tilts with it.\nBig n does not save you. With a probability sample, error shrinks like 1/sqrt(n) toward zero. With a biased sample, error shrinks toward a bias floor it can never cross. A bigger biased sample is just a more precise wrong answer — the big-data paradox: a tiny random sample can beat a massive self-selected one.\n\nIn Total Survey Error terms, you have traded a controllable sampling error for a much harder-to-see selection / coverage bias. That trade is the whole subject of this module.\n\n\n\nThe big-data paradox: a probability sample’s error falls with n, but a self-selected sample’s error stalls at a bias floor — so 1,500 random draws can beat two million opt-ins.\n\n\n\nCheck yourself (Piece 1). An opt-in panel has 2 million respondents; a probability survey has 1,500. Which do you trust more for a population estimate, and what single fact decides it?",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "9 · Nonprobability Sampling"
+    ]
+  },
+  {
+    "objectID": "09-nonprobability-sampling.html#piece-2-when-can-you-fix-it-the-ignorability-idea",
+    "href": "09-nonprobability-sampling.html#piece-2-when-can-you-fix-it-the-ignorability-idea",
+    "title": "Module 9: Nonprobability Sampling",
+    "section": "Piece 2 — When can you fix it? (the ignorability idea)",
+    "text": "Piece 2 — When can you fix it? (the ignorability idea)\nNonprobability samples are not hopeless — but the rescue rests on a strong, untestable assumption.\n\nThe condition (ignorable selection). A cousin of ‘missing at random’: once you condition on a set of covariates X, being in the sample is unrelated to the outcome y. Within each X-cell, the responders look like the population.\nYou need rich covariates X that drive both who selects in and the outcome. Age and sex alone rarely suffice.\nYou need a benchmark — the population distribution of X, from a census or a gold-standard survey — so you know what to correct toward.\nThe fundamental limit. If selection depends on something you did not measure (and cannot proxy), no method fixes it. That is why nonprobability inference is always an argument, never a guarantee.\n\nGiven ignorability, two strategies follow, attacking from opposite ends: model who is in the sample (pseudo-weights, Piece 3) or model the outcome itself (MRP, Piece 4).\n\n\n\nAdjustment works only on covariates you measured and can benchmark: known population shares let you reweight over- and under-represented cells back into line.\n\n\n\nCheck yourself (Piece 2). You adjust an opt-in health survey for age and sex, but sicker people are likelier to join even within age-sex groups. Is selection ignorable here, and what happens to your adjusted estimate?",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "9 · Nonprobability Sampling"
+    ]
+  },
+  {
+    "objectID": "09-nonprobability-sampling.html#piece-3-quasi-randomization-and-pseudo-weights-model-the-selection",
+    "href": "09-nonprobability-sampling.html#piece-3-quasi-randomization-and-pseudo-weights-model-the-selection",
+    "title": "Module 9: Nonprobability Sampling",
+    "section": "Piece 3 — Quasi-randomization and pseudo-weights (model the selection)",
+    "text": "Piece 3 — Quasi-randomization and pseudo-weights (model the selection)\nThe first strategy pretends the nonprobability sample was a probability sample all along — with selection probabilities we simply have to estimate.\n\nThe quasi-randomization idea. Treat ‘being in the opt-in sample’ as an outcome to model.\nThe recipe. Stack your nonprobability sample with a reference probability sample (or the population). Fit a model — usually logistic regression — predicting membership in the nonprobability sample from covariates X. The fitted values are estimated inclusion propensities.\nThe pseudo-weight is 1 / (estimated propensity) — exactly the base-weight logic of Module 6: rarely-selected profiles stand for many. From there you analyze with the design-based weighting machinery you already know.\nA simpler cousin: calibration / raking (Module 6 again). Skip the propensity model and just rake the sample to known population totals on X. Easier, but it only corrects the margins you rake on.\n\nCautions. The weights are estimated, so standard errors must account for that (replication, Module 7); extreme pseudo-weights inflate variance (deff_w) and often get trimmed; and everything hinges on X capturing what drives selection.\n\n\n\nPseudo-weighting: pool the opt-in sample with a reference probability sample, model who’s in from X, and take 1/propensity as the weight.\n\n\n\nCheck yourself (Piece 3). Pseudo-weighting needs a second data source the raw opt-in sample doesn’t contain. What is it, and what job does it do?",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "9 · Nonprobability Sampling"
+    ]
+  },
+  {
+    "objectID": "09-nonprobability-sampling.html#piece-4-mrp-multilevel-regression-with-poststratification-model-the-outcome",
+    "href": "09-nonprobability-sampling.html#piece-4-mrp-multilevel-regression-with-poststratification-model-the-outcome",
+    "title": "Module 9: Nonprobability Sampling",
+    "section": "Piece 4 — MRP: multilevel regression with poststratification (model the outcome)",
+    "text": "Piece 4 — MRP: multilevel regression with poststratification (model the outcome)\nThe second strategy ignores selection probabilities entirely and instead models what people say, then rebuilds the population from a census. MRP does this in two steps.\n\nStep 1 — multilevel regression. Predict the outcome y from covariate cells (age x region x education, …) using a multilevel / random-effects model, so small, sparsely sampled cells borrow strength from the overall pattern instead of being trusted on their three respondents. You get a stable predicted y for every cell in the grid.\nStep 2 — poststratification. Weight each cell’s predicted y by that cell’s known share of the population (from a census poststratification table) and add them up. The population’s composition, not the sample’s, drives the total.\n\nWhy it is powerful. It excels at small-area estimation — credible state-by-state opinion from a single national sample — and it stays robust when cells are thin. It famously produced accurate state-level election forecasts from a wildly unrepresentative sample of Xbox gamers.\nRequires: a poststratification frame (population counts for every cell) and covariates that genuinely predict y.\nPseudo-weights vs. MRP: one models who is in; the other models what they’d say. They are complementary — and modern doubly robust methods combine both, giving you two chances to be right.\n\n\n\nMRP in two steps: a multilevel model fills in a predicted y for every cell (even thin ones), then census cell counts rebuild the population and any small area.\n\n\n\nCheck yourself (Piece 4). In MRP, where does the population actually enter — the regression step or the poststratification step — and why does that placement matter?",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "9 · Nonprobability Sampling"
+    ]
+  },
+  {
+    "objectID": "09-nonprobability-sampling.html#piece-5-assessing-the-bias-how-do-you-know-it-worked",
+    "href": "09-nonprobability-sampling.html#piece-5-assessing-the-bias-how-do-you-know-it-worked",
+    "title": "Module 9: Nonprobability Sampling",
+    "section": "Piece 5 — Assessing the bias (how do you know it worked?)",
+    "text": "Piece 5 — Assessing the bias (how do you know it worked?)\nHere is the humbling part. A probability sample certifies its own precision from the design. A nonprobability estimate cannot — you have to build a case that the residual bias is small.\n\nBenchmark against knowns. Compare your adjusted estimates to gold-standard external figures (census, big federal surveys) on variables you do know. If it misses on the knowns, distrust it on the unknowns.\nSensitivity analysis. Re-estimate under different covariate sets and models. If the answer swings, it is fragile; if it holds, you have more confidence.\nCovariate balance. Check that, after weighting, the sample’s X-distribution actually matches the population’s.\nVariance from the weights. Estimated pseudo-weights inflate variance (deff_w and n_eff from Modules 6-7); a large effective-sample-size loss is its own warning.\nState the assumption out loud. Name the ignorability assumption plainly: ‘we assume selection is unrelated to y given these covariates.’ It is untestable, so disclosing it is part of the deliverable.\n\n\n\n\nYou can benchmark only what you know: adjustment moves the estimate toward the truth on measured variables, but says nothing certain about the unmeasured ones.\n\n\n\nInterview anchor (Pew). This is home turf for the roles you are targeting. Pew Research Center runs its American Trends Panel as a probability-based online panel — recruited by national random sampling of addresses — precisely to sidestep the self-selection problem in this module. And Pew’s own published evaluations of online opt-in samples found that weighting narrowed the gap to known benchmarks but did not close it, with residual bias uneven across subgroups — a real-world version of this piece. Expect to be asked how you would judge whether an opt-in sample is fit for purpose.\n\n\nCheck yourself (Piece 5). Your adjusted opt-in estimate matches the census on age, sex, and education, but you never measured political interest. What can benchmarking tell you here, and what can it never tell you?",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "9 · Nonprobability Sampling"
+    ]
+  },
+  {
+    "objectID": "09-nonprobability-sampling.html#piece-6-choosing-an-approach",
+    "href": "09-nonprobability-sampling.html#piece-6-choosing-an-approach",
+    "title": "Module 9: Nonprobability Sampling",
+    "section": "Piece 6 — Choosing an approach",
+    "text": "Piece 6 — Choosing an approach\nNo method conjures a probability sample out of thin air; you pick the tool that best fits your covariates, your benchmark, and your target.\n\n\n\n\n\n\n\n\n\nApproach\nModels…\nNeeds\nShines when…\n\n\n\n\nProbability sample\nnothing (design does it)\nframe + fieldwork\nyou can afford the gold standard\n\n\nPseudo-weights\nwho is in the sample\nreference prob. sample + X\nyou have a good reference sample\n\n\nMRP\nthe outcome y\ncensus frame + predictive X\nsmall areas, thin cells\n\n\nCalibration / raking\nthe margins only\nknown population totals\na quick, transparent fix\n\n\n\nRule of thumb. A rich reference sample points to pseudo-weights; a strong census frame and small-area targets point to MRP; when you have both, combine them (doubly robust). Whatever you choose, benchmark the result — that is the non-negotiable step.\n\nCheck yourself (Piece 6). You want state-level estimates from a national opt-in sample and you have census cell counts. Which approach is the natural fit, and why?",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "9 · Nonprobability Sampling"
+    ]
+  },
+  {
+    "objectID": "09-nonprobability-sampling.html#piece-7-doing-it-in-r",
+    "href": "09-nonprobability-sampling.html#piece-7-doing-it-in-r",
+    "title": "Module 9: Nonprobability Sampling",
+    "section": "Piece 7 — Doing it in R",
+    "text": "Piece 7 — Doing it in R\nNo single package ‘does nonprobability sampling’; you assemble a few. Here is the shape of each workflow — pseudo-weights, MRP, and a balance check.\n\nRead-along, not run. R is not yet installed on your machine, so treat this piece as a reference — every line is ready to run the moment we set R up.\n\n1. Pseudo-weights (quasi-randomization, Piece 3). Pool the opt-in sample with a reference probability sample, model membership, invert the propensity.\n\npooled &lt;- rbind(nonprob, refsamp) # stack opt-in (inNP=1) + reference (inNP=0) m &lt;- glm(inNP ~ age + educ + region, family = binomial, ~data = pooled, weights = ref_wt) phat &lt;- predict(m, nonprob, type = “response”) # inclusion propensity nonprob$psw &lt;- 1 / phat # pseudo-weight = 1 / p-hat des &lt;- svydesign(ids = ~1, weights = ~psw, data = nonprob) svymean(~y, des)\n\nOr a modern one-call package that also gives doubly robust options:\n\nlibrary(nonprobsvy) nonprob(selection = ~ age + educ + region, # model who’s in target = ~ y, data = nonprob, svydesign = ref_design)\n\n2. MRP (Piece 4). A multilevel model, then poststratify predictions to census cell counts.\n\nlibrary(lme4) fit &lt;- glmer(y ~ (1|state) + (1|age) + (1|educ) + repvote, # step 1: partial pooling ~data = samp, family = binomial) post$pred &lt;- predict(fit, post, type = “response”, # predict every census cell allow.new.levels = TRUE) est &lt;- with(post, sum(pred * Nj) / sum(Nj)) # step 2: poststratify to N_j\n\n(For thin cells, the Bayesian version — brms::brm or rstanarm::stan_glmer — behaves better.)\n3. Check covariate balance (Piece 5).\n\nlibrary(cobalt) bal.tab(inNP ~ age + educ + region, data = pooled, weights = “psw”)\n\nEach concept, and the R that does it\n\n\n\n\n\n\n\nConcept (piece)\nR\n\n\n\n\nPseudo-weights (P3)\nglm() + svydesign() , or nonprobsvy::nonprob()\n\n\nCalibration / raking (P3)\nsurvey::calibrate() / rake()\n\n\nMultilevel regression (P4)\nlme4::glmer() , or brms / rstanarm (Bayesian)\n\n\nPoststratification (P4)\nsum(pred * Nj) / sum(Nj) over census cells\n\n\nBalance / bias check (P5)\ncobalt::bal.tab()\n\n\n\n\nCheck yourself (Piece 7). In the MRP code, what does allow.new.levels = TRUE let the model do, and why is that the whole point of the multilevel step?",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "9 · Nonprobability Sampling"
+    ]
+  },
+  {
+    "objectID": "09-nonprobability-sampling.html#coursework-anchor-625-745",
+    "href": "09-nonprobability-sampling.html#coursework-anchor-625-745",
+    "title": "Module 9: Nonprobability Sampling",
+    "section": "Coursework anchor (625 / 745)",
+    "text": "Coursework anchor (625 / 745)\nNonprobability inference is the frontier of the Survey & Data Science world — the material that appears the moment a client cannot afford a full probability sample but still wants a population number. It leans on every earlier module at once: weighting (6), design-based variance (7), and the honest accounting of bias versus variance (0). It is also the methodological heart of the applied roles you are targeting, where opt-in panels, voter files, and modeled audiences are everyday inputs. The hands-on layer — fitting the propensity and multilevel models in R — is the next time we open it.",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "9 · Nonprobability Sampling"
+    ]
+  },
+  {
+    "objectID": "09-nonprobability-sampling.html#interview-angles",
+    "href": "09-nonprobability-sampling.html#interview-angles",
+    "title": "Module 9: Nonprobability Sampling",
+    "section": "Interview angles",
+    "text": "Interview angles\n\nCan you trust an opt-in online poll? Only under an ignorability assumption — selection unrelated to the outcome given measured covariates — plus good covariates and a benchmark. Big n doesn’t help; it just makes the bias precise (the big-data paradox).\nPseudo-weights vs. MRP? Pseudo-weights model selection (propensity of being in the sample, via a reference probability sample); MRP models the outcome and poststratifies to census cells. Complementary — combine for double robustness.\nWhat is MRP, and when would you use it? Multilevel regression + poststratification: it partial-pools sparse cells and rebuilds the population from a census — ideal for small-area estimates from a nonrepresentative sample.\nHow do you validate a nonprobability estimate? Benchmark against known external totals, run sensitivity analyses, check covariate balance and the effective sample size, and state the untestable selection assumption plainly.\nWhy can’t weighting fully fix an opt-in sample? Weighting can only correct imbalance on variables you measured and have population totals for; selection on unobserved factors is untouched.\nWhen is nonprobability defensible? When probability sampling is infeasible or too costly, you have rich covariates and a solid benchmark, and the stakes tolerate an assumption-based estimate — with the assumptions disclosed.",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "9 · Nonprobability Sampling"
+    ]
+  },
+  {
+    "objectID": "09-nonprobability-sampling.html#quick-check",
+    "href": "09-nonprobability-sampling.html#quick-check",
+    "title": "Module 9: Nonprobability Sampling",
+    "section": "Quick check",
+    "text": "Quick check\n\nIn one sentence, why doesn’t a huge sample size rescue a self-selected sample?\nName the untestable assumption that all nonprobability adjustment relies on.\nPseudo-weighting: what second data source do you need, and what do you model with it?\nMRP has two steps — name them, and say which one uses the census.\nGive two ways to build evidence that a nonprobability estimate’s residual bias is small.",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "9 · Nonprobability Sampling"
+    ]
+  },
+  {
+    "objectID": "09-nonprobability-sampling.html#module-9-in-one-breath",
+    "href": "09-nonprobability-sampling.html#module-9-in-one-breath",
+    "title": "Module 9: Nonprobability Sampling",
+    "section": "Module 9 in one breath",
+    "text": "Module 9 in one breath\n\nNonprobability samples have no known selection mechanism, so self-selection breeds selection bias — and big n only makes the bias precise (the big-data paradox).\nAdjustment is possible only under ignorability: selection unrelated to y given measured covariates X, plus a population benchmark for X.\nPseudo-weights (quasi-randomization) model who’s in the sample — 1 / estimated propensity, via a reference probability sample — then reuse design-based weighting.\nMRP models the outcome with a multilevel regression, then poststratifies predicted cell values to census counts; great for small areas and thin cells.\nYou can never certify a nonprobability estimate from the design — benchmark it, test its sensitivity, check balance, and state the assumption out loud.",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "9 · Nonprobability Sampling"
+    ]
+  },
+  {
+    "objectID": "07-design-based-analysis.html",
+    "href": "07-design-based-analysis.html",
+    "title": "Module 7: Design-Based Analysis and Variance Estimation",
+    "section": "",
+    "text": "Module 6 handed you a clean set of weights — base weight, nonresponse adjustment, calibration — so the sample now stands in for the population without bias. But a number on its own is only half an answer. The other half is how sure are we? Every estimate needs a margin of error, and here is the trap: the tidy standard-error formula from Module 1 assumed a simple random sample. Real designs — stratified, clustered, weighted — break that assumption. Feed complex-design data into the SRS formula and the point estimate may be fine, but the margin of error comes out wrong, and almost always too small — leaving you more confident than the data deserve. Module 7 is about the honest standard error: analyzing the data the same way you sampled it. That habit is design-based analysis. Seven pieces of concept — then a hands-on eighth that does the whole thing in R.",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "7 · Design-Based Analysis"
+    ]
+  },
+  {
+    "objectID": "07-design-based-analysis.html#piece-1-why-the-naive-standard-error-is-wrong-the-overconfidence-trap",
+    "href": "07-design-based-analysis.html#piece-1-why-the-naive-standard-error-is-wrong-the-overconfidence-trap",
+    "title": "Module 7: Design-Based Analysis and Variance Estimation",
+    "section": "Piece 1 — Why the naive standard error is wrong (the overconfidence trap)",
+    "text": "Piece 1 — Why the naive standard error is wrong (the overconfidence trap)\nThe SRS formula, standard error = s / sqrt(n), rests on one picture: n independent draws, each with an equal, independent chance. Complex designs break that picture, and each way of breaking it bends the true standard error away from what the naive formula reports.\n\nClustering makes it worse. People in the same cluster — a school, a hospital, a city block — resemble each other (the intraclass correlation from Module 4). Twenty pupils from one classroom carry less independent information than twenty pupils from twenty classrooms. The naive formula counts them as twenty fresh draws, so it understates the true error — overconfidence.\nUnequal weights make it worse too. When respondents carry very different weights, a few heavily weighted people swing the estimate around. That extra bounce is real variance the SRS formula never sees, so again the naive error is too small (the deff_w = 1 + CV^2 cost from Module 6).\nStratification makes it better. Sampling within every stratum removes the between-stratum variation from the error, so the true error is smaller than SRS. Ignore the strata and the naive error is merely too large — conservative, not dangerous.\nA large sampling fraction helps as well. The finite population correction shrinks the true error when you sample a big slice of a small population. Ignore it and, again, you are only being conservative.\n\nPut the directions together and the danger is plain: the two features that dominate most real surveys — clustering and unequal weights — push the naive error downward. So the default mistake is a confidence interval that is too narrow and a p-value that is too small: false precision. Design-based analysis exists to undo exactly that.\nWhich way each design feature bends the error\n\n\n\n\n\n\n\n\nDesign feature\nWhat it does to true precision\nNaive SRS error comes out…\n\n\n\n\nClustering (PSUs)\nlowers it\ntoo small (overconfident)\n\n\nUnequal weights\nlowers it\ntoo small (overconfident)\n\n\nStratification\nraises it\ntoo large (conservative)\n\n\nLarge sampling fraction (fpc)\nraises it\ntoo large (conservative)\n\n\n\n\n\n\nSame data, same 62% estimate — the naive interval is too narrow and can wrongly exclude the truth; the design-based interval is honestly wide.",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "7 · Design-Based Analysis"
+    ]
+  },
+  {
+    "objectID": "07-design-based-analysis.html#piece-2-the-design-effect-one-number-for-the-whole-story",
+    "href": "07-design-based-analysis.html#piece-2-the-design-effect-one-number-for-the-whole-story",
+    "title": "Module 7: Design-Based Analysis and Variance Estimation",
+    "section": "Piece 2 — The design effect: one number for the whole story",
+    "text": "Piece 2 — The design effect: one number for the whole story\nModule 4 introduced the design effect; here it becomes the master gauge for the entire analysis. The design effect is the ratio\ndeff = (variance under your actual design) / (variance under an SRS of the same size).\nIt is the price tag your design puts on precision.\n\ndeff &gt; 1: your design lost precision versus SRS (clustering, unequal weights).\ndeff = 1: same as SRS.\ndeff &lt; 1: your design beat SRS (stratification).\nThe honest standard error = (naive SRS error) x sqrt(deff). That single multiplier is the whole repair.\n\nAnd the design effect converts straight into an effective sample size: n_eff = n / deff. A clustered sample of 1,000 with deff = 2.0 carries the information of only 500 independent people — you paid for 1,000 and got 500. A well-stratified sample of 1,000 with deff = 0.8 behaves like 1,250.\nTiny example. Suppose the naive SRS error is 1.5 points and the design effect is 1.44. Then sqrt(1.44) = 1.2, so the honest error is 1.5 x 1.2 = 1.8 points, and the confidence interval widens by 20 percent. Same estimate, a franker margin.\nThe weight piece. Unequal weights alone contribute a design effect of deff_w = 1 + CV^2(weights) = n x (sum of w^2) / (sum of w)^2 — Kish’s formula from Module 6. Clustering multiplies on top of that, which is why big national surveys often run an overall deff of 1.5 to 3.\n\n\n\nThe design effect turns nominal sample size into effective sample size: n_eff = n / deff. Clustering costs you people; good stratification gives them back.\n\n\n\nIn your CHOP work. The hospital survey was stratified by region with a nearly constant weight (~3.4) — an almost self-weighting design, so its design effect sits just below 1. Handed to an ordinary statistics package as though it were an SRS, the standard errors would come out slightly too large; declared properly as a stratified design, the intervals tighten to their honest width. Ignoring the design would not have fooled you here (it errs safe), but it would have cost you real precision you had already earned through stratification.",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "7 · Design-Based Analysis"
+    ]
+  },
+  {
+    "objectID": "07-design-based-analysis.html#piece-3-design-based-thinking-where-the-uncertainty-lives",
+    "href": "07-design-based-analysis.html#piece-3-design-based-thinking-where-the-uncertainty-lives",
+    "title": "Module 7: Design-Based Analysis and Variance Estimation",
+    "section": "Piece 3 — Design-based thinking (where the uncertainty lives)",
+    "text": "Piece 3 — Design-based thinking (where the uncertainty lives)\nBefore the two repair methods, one idea decides everything: where does the uncertainty come from?\n\nDesign-based view. The population values are fixed, frozen numbers. The only random thing is which units your design happened to draw. Imagine rerunning your exact sampling plan thousands of times over the same frozen population — the estimate jumps from run to run, and that jumping is the standard error. No assumption about how the data were generated; only the sampling mechanism you yourself chose.\nModel-based view. Assumes a probability model produced the values (say, a regression with random errors), and the uncertainty flows out of that model.\n\nSurvey sampling is traditionally design-based, and the motto is short: analyze it the way you sampled it. Honor the strata, the clusters, and the weights, because they define the only randomness in the room. This is also why you cannot simply hand the numbers to an off-the-shelf statistics routine: those routines assume independent, identically distributed draws — a model — which is exactly what a complex sample is not.\n\n\n\nDesign-based inference: the population is fixed; the sample is the sole source of randomness, and its run-to-run scatter is the standard error.",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "7 · Design-Based Analysis"
+    ]
+  },
+  {
+    "objectID": "07-design-based-analysis.html#piece-4-method-1-linearization-the-tangent-line-trick",
+    "href": "07-design-based-analysis.html#piece-4-method-1-linearization-the-tangent-line-trick",
+    "title": "Module 7: Design-Based Analysis and Variance Estimation",
+    "section": "Piece 4 — Method 1: Linearization (the tangent-line trick)",
+    "text": "Piece 4 — Method 1: Linearization (the tangent-line trick)\nThe problem. The neat variance formulas in sampling are all for totals and sums — linear things. But most quantities we actually report are nonlinear: a mean, and especially a ratio or a proportion, carries the weights in both the numerator and the denominator, and a regression coefficient is messier still. There is no tidy exact variance formula for a ratio.\nThe trick. Replace the curvy estimator with the straight line that just touches it at the true value — its first-order Taylor expansion. Locally, any smooth curve looks like its tangent line. That tangent line is a plain weighted total, and totals we know how to get a variance for. So we compute the variance of the tangent-line stand-in and hand it back as the variance of the ratio. The thing that gets summed is a set of residuals (the linearized variable), and the standard error then comes from how those residuals vary across PSUs.\n\nFast. One pass through the data, a closed-form answer. It is the default in every design-based software package.\nAccurate for smooth statistics — means, totals, ratios, proportions, regression coefficients.\nBut it needs a fresh derivation per statistic, and it strains on non-smooth quantities like medians and other quantiles, where the tangent-line idea has nothing clean to grab.\n\n\n\n\nLinearization: near the truth a curved estimator (a ratio) is almost its tangent line — and a straight line is a total whose variance we already know.",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "7 · Design-Based Analysis"
+    ]
+  },
+  {
+    "objectID": "07-design-based-analysis.html#piece-5-method-2-replication-measure-the-wobble",
+    "href": "07-design-based-analysis.html#piece-5-method-2-replication-measure-the-wobble",
+    "title": "Module 7: Design-Based Analysis and Variance Estimation",
+    "section": "Piece 5 — Method 2: Replication (measure the wobble)",
+    "text": "Piece 5 — Method 2: Replication (measure the wobble)\nInstead of a formula, brute force. Build many slightly altered copies of your sample, recompute the estimate on each, and watch how much it bounces. The spread of those replicate estimates is the standard error — read straight off, no calculus. Each altered copy arrives as its own column of replicate weights; you compute the same estimate once per column and look at the scatter. Three standard recipes for making the copies:\n\nJackknife (delete-one). Drop one PSU (or one group of PSUs) at a time, reweight the rest, recompute. How far each deletion moves the estimate reveals the variance.\nBRR (balanced repeated replication). Built for the common two-PSUs-per-stratum design: each replicate keeps one of the two halves from every stratum, following a balanced (Hadamard) pattern so a small number of replicates covers all the combinations efficiently.\nBootstrap. Resample PSUs with replacement, many times over, and take the spread.\n\nWhy bother, when linearization is faster?\n\nOne engine, any statistic. The same procedure handles medians, quantiles, inequality indices, and other awkward quantities with no special formula — its decisive advantage over linearization.\nAgencies love it for public-use files. They ship a set of replicate-weight columns, and you get correct standard errors without ever seeing the confidential strata and cluster IDs.\nBut it costs more computation (dozens to hundreds of recomputations), and you need either the design details or the replicate weights in hand.\n\n\n\n\nReplication: recompute the estimate on many altered replicates; the spread of those estimates is the standard error — and it works for any statistic.",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "7 · Design-Based Analysis"
+    ]
+  },
+  {
+    "objectID": "07-design-based-analysis.html#piece-6-linearization-vs.-replication-which-and-when",
+    "href": "07-design-based-analysis.html#piece-6-linearization-vs.-replication-which-and-when",
+    "title": "Module 7: Design-Based Analysis and Variance Estimation",
+    "section": "Piece 6 — Linearization vs. replication: which, and when",
+    "text": "Piece 6 — Linearization vs. replication: which, and when\nThe good news first: for the smooth statistics that make up most reports — means, totals, proportions, ratios, regression coefficients — the two methods give essentially the same standard error. The choice is about convenience, not correctness.\n\n\n\n\n\n\n\n\n\nLinearization\nReplication\n\n\n\n\nHow it works\ntangent-line (Taylor) approximation\nrecompute on many altered replicates\n\n\nSpeed\none pass, fast\nmany passes, heavier\n\n\nAny statistic?\nneeds a formula each; weak on quantiles\none engine; handles medians & quantiles\n\n\nWhat you must supply\nstrata, PSU, weights, fpc\nreplicate-weight columns (or the design)\n\n\nPublic-use files\nexposes the design variables\nships replicate weights, hides the design\n\n\nRole in software\nthe out-of-the-box default\nwhen the statistic is awkward, or weights are provided\n\n\n\nRule of thumb. Reach for linearization by default; switch to replication when the statistic is non-smooth (a median, a quantile, a Gini index) or when the data arrived with replicate weights already attached.",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "7 · Design-Based Analysis"
+    ]
+  },
+  {
+    "objectID": "07-design-based-analysis.html#piece-7-the-four-ingredients-and-the-lonely-psu-snag",
+    "href": "07-design-based-analysis.html#piece-7-the-four-ingredients-and-the-lonely-psu-snag",
+    "title": "Module 7: Design-Based Analysis and Variance Estimation",
+    "section": "Piece 7 — The four ingredients (and the lonely-PSU snag)",
+    "text": "Piece 7 — The four ingredients (and the lonely-PSU snag)\nWhichever method you use, design-based software must be told four things, or it silently falls back to the SRS formula and hands you the overconfident answer:\n\nStrata — the groups you sampled within (the variance is pooled across them).\nClusters / PSUs, and their nesting — the units actually drawn at the first stage; this is where clustering’s cost is measured, as variation between PSUs.\nWeights — the final weights from Module 6, so the estimate expands to the population.\nFinite population correction — the sampling fractions, so precision is credited when you sampled a large slice.\n\nThe lonely-PSU snag. Between-PSU variance needs at least two PSUs in every stratum. A stratum with only one sampled PSU leaves the software nothing to compare it against — the lonely PSU. The standard fixes are to collapse it with a neighboring stratum, or to center its contribution at the grand mean instead of its own. Worth knowing by name; it is a classic gotcha, and the reason a run can crash or refuse to report a standard error.\n\nCheck yourself (Piece 7). A national survey gives you strata, PSU identifiers, a final weight, and a finite population correction, but you forget to declare the PSUs. Which direction will your standard errors be wrong, and why?",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "7 · Design-Based Analysis"
+    ]
+  },
+  {
+    "objectID": "07-design-based-analysis.html#piece-8-doing-it-in-r-the-survey-package",
+    "href": "07-design-based-analysis.html#piece-8-doing-it-in-r-the-survey-package",
+    "title": "Module 7: Design-Based Analysis and Variance Estimation",
+    "section": "Piece 8 — Doing it in R (the survey package)",
+    "text": "Piece 8 — Doing it in R (the survey package)\nEverything above is method-agnostic; in practice one package does it all in R — survey, by Thomas Lumley. One idea drives the whole package: you declare the design once (the four ingredients from Piece 7), and then every estimate you ask for is automatically design-correct — honest standard errors, no SRS shortcut. Here is the whole workflow, mapped onto the pieces you just learned.\n\nRead-along, not run. R is not yet installed on your machine, so treat this piece as a reference — every line is ready to run the moment we set R up. Nothing here changes the concept-first path; it just shows where the ideas land in code.\n\n1. Install and load.\n\ninstall.packages(“survey”) library(survey)\n\n2. Declare the design (Piece 7’s four ingredients). This one call is the whole game — name the strata, the PSUs, the weights, and the fpc; everything downstream inherits them.\n\ndes &lt;- svydesign( id = ~psu, # clusters / PSUsstrata = ~region, # strata weights = ~finalwt, # final weights (Module 6)fpc = ~Nh, # finite population correction nest = TRUE, # PSU ids numbered within stratadata = mydata)\n\n3. Design-correct estimates — linearization is the default (Piece 4), and it prints the design effect on request (Piece 2).\n\nsvymean(~satisfaction, des) # estimate + honest SE svytotal(~satisfaction, des) # population total svymean(~satisfaction, des, deff = TRUE) # … and the design effect confint( svymean(~satisfaction, des) ) # 95% CI svyby(~satisfaction, ~region, des, svymean) # by subgroup\n\n4. Switch to replication when you need it (Piece 5). Either build replicate weights from your design, or read the columns an agency shipped on a public-use file — then the same svymean call reads the SE straight off the replicates, and quantiles finally work.\n\ndes_jk &lt;- as.svrepdesign(des, type = “JKn”) # jackknife from the design des_rep &lt;- svrepdesign(weights = ~finalwt, # … or agency replicate weights repweights = “repwt[0-9]+”, type = “JK1”, data = puf) svymean(~income, des_rep) # SE from the replicate spread svyquantile(~income, des_rep, 0.5) # the median (linearization can’t)\n\n5. The lonely-PSU switch (Piece 7). One line tells survey how to treat a stratum with a single PSU, instead of stopping with an error.\n\noptions(survey.lonely.psu = “adjust”) # or “average”\n\nPrefer tidyverse pipes? The srvyr package wraps all of this: as_survey_design(…) then group_by(…) %&gt;% summarise(svymean(…)) — same engine underneath, dplyr-style syntax on top.\nEach concept, and the survey call that does it\n\n\n\n\n\n\n\nConcept (piece)\nsurvey call\n\n\n\n\nDeclare design — 4 ingredients (P7)\nsvydesign(id, strata, weights, fpc, nest)\n\n\nLinearization estimates (P4)\nsvymean / svytotal / svyby , then confint()\n\n\nDesign effect (P2)\nsvymean(…, deff = TRUE)\n\n\nReplication (P5)\nas.svrepdesign() / svrepdesign() ; svyquantile()\n\n\nLonely PSU (P7)\noptions(survey.lonely.psu = “adjust”)\n\n\n\n\nCheck yourself (Piece 8). You call svydesign() but leave out weights=. Which of the four ingredients is missing — and will that spoil only your standard errors, or the point estimates too?",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "7 · Design-Based Analysis"
+    ]
+  },
+  {
+    "objectID": "07-design-based-analysis.html#coursework-anchor-625-745",
+    "href": "07-design-based-analysis.html#coursework-anchor-625-745",
+    "title": "Module 7: Design-Based Analysis and Variance Estimation",
+    "section": "Coursework anchor (625 / 745)",
+    "text": "Coursework anchor (625 / 745)\nThis is the leap from computing an estimate to trusting it. In the 625/745 material it is the moment you stopped writing s / sqrt(n) and started declaring the design — strata, PSUs, weights, fpc — before asking for any standard error, then reading a design effect off the output to see what the design cost you. The 745 track leans specifically on replicate weights and the design-based tools that consume them; that hands-on layer — building the design object, asking for a design-correct mean, and pulling out standard errors and confidence intervals — is the next time we open R.",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "7 · Design-Based Analysis"
+    ]
+  },
+  {
+    "objectID": "07-design-based-analysis.html#interview-angles",
+    "href": "07-design-based-analysis.html#interview-angles",
+    "title": "Module 7: Design-Based Analysis and Variance Estimation",
+    "section": "Interview angles",
+    "text": "Interview angles\n\nWhy not just use SD over root-n on survey data? Because that formula assumes a simple random sample. Clustering and unequal weights make the true error larger, so the SRS formula leaves you _ overconfident — intervals too narrow, p-values too small.\nWhat is a design effect? The ratio of your design’s variance to an SRS of the same size. deff &gt; 1 means lost precision (clustering, unequal weights); deff &lt; 1 means gained (stratification). Honest error = SRS error x sqrt(deff), and n_eff = n / deff.\nLinearization vs. replication? Linearization is a fast Taylor / tangent-line approximation — the software default; replication (jackknife, BRR, bootstrap) recomputes on many altered samples and reads the error off the spread. Same answer for smooth statistics; replication wins for medians and quantiles, and for public-use files with replicate weights.\nWhat are replicate weights? Extra weight columns an agency ships so you can compute correct standard errors by resampling — without ever seeing the confidential strata and cluster IDs.\nWhat is a lonely PSU? A stratum with a single sampled PSU, so between-PSU variance can’t be formed; you collapse strata or center at the grand mean to handle it.\nDesign-based vs. model-based? Design-based treats population values as fixed and the sample as the only randomness; model-based assumes a model generated the data. Survey inference is traditionally design-based: analyze it the way you sampled it.",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "7 · Design-Based Analysis"
+    ]
+  },
+  {
+    "objectID": "07-design-based-analysis.html#quick-check",
+    "href": "07-design-based-analysis.html#quick-check",
+    "title": "Module 7: Design-Based Analysis and Variance Estimation",
+    "section": "Quick check",
+    "text": "Quick check\n\nA clustered sample of 800 has a design effect of 2.5. What is the effective sample size, and what does that number mean?\nYour naive SRS standard error is 2.0 points and the design effect is 1.44. What is the honest standard error?\nClustering, unequal weights, stratification: which two usually make the naive SRS error too small, and which one makes it too large?\nYou need a standard error for the median household income from a public-use file that ships replicate weights. Linearization or replication — which is the natural choice, and why?\nOne stratum in your design has only a single sampled PSU. What is this called, and name one fix.",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "7 · Design-Based Analysis"
+    ]
+  },
+  {
+    "objectID": "07-design-based-analysis.html#module-7-in-one-breath",
+    "href": "07-design-based-analysis.html#module-7-in-one-breath",
+    "title": "Module 7: Design-Based Analysis and Variance Estimation",
+    "section": "Module 7 in one breath",
+    "text": "Module 7 in one breath\n\nThe SRS formula (SD / sqrt(n)) assumes independent, equal-chance draws; complex designs break that, usually making the naive error too small — overconfident.\nThe design effect deff = design variance / SRS variance ties it together: honest error = SRS error x sqrt(deff), and n_eff = n / deff.\nDesign-based thinking: population values are fixed; the sample is the only randomness — so analyze it the way you sampled it.\nLinearization (tangent-line Taylor approximation) is the fast default; replication (jackknife, BRR, bootstrap) reads the error off the spread of many altered samples and handles any statistic.\nTell the software the strata, PSUs, weights, and fpc — and watch for the lonely PSU.\nIn R, the survey package does it all: declare the design once with svydesign(), then every svymean / svytotal / svyby is design-correct; as.svrepdesign() flips you to replicate methods.",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "7 · Design-Based Analysis"
+    ]
+  },
+  {
+    "objectID": "05-multistage-pps.html",
+    "href": "05-multistage-pps.html",
+    "title": "Module 5 — Multistage & PPS/PPeS",
+    "section": "",
+    "text": "In cluster sampling you took whole groups and measured everyone in them. Multistage keeps the cost savings of clustering but samples within the chosen groups too — and PPS is the trick that keeps everyone’s chance of selection equal. This module builds those ideas one small piece at a time, the same way we walked through them together.",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "5 · Multistage & PPS"
+    ]
+  },
+  {
+    "objectID": "05-multistage-pps.html#piece-1-what-multistage-means-psus-and-ssus",
+    "href": "05-multistage-pps.html#piece-1-what-multistage-means-psus-and-ssus",
+    "title": "Module 5 — Multistage & PPS/PPeS",
+    "section": "Piece 1 — What “multistage” means (PSUs and SSUs)",
+    "text": "Piece 1 — What “multistage” means (PSUs and SSUs)\nIn cluster sampling (Module 4), once you picked a school you measured everyone in it. That’s fine when clusters are small, but real schools have hundreds of kids — you can’t survey all of them in every school you land on.\nMultistage sampling fixes that by sampling in steps:\n\nStage 1: from the full list of schools, randomly pick a few schools.\nStage 2: inside each chosen school, don’t take everyone — randomly pick a handful of students.\n\nThat’s a two-stage design. You could keep going (schools, then classrooms, then students = three stages), which is where the “multi” comes from.\nThe vocabulary just names the units at each stage:\n\nPSU — Primary Sampling Unit = what you pick first. Here, the school.\nSSU — Secondary Sampling Unit = what you pick second, inside a PSU. Here, the student (or the classroom, if there’s a stage in between).\n\n\n\n\nFigure 1. Two-stage sampling: pick a few schools (PSUs), then subsample a few students (SSUs) inside each.\n\n\n\nCluster = pick groups, take everyone. Multistage = pick groups, then sample within them too.\n\nThe big practical payoff: you get the cost savings of clustering (your fieldworker only visits a few schools) without being forced to interview every single person in those schools.\nCluster vs. multistage at a glance\n\n\n\n\n\n\n\n\n\nCluster sampling\nMultistage sampling\n\n\n\n\nInside a chosen group\nmeasure everyone\nsubsample — take only some\n\n\nStages of selection\none (pick clusters)\ntwo or more (PSUs, then SSUs, …)\n\n\nCost per group visited\nhigher (interview all)\nlower (interview a few)\n\n\nWatch out for\nbig design effect if roh is high\nunequal selection chances (see Piece 2)\n\n\n\nOne thing to keep straight: don’t mix up the cluster (the group, e.g., the school) with the element (the unit, e.g., the child). The mantra from Module 4 still holds — sample clusters, measure elements — and now we add: … but in multistage you sample the elements too.\n\nCheck yourself (Piece 1). Can you tell me, in your own words, the difference between what happens inside a chosen cluster under plain cluster sampling vs. under multistage?",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "5 · Multistage & PPS"
+    ]
+  },
+  {
+    "objectID": "05-multistage-pps.html#a-quick-aside-pps-vs.-ppes-the-e",
+    "href": "05-multistage-pps.html#a-quick-aside-pps-vs.-ppes-the-e",
+    "title": "Module 5 — Multistage & PPS/PPeS",
+    "section": "A quick aside — PPS vs. PPeS (the “e”)",
+    "text": "A quick aside — PPS vs. PPeS (the “e”)\nYou asked what PPeS is, so let’s pin down the pair before we build up to it.\n\nPPS = Probability Proportional to Size. When you pick your PSUs (schools), you give bigger schools a proportionally bigger chance of being selected. A school with 800 kids is twice as likely to be picked as one with 400. (This is Piece 3 — the fix for the problem in Piece 2.)\nPPeS = Probability Proportional to estimated Size. Same idea, but with a catch: in the real world you often don’t know each school’s exact current enrollment when you draw the sample. So you use the best available estimate — last year’s census, an old administrative file — as your “measure of size.”\n\nThe only difference is the “e”:\n\n\n\n\n\n\n\n\n\nMeasure of size used\nWhen to use it\n\n\n\n\nPPS\nthe true, exact size\nyou actually have current counts\n\n\nPPeS\nan estimate / proxy of size\ntrue size is unknown or outdated (the usual real-world case)\n\n\n\nThe consequence: with PPS you can make the design perfectly self-weighting (every person has an identical overall chance). With PPeS, because your sizes are a little off, it comes out almost self-weighting, and weighting tidies up the rest (Module 6). We’ll see exactly why in Piece 4.",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "5 · Multistage & PPS"
+    ]
+  },
+  {
+    "objectID": "05-multistage-pps.html#piece-2-why-equal-chance-for-schools-is-unfair-to-students",
+    "href": "05-multistage-pps.html#piece-2-why-equal-chance-for-schools-is-unfair-to-students",
+    "title": "Module 5 — Multistage & PPS/PPeS",
+    "section": "Piece 2 — Why equal chance for schools is unfair to students",
+    "text": "Piece 2 — Why equal chance for schools is unfair to students\nHere’s the wrinkle multistage introduces. Keep it as simple as possible: 2 schools, we pick 1 of them (each 50%), then survey 2 students in whichever we picked. One school is small (4 students), the other big (16 students).\nWork out a single student’s overall chance of being surveyed — multiply the two stages together:\n\nIn the small school: P(school picked) × P(student picked | picked) = 1/2 × 2/4 = 1/4.\nIn the big school: 1/2 × 2/16 = 1/16.\n\n\n\n\nFigure 2. Give the two schools an equal chance and a small-school student is four times as likely to be sampled as a big-school student.\n\n\nSo a student in the small school is four times as likely to end up in the sample as a student in the big school — even though we did nothing “unfair” on purpose. Equal chance for the clusters produced very unequal chances for the elements.\n\n\n\n\n\n\n\n\n\n\n\nSchool\nStudents\nP(school picked)\nTake\nP(student|picked)\nOverall\n\n\n\n\nSmall\n4\n1/2\n2\n2/4\n1/4\n\n\nBig\n16\n1/2\n2\n2/16\n1/16\n\n\n\nWhy it matters: if small-school students are over-represented and small schools differ from big ones (rural vs. urban, say), your estimates are biased unless you fix it. Two ways to fix it: (a) weight afterward (Module 6), or (b) design it away up front by making a school’s selection chance depend on its size — that’s PPS.\n\nThe root cause: every school had the same chance, but schools hold different numbers of students. Equal chance for unequal-sized groups = unequal chance for individuals.\n\n\nCheck yourself (Piece 2). Suppose the big school had 40 students instead of 16 (still pick 1 of the 2 schools, still survey 2). What’s a student’s chance in the big school now — and how many times over-represented are the small-school students?",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "5 · Multistage & PPS"
+    ]
+  },
+  {
+    "objectID": "05-multistage-pps.html#piece-3-pps-probability-proportional-to-size",
+    "href": "05-multistage-pps.html#piece-3-pps-probability-proportional-to-size",
+    "title": "Module 5 — Multistage & PPS/PPeS",
+    "section": "Piece 3 — PPS: probability proportional to size",
+    "text": "Piece 3 — PPS: probability proportional to size\nThe fix is elegant. Instead of giving every school the same chance, give each school a chance proportional to how many students it has. Big schools are more likely to be drawn; small schools less likely — in exact proportion to size.\nConcretely: 20 students across the two schools. School A has 4 (that’s 4/20 = 20% of all students); School B has 16 (16/20 = 80%). Under PPS, School A is drawn 20% of the time and School B 80% of the time.\n\n\n\nFigure 3. Each school’s slice of the bar — its share of all students — is its chance of being selected.\n\n\nThen — and this is the second half of the trick — you take a fixed number of students (say 2) from whichever school is drawn. Notice the tug-of-war this sets up:\n\nA big school is much more likely to be visited (good chance for its students)… but once visited, its 2 sampled students are drawn from a big pool, so each individual is diluted.\nA small school is rarely visited… but if it is, its 2 students come from a tiny pool, so each is concentrated.\n\nThese two forces pull in opposite directions. In Piece 4 we’ll see they cancel exactly.\n\nPPS trades an equal chance of picking the school for a fair chance of picking the person.\n\n\nCheck yourself (Piece 3). Under PPS, School B (size 16) is visited 80% of the time but we still survey only 2 of its students. Compared with the old equal-chance design (50%), is a Big-school student now more or less likely to be surveyed — and why?",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "5 · Multistage & PPS"
+    ]
+  },
+  {
+    "objectID": "05-multistage-pps.html#piece-4-self-weighting-designs-and-where-ppes-lands",
+    "href": "05-multistage-pps.html#piece-4-self-weighting-designs-and-where-ppes-lands",
+    "title": "Module 5 — Multistage & PPS/PPeS",
+    "section": "Piece 4 — Self-weighting designs (and where PPeS lands)",
+    "text": "Piece 4 — Self-weighting designs (and where PPeS lands)\nNow put the two halves together and watch the magic. A student’s overall chance is still P(school picked) × P(student | picked). Under PPS:\n\nBig school: (16/20) × (2/16) = 2/20 = 1/10.\nSmall school: (4/20) × (2/4) = 2/20 = 1/10.\n\nThe school’s size appears once on top (in the selection chance) and once on the bottom (in the within-school chance), so it cancels. Every student — big school or small — ends up with the same overall chance, 1/10.\n\n\n\nFigure 4. The size term cancels, so every student shares the same overall selection probability.\n\n\nA design where every element has the same overall probability of selection is called self-weighting. The name says it: because everyone’s chance is equal, no unequal weights are needed to correct the estimate — you can (roughly) just take a simple average.\nThe general rule: if you draw PSUs with probability proportional to size and then take a fixed number n of elements from each drawn PSU, every element’s chance = n / (total elements). Constant, by construction.\nThe same two schools, now under PPS\n\n\n\n\n\n\n\n\n\n\n\nSchool\nSize\nP(picked) — PPS\nTake\nP(student|picked)\nOverall\n\n\n\n\nSmall\n4\n4/20\n2\n2/4\n1/10\n\n\nBig\n16\n16/20\n2\n2/16\n1/10\n\n\n\nEvery overall chance is the same (1/10) — the mark of a self-weighting design. Compare with Piece 2, where the same two schools gave 1/4 vs. 1/16.\nWhere PPeS comes in: all of this assumed we knew each school’s exact size. In practice we use estimated sizes (PPeS). If last year’s enrollment is a little off from today’s, the sizes don’t cancel perfectly, so the design is almost self-weighting. That small leftover imbalance is mopped up with weights in Module 6 — which is exactly why weighting is the next module.\n\nSelf-weighting = every element has the same overall chance of selection. PPS at stage 1 + a fixed take at stage 2 gets you there; PPeS gets you close.\n\n\nCheck yourself (Piece 4). In your own words, why does making a school’s selection chance proportional to its size make the whole design self-weighting? What exactly cancels?",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "5 · Multistage & PPS"
+    ]
+  },
+  {
+    "objectID": "05-multistage-pps.html#module-5-in-one-breath",
+    "href": "05-multistage-pps.html#module-5-in-one-breath",
+    "title": "Module 5 — Multistage & PPS/PPeS",
+    "section": "Module 5 in one breath",
+    "text": "Module 5 in one breath\n\nMultistage = sample groups, then subsample within them (PSUs, then SSUs).\nEqual chance for groups makes unequal chance for people, because groups differ in size.\nPPS fixes it by giving each group a selection chance proportional to its size.\nPPS + a fixed take per group = self-weighting: everyone shares one overall chance, n/Total.\nPPeS uses estimated sizes when true sizes are unknown: almost self-weighting, with weighting to finish (Module 6).",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "5 · Multistage & PPS"
+    ]
+  },
+  {
+    "objectID": "03-stratified-sampling.html",
+    "href": "03-stratified-sampling.html",
+    "title": "Module 3: Stratified Sampling",
+    "section": "",
+    "text": "Module 2 gave you implicit stratification (even spread for free). Stratified sampling is the deliberate version: split the population into meaningful groups and sample within each on purpose. It is one of the most useful designs in real survey work, and it introduces a new decision — allocation — for how many units to take from each group. Four pieces.",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "3 · Stratified Sampling"
+    ]
+  },
+  {
+    "objectID": "03-stratified-sampling.html#piece-1-what-stratified-sampling-is",
+    "href": "03-stratified-sampling.html#piece-1-what-stratified-sampling-is",
+    "title": "Module 3: Stratified Sampling",
+    "section": "Piece 1 — What stratified sampling is",
+    "text": "Piece 1 — What stratified sampling is\nSplit the population into strata — non-overlapping groups that together cover everyone — then draw a sample within each stratum (usually an SRS inside each). Finally, combine the stratum results into one overall estimate.\n\n\n\nDivide everyone into strata, sample inside each, then combine.\n\n\nThe catch on defining strata: you must know each unit’s group for everyone on the frame before you sample — so strata are built from information you already have (age band, sex, region, school, customer tier). Good strata are similar inside and different from each other.",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "3 · Stratified Sampling"
+    ]
+  },
+  {
+    "objectID": "03-stratified-sampling.html#piece-2-why-stratify",
+    "href": "03-stratified-sampling.html#piece-2-why-stratify",
+    "title": "Module 3: Stratified Sampling",
+    "section": "Piece 2 — Why stratify",
+    "text": "Piece 2 — Why stratify\nTwo big payoffs:\n\nGuaranteed representation. You decide how many come from each group, so every group — even a small one — is certain to appear. That also lets you report reliable estimates for each subgroup, not just the whole.\nPrecision. If strata are internally similar but differ from each other, stratifying removes that between-group difference from your error — so your estimate is tighter than SRS for the same n.\n\n\n\n\nYou set the sample per group, so even the small group is guaranteed in; an unlucky SRS might miss it.",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "3 · Stratified Sampling"
+    ]
+  },
+  {
+    "objectID": "03-stratified-sampling.html#piece-3-allocation-how-many-from-each-stratum",
+    "href": "03-stratified-sampling.html#piece-3-allocation-how-many-from-each-stratum",
+    "title": "Module 3: Stratified Sampling",
+    "section": "Piece 3 — Allocation (how many from each stratum)",
+    "text": "Piece 3 — Allocation (how many from each stratum)\nOnce you fix the total sample size n, you must split it across the strata. Three standard schemes:\n\nEqual: the same n in every stratum. Good when you want to compare strata; it over-samples small ones.\nProportional: n_h = n * (N_h / N) — each stratum’s share matches its size. Fair, self-weighting, and the most common default.\nNeyman / optimal: n_h is proportional to (N_h * S_h) — put more sample where a stratum is both big and variable. This gives the best precision for a fixed n. (With differing costs, divide by the square root of cost.)\n\n\n\n\nThe same n = 100 split three ways across strata A, B, C.\n\n\nTerminology: proportional allocation is “proportionate”; equal and Neyman are “disproportionate” (some groups are over- or under-sampled, so you need weights to combine them fairly — a preview of Module 6). Tiny example: strata of size 600 / 300 / 100 (N = 1,000), with n = 100. Proportional allocation takes 60 / 30 / 10.",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "3 · Stratified Sampling"
+    ]
+  },
+  {
+    "objectID": "03-stratified-sampling.html#piece-4-how-much-precision-you-gain",
+    "href": "03-stratified-sampling.html#piece-4-how-much-precision-you-gain",
+    "title": "Module 3: Stratified Sampling",
+    "section": "Piece 4 — How much precision you gain",
+    "text": "Piece 4 — How much precision you gain\nThe overall estimate is a weighted average of the stratum means, with weights equal to the stratum shares (N_h / N). The precision win comes from a simple fact:\n\nstratified error uses only WITHIN-stratum variation — the BETWEEN-stratum differences are removed\n\n\n\n\nWhen strata differ, the stratified bell is narrower than the SRS bell.\n\n\nSo the more your strata differ from each other (and the more homogeneous each is inside), the bigger the gain. The size of that gain is captured by the design effect (Module 4): a value below 1 means “better than SRS.” With proportional allocation, stratified sampling is essentially never worse than SRS — a rare free lunch, as long as you have a good stratifying variable known for the whole frame.",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "3 · Stratified Sampling"
+    ]
+  },
+  {
+    "objectID": "03-stratified-sampling.html#interview-angles",
+    "href": "03-stratified-sampling.html#interview-angles",
+    "title": "Module 3: Stratified Sampling",
+    "section": "Interview angles",
+    "text": "Interview angles\n\n“Why stratify?” Guaranteed representation of every group (and subgroup estimates), plus better precision when strata differ.\n“Proportional vs. Neyman allocation?” Proportional splits n by stratum size; Neyman also weights by variability, putting more sample where a stratum is both big and variable.\n“When does stratification help most?” When strata are homogeneous within and very different between.",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "3 · Stratified Sampling"
+    ]
+  },
+  {
+    "objectID": "03-stratified-sampling.html#quick-check",
+    "href": "03-stratified-sampling.html#quick-check",
+    "title": "Module 3: Stratified Sampling",
+    "section": "Quick check",
+    "text": "Quick check\n\nFor big precision gains, should strata be similar or different from each other?\nStrata of size 600 / 300 / 100 and n = 100 with proportional allocation — how many from each?\nWhich allocation puts more sample where a stratum is both big and variable?\nIn one line, why is stratified sampling often more precise than SRS?",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "3 · Stratified Sampling"
+    ]
+  },
+  {
+    "objectID": "01-simple-random-sampling.html",
+    "href": "01-simple-random-sampling.html",
+    "title": "Module 1: Simple Random Sampling",
+    "section": "",
+    "text": "Simple random sampling (SRS) is the simplest probability design and the yardstick every fancier method is measured against. This module builds it in six small pieces. The math here is gentle — each formula is stated in plain words with a tiny example — and reading it is optional; the live sessions still go one piece at a time.",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "1 · Simple Random Sampling"
+    ]
+  },
+  {
+    "objectID": "01-simple-random-sampling.html#piece-1-what-srs-is-the-fair-lottery",
+    "href": "01-simple-random-sampling.html#piece-1-what-srs-is-the-fair-lottery",
+    "title": "Module 1: Simple Random Sampling",
+    "section": "Piece 1 — What SRS is (the fair lottery)",
+    "text": "Piece 1 — What SRS is (the fair lottery)\nDefinition: put every unit of your frame in a hat, mix well, and draw n of them purely by chance — every unit has the same chance of being picked. In practice you do not use a literal hat; you number the frame and let random numbers choose.\n\n\n\nNumber everyone, pick n at random, and those units are your sample — each with the same chance.\n\n\nTwo properties define SRS:\n\nEqual chance for every unit: each inclusion probability is pi = n / N.\nEvery possible sample of size n is equally likely — the stricter definition the math rests on.\n\n\npi = n / N\n\nWhy it is the benchmark: a machine decides, not a person, which removes selection bias and makes estimates unbiased. It is the reference other designs are compared to. One caveat: SRS needs a complete list of the whole population so you can number everyone — easy for “students at a university,” hard for “all adults in a country,” which is why later modules exist.",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "1 · Simple Random Sampling"
+    ]
+  },
+  {
+    "objectID": "01-simple-random-sampling.html#piece-2-with-or-without-replacement",
+    "href": "01-simple-random-sampling.html#piece-2-with-or-without-replacement",
+    "title": "Module 1: Simple Random Sampling",
+    "section": "Piece 2 — With or without replacement",
+    "text": "Piece 2 — With or without replacement\n\n\n\nWithout replacement, no unit repeats. With replacement, the same unit can be drawn twice.\n\n\n\nWithout replacement (SRSWOR): once a unit is drawn it is set aside, so nobody appears twice. This is the normal, real-world version.\nWith replacement (SRSWR): each unit is put back, so a unit can be picked more than once. Rare in practice; it exists mainly because the math is a touch simpler. We default to without replacement.\n\nThe practical difference: without replacement is slightly more precise (you never “waste” a draw on someone you already have), and that gain is captured by the finite population correction in Piece 4.",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "1 · Simple Random Sampling"
+    ]
+  },
+  {
+    "objectID": "01-simple-random-sampling.html#piece-3-what-you-estimate-from-an-srs",
+    "href": "01-simple-random-sampling.html#piece-3-what-you-estimate-from-an-srs",
+    "title": "Module 1: Simple Random Sampling",
+    "section": "Piece 3 — What you estimate from an SRS",
+    "text": "Piece 3 — What you estimate from an SRS\nFrom one SRS you can estimate three things. In each case the sample quantity is an unbiased guess of the matching population quantity.\n\n\n\nThe sample mean estimates the population mean; scale it up by N for the total; a fraction estimates a proportion.\n\n\n\nMean: x-bar = the average of your n values; it estimates the population mean mu.\nTotal: t-hat = N * x-bar; it estimates the population total.\nProportion: p-hat = (number with the trait) / n; it estimates the population proportion P. (A proportion is just a mean of 0s and 1s.)\n\nTiny example. From N = 1,000 students you take an SRS of n = 100 and find average sleep x-bar = 7.1 hrs. Best estimate of the total sleep across all students: t-hat = 1,000 * 7.1 = 7,100 hrs. If 30 of the 100 are athletes, p-hat = 30/100 = 0.30 estimates the athlete share.",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "1 · Simple Random Sampling"
+    ]
+  },
+  {
+    "objectID": "01-simple-random-sampling.html#piece-4-how-good-is-the-estimate-standard-error-and-fpc",
+    "href": "01-simple-random-sampling.html#piece-4-how-good-is-the-estimate-standard-error-and-fpc",
+    "title": "Module 1: Simple Random Sampling",
+    "section": "Piece 4 — How good is the estimate? (standard error and FPC)",
+    "text": "Piece 4 — How good is the estimate? (standard error and FPC)\nYour estimate wiggles from sample to sample (Module 0’s bell). The width of that bell is the standard error (SE). For an SRS mean:\n\nSE(x-bar) = square root of [ (1 - f) * s² / n ]\n\nHere s is the sample standard deviation, n the sample size, and f = n / N the sampling fraction. Two plain-language reads: (1) bigger n makes SE smaller (divide by n); (2) the factor (1 - f) is the finite population correction (FPC).\n\n\n\nFPC = 1 - f. Near a full census (large f) it shrinks your uncertainty; when n is tiny next to N it is about 1.\n\n\nWhen can you ignore the FPC? When you sample a small fraction (rule of thumb f &lt; 0.05), 1 - f is about 0.95-1.0, so it barely matters. It only bites when you sample a big slice of the population.\nA common confusion: what the FPC does (and does not) change\nThere are two different numbers here, and it matters which you mean. The FPC never changes your best guess; it only changes your uncertainty.\n\nEstimate (x-bar) — your best guess of the value (for example “average = 7.1 hrs”). The FPC never touches it.\nStandard error (SE) — the size of your error bars (for example “plus or minus 0.14”). The FPC changes this, through: new SE = old SE * square root of (FPC).\n\nSo a small FPC does not mean a small effect — it is the opposite. The FPC is a multiplier, and a small multiplier shrinks the SE a lot. Here “effect” means how much the FPC shrinks the SE: big effect = SE much smaller; no effect = SE unchanged.\nTwo cases make it concrete (pretend the SE without any FPC would be 1.0):\n\nNational poll (1,000 of 250 million): f is about 0, so FPC is about 1. SE * square root of 1 is about unchanged — no effect, ignore it.\nSample 50 of 60: f = 0.83, so FPC = 0.17. SE * square root of 0.17 is about times 0.41 — SE drops to under half, a big effect, keep it.\n\nThe chain to remember: FPC close to 1, square root close to 1, SE basically unchanged, ignore it. And FPC small, SE shrinks a lot, keep it. FPC is only small when you have sampled a big chunk of the population.\n\n\n\nThe FPC as “how much you have seen”: more of the population sampled means less mystery left.\n\n\n\n\n\nSampling 50 of 60: the small FPC (0.17) shrinks the error bars to under half. Small FPC = big shrink.\n\n\nTiny example (continued). With s = 1.5 and n = 100, f = 100/1,000 = 0.1, so FPC = 0.9. SE(x-bar) = square root of [0.9 * 1.5² / 100] = square root of 0.02025 = about 0.14 hrs.",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "1 · Simple Random Sampling"
+    ]
+  },
+  {
+    "objectID": "01-simple-random-sampling.html#piece-5-the-give-or-take-confidence-intervals",
+    "href": "01-simple-random-sampling.html#piece-5-the-give-or-take-confidence-intervals",
+    "title": "Module 1: Simple Random Sampling",
+    "section": "Piece 5 — The give-or-take (confidence intervals)",
+    "text": "Piece 5 — The give-or-take (confidence intervals)\nA single estimate is more honest with a range attached. Because the bell is roughly normal, about 95% of samples land within 1.96 standard errors of the truth, which gives:\n\n95% CI: x-bar ± 1.96 * SE\n\n\n\n\nThe shaded band is the 95% confidence interval: our plausible range for the true mean.\n\n\nReading it right: “95% confident” means the method captures the true value 95% of the time across many samples — not that there is a 95% chance the truth is in this one interval. Wider interval = less certain; narrower = more.\nTiny example (continued). x-bar = 7.1, SE = 0.14, so the 95% CI is 7.1 ± 1.96*0.14 = 7.1 ± 0.28, i.e. about (6.82, 7.38) hrs.",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "1 · Simple Random Sampling"
+    ]
+  },
+  {
+    "objectID": "01-simple-random-sampling.html#piece-6-how-big-should-the-sample-be",
+    "href": "01-simple-random-sampling.html#piece-6-how-big-should-the-sample-be",
+    "title": "Module 1: Simple Random Sampling",
+    "section": "Piece 6 — How big should the sample be?",
+    "text": "Piece 6 — How big should the sample be?\nTurn the logic around: decide how precise you want to be (a target margin of error e), then solve for n. Because SE shrinks with the square root of n, precision improves fast at first and then slowly.\n\n\n\nMargin of error falls like 1 / square-root(n): to halve it, you must roughly quadruple the sample.\n\n\nFor a proportion with target margin e (worst case p = 0.5):\n\nn0 = (1.96² * p(1 - p)) / e²\n\n\nthen adjust for a finite population: n = n0 / (1 + n0 / N)\n\nTiny example. Want a margin of e = 0.03 (3 points). n0 = 3.8416 * 0.25 / 0.0009 = about 1,067. If the population is N = 1,000, adjust: n = 1,067 / (1 + 1,067/1,000) = about 516. The FPC roughly halves the requirement here because we are sampling a big slice.",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "1 · Simple Random Sampling"
+    ]
+  },
+  {
+    "objectID": "01-simple-random-sampling.html#interview-angles",
+    "href": "01-simple-random-sampling.html#interview-angles",
+    "title": "Module 1: Simple Random Sampling",
+    "section": "Interview angles",
+    "text": "Interview angles\n\n“What is a simple random sample?” A design where every unit — and every possible sample of size n — has an equal chance of selection, giving unbiased estimates and a clean basis for standard errors.\n“What is the finite population correction and when does it matter?” The factor (1 - f) that reduces variance when you sample a large fraction; negligible when n is small relative to N (f &lt; 0.05).\n“If I want to halve my margin of error, what happens to sample size?” It roughly quadruples, because precision improves with the square root of n.",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "1 · Simple Random Sampling"
+    ]
+  },
+  {
+    "objectID": "01-simple-random-sampling.html#quick-check",
+    "href": "01-simple-random-sampling.html#quick-check",
+    "title": "Module 1: Simple Random Sampling",
+    "section": "Quick check",
+    "text": "Quick check\n\nA teacher draws 10 of 40 names from a hat. Is it an SRS, and what is each student’s pi?\nYou sample n = 50 from N = 60. Is the FPC safe to ignore? Why?\nx-bar = 20, SE = 2. Give a rough 95% confidence interval.\nYou currently have a margin of error of 4 points and want 2. Roughly how much bigger must n get?",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "1 · Simple Random Sampling"
+    ]
+  },
+  {
+    "objectID": "00-foundations.html",
+    "href": "00-foundations.html",
+    "title": "Module 0: Foundations and Vocabulary",
+    "section": "",
+    "text": "Everything else in sampling is built on one picture: one population, then many possible samples, then a bell-shaped pile of estimates centered on the truth. Take that one idea slowly and the rest is just careful bookkeeping on top of it.",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "0 · Foundations"
+    ]
+  },
+  {
+    "objectID": "00-foundations.html#why-sample-at-all",
+    "href": "00-foundations.html#why-sample-at-all",
+    "title": "Module 0: Foundations and Vocabulary",
+    "section": "Why sample at all?",
+    "text": "Why sample at all?\nYou want to know something about a big group, but measuring everyone is too expensive, too slow, or impossible. So you look at a slice and use it to make a good guess about the whole. Three everyday examples are all the same move:\n\nA blood test. The lab does not drain all your blood; one small vial tells them about your entire body, because blood is well mixed.\nTasting rice or soup. One grain (well stirred in) tells you whether the whole pot is cooked or needs salt.\nAn exit poll. Ask a few thousand voters and forecast an election of millions.\n\nIn every case a small, fair slice stands in for the whole. The opposite of sampling is a census (measuring everyone, like the U.S. Census) — sometimes worth it, but usually far too costly and slow, which is exactly why sampling exists.",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "0 · Foundations"
+    ]
+  },
+  {
+    "objectID": "00-foundations.html#the-core-vocabulary",
+    "href": "00-foundations.html#the-core-vocabulary",
+    "title": "Module 0: Foundations and Vocabulary",
+    "section": "The core vocabulary",
+    "text": "The core vocabulary\nRunning example: we want the average hours of sleep for all 50,000 students at a university (and, in parallel, a pot of rice).\n\nPopulation - the whole group you care about (all 50,000 students; all the rice in the pot).\nElement / unit - one member of it (one student; one grain).\nFrame - the actual list you draw from (the registrar’s enrollment list). A pot of rice has no list — you just scoop — but you cannot scoop people, so surveys need a roster.\nSample - the subset you actually examine (the 500 students you survey; the grain you taste).\nParameter - the true number about the population; fixed, but unknown (true mean mu = 6.9 hrs).\nEstimate (statistic) - the number you compute from your sample; it wiggles sample to sample (x-bar = 7.1 hrs).\n\nThe frame is your stand-in for the population, and it is almost never perfect. 3 ways it drifts from the population: undercoverage (people missing from the list - e.g. new students on last year’s roster - who then have zero chance of selection), ineligibles (names that should not be there, like graduates), and duplicates (someone listed twice, getting a double chance). Classic example: surveying a town by calling landlines - everyone who is cell-phone-only is invisible, a giant undercoverage hole that no sample size can fix.\nParameter vs. estimate is the whole game. The parameter mu is a single true number, fixed but unknown. Your estimate x-bar is your best guess at it. The tell: if a number came out of your data it is an estimate; if it is the truth you are chasing it is a parameter. Rough symbol rule: Greek letters (mu, pi, sigma) are parameters; Latin letters with a hat or bar (x-bar, p-hat, s) are estimates.",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "0 · Foundations"
+    ]
+  },
+  {
+    "objectID": "00-foundations.html#the-single-most-important-idea-the-sampling-distribution",
+    "href": "00-foundations.html#the-single-most-important-idea-the-sampling-distribution",
+    "title": "Module 0: Foundations and Vocabulary",
+    "section": "The single most important idea: the sampling distribution",
+    "text": "The single most important idea: the sampling distribution\nDraw a sample and you get an estimate. Draw again and you get a slightly different one (7.1, then 6.6, then 7.0). None equals the true 6.9 exactly: that is not a mistake, it is the nature of sampling. Now imagine repeating this thousands of times: all those estimates pile up into a bell shape centered on the truth. That pile is the sampling distribution.\n\n\n\nOne fixed population and truth (mu); each random sample gives a different estimate; the estimates form a bell centered on mu.\n\n\nThree facts about that bell — the whole payoff:\n\nIt is centered on the truth (mu) if the method is unbiased (fair selection). That is what “unbiased” means: misses cancel out on average.\nIts width = your uncertainty, the standard error. Narrow bell = trustworthy estimate; wide bell = it could have landed far off.\nBigger sample = narrower bell. More data, less wiggle. This is why sample size matters — the bridge into Module 1.\n\n\n\n\nSame truth, different precision: a small sample gives a wide, shaky bell; a large sample gives a narrow, precise one.\n\n\nThe magic that makes sampling possible: in real life you draw one sample and never build that histogram — but probability theory tells us the shape of the bell from that single sample, so you can report “7.1 hrs, give or take 0.3” without resampling. That give-or-take is a confidence interval.",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "0 · Foundations"
+    ]
+  },
+  {
+    "objectID": "00-foundations.html#bias-vs.-variance-accuracy-vs.-precision",
+    "href": "00-foundations.html#bias-vs.-variance-accuracy-vs.-precision",
+    "title": "Module 0: Foundations and Vocabulary",
+    "section": "Bias vs. variance (accuracy vs. precision)",
+    "text": "Bias vs. variance (accuracy vs. precision)\nThese answer two separate questions about your estimate. Bias: is it aimed at the right place — do estimates center on the truth, or sit off to one side? Variance: how much does it bounce around — tight and repeatable, or scattered? Picture a dartboard where the bullseye is the truth mu.\n\n\n\nLeft-to-right is bias; top-to-bottom is variance. The two move independently.\n\n\n\nTop-left — the goal. Centered and tight: accurate and precise.\nTop-right — precise but wrong. Tight cluster, off target: every estimate agrees, and all are wrong. The dangerous case.\nBottom-left — right on average, noisy. Centered but scattered; any single estimate can land far off.\nBottom-right — worst case. Off target and scattered.\n\nPrecise is not the same as right. Quick test: a scale that always reads 5 lb too heavy has a bias problem; a scale that reads differently each time but averages out has a variance problem.\nWhy this shapes the whole field: probability sampling (fair selection) attacks bias — letting chance, not convenience, pick who is in centers the darts. Sample size and smart design attack variance — more data, and designs like stratification, tighten the cluster. This also explains the opt-in web poll trap: a huge sample gives a tight cluster (low variance), but self-selection biases the aim, landing it in the top-right board — precise, and confidently wrong. (Interview nugget: total error is roughly bias-squared plus variance, so you cannot chase just one.)",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "0 · Foundations"
+    ]
+  },
+  {
+    "objectID": "00-foundations.html#two-kinds-of-error",
+    "href": "00-foundations.html#two-kinds-of-error",
+    "title": "Module 0: Foundations and Vocabulary",
+    "section": "Two kinds of error",
+    "text": "Two kinds of error\nEvery way an estimate can miss the truth falls into two families. Sorting a problem into the right family tells you whether a bigger sample will help.\n\n\n\nTotal survey error splits into sampling error (shrinks with n) and non-sampling error (does not).\n\n\n\nSampling error - the luck-of-the-draw gap because you saw a sample, not everyone. It is random, it is exactly the width of the bell (the standard error), and it shrinks as the sample grows. This is the “good,” measurable error.\nNon-sampling error - everything else, in four flavors: coverage (gaps in the frame), nonresponse (people who do not answer, who often differ from those who do), measurement (leading or confusing questions, faulty memory, interviewer effects), and processing (mis-keyed or miscoded data).\n\nThe crucial fact: a bigger sample only shrinks the sampling-error branch. Non-sampling error does not care how big n is — survey five million people with a broken frame and a leading question and you just get a very precise wrong answer, faster. The opt-in poll trap and the “precise but wrong” dartboard are non-sampling problems; the fix is not more, it is better design (a good frame, chasing nonrespondents, careful questions).",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "0 · Foundations"
+    ]
+  },
+  {
+    "objectID": "00-foundations.html#what-makes-a-sample-a-probability-sample",
+    "href": "00-foundations.html#what-makes-a-sample-a-probability-sample",
+    "title": "Module 0: Foundations and Vocabulary",
+    "section": "What makes a sample a probability sample",
+    "text": "What makes a sample a probability sample\n\nA probability sample is one where every element has a known, non-zero chance of being selected, and selection is made by chance, not by who is convenient.\n\n\n\n\nKnown chances let us build weights and compute uncertainty; self-selection (unknown chances) does neither.\n\n\nTwo words do the work. Known: you can state each unit’s chance of selection, the inclusion probability pi-sub-i. Non-zero: nobody in the population is impossible to select (a zero chance — like cell-only people behind a landline frame — brings coverage bias back).\nKnowing the inclusion probabilities unlocks three things at once:\n\nUnbiased estimates — chance-based selection centers the dartboard.\nComputable uncertainty — known pi gives the shape of the bell, so you can report a standard error and a confidence interval.\nWeights — if your chance was pi, you stand in for 1 / pi people. That is your weight w = 1 / (pi-sub-i), the seed of Module 6.\n\nA key subtlety: the chances must be known and non-zero, but they need not be equal. SRS gives everyone the same chance, but many good designs deliberately use unequal chances (e.g. oversampling a small group), and weights (w = 1 / pi) put that imbalance right. Opt-in and convenience samples let people select themselves, so pi is unknown — no weights, no honest error bars. That is why nonprobability sampling (Module 9) needs its own toolkit.",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "0 · Foundations"
+    ]
+  },
+  {
+    "objectID": "00-foundations.html#notation-to-recognize-not-memorize",
+    "href": "00-foundations.html#notation-to-recognize-not-memorize",
+    "title": "Module 0: Foundations and Vocabulary",
+    "section": "Notation to recognize (not memorize)",
+    "text": "Notation to recognize (not memorize)\nThe trick is the pattern you already found: population = parameter (Greek, fixed, unknown); sample = estimate (Latin with a hat or bar, computed, varies). Read each row of the card across.\n\n\n\nEach row: the true value (Greek) on the left, your sample estimate (hat or bar) on the right.\n\n\n\nN = population size; n = sample size; f = n / N = sampling fraction.\nmu (or Y-bar) = population mean (parameter); x-bar = sample estimate of the mean.\npi-sub-i = inclusion probability of element i; w-sub-i = 1 / (pi-sub-i) = its weight.",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "0 · Foundations"
+    ]
+  },
+  {
+    "objectID": "00-foundations.html#interview-angles",
+    "href": "00-foundations.html#interview-angles",
+    "title": "Module 0: Foundations and Vocabulary",
+    "section": "Interview angles",
+    "text": "Interview angles\n\n“Sampling vs. non-sampling error?” Sampling error is random draw-to-draw variation; it shrinks with n and is quantifiable. Non-sampling error (coverage, nonresponse, measurement) does not shrink with n and often matters more.\n“Why probability sampling?” Known non-zero inclusion probabilities give unbiased estimates, valid standard errors, and weights — so you can defensibly generalize.\n“A 500,000-person opt-in web poll — concerns?” Size does not fix bias. Unknown selection probabilities plus self-selection give coverage and selection bias a large n cannot cure.",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "0 · Foundations"
+    ]
+  },
+  {
+    "objectID": "00-foundations.html#quick-check",
+    "href": "00-foundations.html#quick-check",
+    "title": "Module 0: Foundations and Vocabulary",
+    "section": "Quick check",
+    "text": "Quick check\n\nA survey uses last year’s enrollment list, so new first-years cannot be selected. Which term names this problem?\nmu = 6.9; three samples give 7.1, 6.6, 7.0. Which is a parameter, and which are estimates?\nYou double your sample size. Which shrinks: sampling error, non-sampling error, both, or neither?\nIn one sentence: what does the width of the sampling distribution tell you?",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "0 · Foundations"
+    ]
+  },
+  {
+    "objectID": "02-systematic-sampling.html",
+    "href": "02-systematic-sampling.html",
+    "title": "Module 2: Systematic Sampling",
+    "section": "",
+    "text": "Systematic sampling is SRS’s simpler, more practical cousin: order the list, pick one random start, then take every k-th unit. It is the method behind “survey every 10th customer” and “audit every 50th invoice.” This module has four short pieces.",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "2 · Systematic Sampling"
+    ]
+  },
+  {
+    "objectID": "02-systematic-sampling.html#piece-1-the-1-in-k-method",
+    "href": "02-systematic-sampling.html#piece-1-the-1-in-k-method",
+    "title": "Module 2: Systematic Sampling",
+    "section": "Piece 1 — The 1-in-k method",
+    "text": "Piece 1 — The 1-in-k method\nThe whole idea in four steps:\n\n1. Order your list (customers in line, names on a roster, invoices by number).\n2. Compute the step, k = N / n (round to a whole number) — the gap between picks.\n3. Pick a random start — one random integer between 1 and k.\n4. Take every k-th unit from there.\n\n\n\n\nN = 20, n = 5, so k = 4. A random start of 2 gives 2, 6, 10, 14, 18.\n\n\nTwo things make it special:\n\nOnly ONE random number (the start). After that it is pure counting — dead simple, especially in the field, where you may not even need a full list (just a counter: “every 4th person out the door”). SRS, by contrast, needs a numbered frame and n separate random draws.\nStill a genuine probability sample. Every unit has a known, non-zero chance: pi = 1 / k = n / N — exactly the same as SRS. So it inherits SRS’s fairness and unbiasedness with far less effort.\n\nOne easy slip to avoid: the random start is your first selected unit. With start = 3 and k = 5, the picks are 3, 8, 13, 18, … (start first, then add k).\nThink of systematic sampling as SRS’s lazy, efficient cousin: usually just as good, far easier to run — with one catch (the periodicity trap) we meet in Piece 3.",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "2 · Systematic Sampling"
+    ]
+  },
+  {
+    "objectID": "02-systematic-sampling.html#piece-2-why-people-use-it",
+    "href": "02-systematic-sampling.html#piece-2-why-people-use-it",
+    "title": "Module 2: Systematic Sampling",
+    "section": "Piece 2 — Why people use it",
+    "text": "Piece 2 — Why people use it\nBeyond sheer simplicity, systematic sampling has a quietly powerful benefit: it spreads the sample evenly across the whole list. If the list happens to be ordered by something related to what you are measuring (say, sorted by income, GPA, or region), then stepping through it guarantees you grab some units from every part of the range — low, middle, and high. You cannot accidentally end up with all high-income or all low-income units the way a unlucky SRS draw might.\n\n\n\nOn a sorted list, systematic picks cover the whole range; a random (SRS) draw can clump and miss part of it.\n\n\nThis automatic even coverage is called implicit stratification — you get the benefit of stratifying (Module 3) without doing any extra work. When the ordering is helpful, systematic sampling is often more precise than SRS for the same n.",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "2 · Systematic Sampling"
+    ]
+  },
+  {
+    "objectID": "02-systematic-sampling.html#piece-3-the-periodicity-trap",
+    "href": "02-systematic-sampling.html#piece-3-the-periodicity-trap",
+    "title": "Module 2: Systematic Sampling",
+    "section": "Piece 3 — The periodicity trap",
+    "text": "Piece 3 — The periodicity trap\nHere is the one catch. If the list has a hidden repeating cycle whose length matches k (or a multiple of it), you will keep landing on the same kind of unit every time — and your sample becomes badly biased.\n\n\n\nA list of couples repeats every 2 (H, W, H, W). With k = 2 you pick only husbands — zero wives.\n\n\nAnother classic: two years of daily sales data with k = 7 — you would sample the same weekday every time (say, always a Sunday), giving a wildly unrepresentative picture. The number k collided with the natural 7-day cycle.\nHow to avoid it: know how your list is ordered, avoid a k that matches any natural cycle in the data, and if you are unsure, shuffle the list first (which turns it back into an SRS-like draw).",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "2 · Systematic Sampling"
+    ]
+  },
+  {
+    "objectID": "02-systematic-sampling.html#piece-4-how-it-compares-to-srs",
+    "href": "02-systematic-sampling.html#piece-4-how-it-compares-to-srs",
+    "title": "Module 2: Systematic Sampling",
+    "section": "Piece 4 — How it compares to SRS",
+    "text": "Piece 4 — How it compares to SRS\nWhether systematic sampling beats, matches, or loses to SRS depends entirely on the order of the list:\n\n\n\nRandom order: about the same. Sorted by a relevant trait: better. A cycle matching k: worse.\n\n\n\nRandom order → essentially the same precision as SRS.\nSorted by a relevant trait → better than SRS (the implicit-stratification bonus).\nHidden cycle matching k → worse, sometimes badly biased.\n\nOne technical catch: with a single systematic sample you cannot cleanly estimate the variance (you only made one random choice — the start). In practice analysts treat it like an SRS for variance, which is a reasonable approximation when there is no periodicity. Bottom line: systematic sampling is excellent and widely used — just check the ordering first.",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "2 · Systematic Sampling"
+    ]
+  },
+  {
+    "objectID": "02-systematic-sampling.html#interview-angles",
+    "href": "02-systematic-sampling.html#interview-angles",
+    "title": "Module 2: Systematic Sampling",
+    "section": "Interview angles",
+    "text": "Interview angles\n\n“When is systematic sampling better than SRS?” When the list is ordered by a variable related to the outcome — the even coverage acts like implicit stratification.\n“What is the main risk?” Periodicity — a repeating cycle in the list matching k, which biases the sample.\n“What is each unit’s selection probability?” pi = 1 / k = n / N, the same as SRS.",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "2 · Systematic Sampling"
+    ]
+  },
+  {
+    "objectID": "02-systematic-sampling.html#quick-check",
+    "href": "02-systematic-sampling.html#quick-check",
+    "title": "Module 2: Systematic Sampling",
+    "section": "Quick check",
+    "text": "Quick check\n\nA store surveys n = 20 of the N = 100 visitors today. What is k?\nIf the random start is 3, who are the first three selected?\nWhat is each visitor’s chance of selection (pi)?\nWhy can systematic sampling be MORE precise than SRS?\nYou have two years of daily sales and use k = 7. What goes wrong, and how would you fix it?",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "2 · Systematic Sampling"
+    ]
+  },
+  {
+    "objectID": "04-cluster-sampling.html",
+    "href": "04-cluster-sampling.html",
+    "title": "Module 4: Cluster Sampling",
+    "section": "",
+    "text": "Cluster sampling is the mirror image of stratified sampling. Stratified samples a few units within every group to improve precision. Cluster sampling samples whole groups and skips the rest — done for cost and practicality, usually at some cost to precision. Four pieces.",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "4 · Cluster Sampling"
+    ]
+  },
+  {
+    "objectID": "04-cluster-sampling.html#piece-1-what-cluster-sampling-is",
+    "href": "04-cluster-sampling.html#piece-1-what-cluster-sampling-is",
+    "title": "Module 4: Cluster Sampling",
+    "section": "Piece 1 — What cluster sampling is",
+    "text": "Piece 1 — What cluster sampling is\nGroup the population into clusters — natural groupings like villages, schools, households, or city blocks — then randomly pick a few whole clusters and measure everyone inside them (this is one-stage cluster sampling). The other clusters are not sampled at all.\n\n\n\nStratified samples a little from every group; cluster takes everyone from a few chosen groups.\n\n\nThe contrast is worth burning in: stratified = “some from all groups” (for precision); cluster = “all from a few groups” (for cost). Same raw material — groups — used in opposite ways.",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "4 · Cluster Sampling"
+    ]
+  },
+  {
+    "objectID": "04-cluster-sampling.html#piece-2-why-cluster-cost-and-frame-reality",
+    "href": "04-cluster-sampling.html#piece-2-why-cluster-cost-and-frame-reality",
+    "title": "Module 4: Cluster Sampling",
+    "section": "Piece 2 — Why cluster (cost and frame reality)",
+    "text": "Piece 2 — Why cluster (cost and frame reality)\nTwo very practical reasons:\n\nThe frame. Often no list of individuals exists, but a list of clusters does. There is no roster of “every adult in the country,” but there is a list of villages, census blocks, or schools. You can only sample from a list you have.\nThe cost. Concentrating fieldwork in a few places is far cheaper than chasing individuals scattered everywhere. Interviewing 20 households on one block costs a fraction of interviewing 20 households in 20 different towns.\n\n\n\n\nSRS scatters fieldwork everywhere (expensive); cluster concentrates it in a few places (cheap).",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "4 · Cluster Sampling"
+    ]
+  },
+  {
+    "objectID": "04-cluster-sampling.html#piece-3-the-catch-intraclass-correlation",
+    "href": "04-cluster-sampling.html#piece-3-the-catch-intraclass-correlation",
+    "title": "Module 4: Cluster Sampling",
+    "section": "Piece 3 — The catch: intraclass correlation",
+    "text": "Piece 3 — The catch: intraclass correlation\nHere is the price you pay. People in the same cluster tend to be similar — same neighborhood, same school, same income level. So once you have interviewed a few people in a cluster, each additional person from that same cluster tells you less that is new. That within-cluster similarity is measured by the intraclass correlation, roh (also written ICC).\n\n\n\nLow roh (diverse clusters) = each person adds new information; high roh (uniform clusters) = redundant.\n\n\nThe higher the roh, the more redundant your data, and the worse your precision. This is the opposite of stratification: stratified wants groups that differ from each other; cluster sampling is hurt when the people inside a cluster are too alike.\nA crucial contrast to keep straight — stratified and cluster sampling both hinge on within-group similarity, but pull in opposite directions:\n\n\n\n\n\n\n\n\nDesign\nWhat you want in each group\nWhy\n\n\n\n\nStratified\nUnits that differ between groups\nBetween-strata variance is removed, so precision goes up.\n\n\nCluster\nUnits that differ within a cluster\nBut you usually get the opposite — alike units — so redundancy rises and precision goes down.\n\n\n\nSame word, “similarity,” opposite consequence: in stratification you sample from every group, so within-group sameness is fine; in clustering you get only a few groups, so within-group sameness means you have seen very little true variety.",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "4 · Cluster Sampling"
+    ]
+  },
+  {
+    "objectID": "04-cluster-sampling.html#piece-4-design-effect-and-effective-sample-size",
+    "href": "04-cluster-sampling.html#piece-4-design-effect-and-effective-sample-size",
+    "title": "Module 4: Cluster Sampling",
+    "section": "Piece 4 — Design effect and effective sample size",
+    "text": "Piece 4 — Design effect and effective sample size\nThe precision cost is captured by the deff — how much bigger your variance is than an SRS of the same size:\n\ndeff = 1 + (m - 1) * roh\n\n\neffective n = n / deff\n\nHere m is the number of people per cluster and roh the intraclass correlation. Because roh is positive for clusters, deff is greater than 1 — worse than SRS (the opposite of stratified, where deff is below 1).\nThe key 1-liner: high roh = redundant data = you effectively sampled fewer people than you actually interviewed. The design effect just turns that redundancy into a #. Where every design sits relative to SRS:\n\n\n\n\n\n\n\n\nDesign\ndeff\nMeaning\n\n\n\n\nSRS\n= 1\nThe baseline.\n\n\nStratified\nbelow 1\nBetter than SRS — between-group variance removed.\n\n\nCluster\nabove 1\nWorse than SRS — within-group redundancy added.\n\n\n\nStratified and cluster sit on opposite sides of 1 — say that in an interview and you have shown you understand both modules at once. Note too that m multiplies the damage: even a tiny roh of 0.06 blew up to deff = 2.5 because m was 25, which is exactly why cluster size is the lever below.\n\n\n\nWith deff = 2.5, your 500 interviews carry only as much information as 200 SRS interviews.\n\n\nThe tradeoff. Each interview is cheaper under clustering, but each is “worth less.” The design lever is cluster size: fewer, bigger clusters are cheap but have high deff (lots of redundancy); more, smaller clusters cost more travel but give lower deff (better precision). Good cluster design balances cost against the design effect.",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "4 · Cluster Sampling"
+    ]
+  },
+  {
+    "objectID": "04-cluster-sampling.html#interview-angles",
+    "href": "04-cluster-sampling.html#interview-angles",
+    "title": "Module 4: Cluster Sampling",
+    "section": "Interview angles",
+    "text": "Interview angles\n\n“Why use cluster sampling?” Cost and frame practicality — you may only have a list of clusters, and concentrating fieldwork is cheap.\n“What is the design effect?” The ratio of your design’s variance to an SRS of the same size; deff &gt; 1 means you need a larger sample to match SRS precision.\n“What is roh / intraclass correlation?” How similar units are within a cluster; higher roh raises the design effect and lowers effective sample size.",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "4 · Cluster Sampling"
+    ]
+  },
+  {
+    "objectID": "04-cluster-sampling.html#quick-check",
+    "href": "04-cluster-sampling.html#quick-check",
+    "title": "Module 4: Cluster Sampling",
+    "section": "Quick check",
+    "text": "Quick check\n\nWhich design samples WHOLE groups and skips the rest — cluster or stratified?\nn = 400 with deff = 2. What is the effective sample size?\nDoes a high intraclass correlation (roh) help or hurt your precision?\nIn one line, why do people use cluster sampling despite the precision cost?",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "4 · Cluster Sampling"
+    ]
+  },
+  {
+    "objectID": "06-weighting.html",
+    "href": "06-weighting.html",
+    "title": "Module 6: Weighting",
+    "section": "",
+    "text": "Module 5 ended on a happy accident: PPS made every person share one selection chance, so a plain average worked — a self-weighting design. Most real surveys are not that tidy. People are sampled with different probabilities, some invited people never answer, and the responding sample rarely matches the population on things like age, region, or size. Weighting is how we repair all three so the sample speaks for the whole population again. It is the workhorse step between drawing a sample and analyzing it — and it is exactly what you did on the CHOP hospital survey. Five pieces.",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "6 · Weighting"
+    ]
+  },
+  {
+    "objectID": "06-weighting.html#piece-1-what-a-weight-is-the-base-weight",
+    "href": "06-weighting.html#piece-1-what-a-weight-is-the-base-weight",
+    "title": "Module 6: Weighting",
+    "section": "Piece 1 — What a weight is (the base weight)",
+    "text": "Piece 1 — What a weight is (the base weight)\nA weight tells you how many population units each sampled unit stands for. The starting point is the base weight (also called the design weight): the inverse of the unit’s probability of selection.\n\nBase weight = 1 / (probability of selection). A unit picked with chance 1/10 represents 10 people, so its weight is 10.\nSmall chance → big weight. A rarely sampled unit is common in the population, so it stands for many; a frequently sampled unit stands for few.\nWeights expand to the population. Add up everyone’s weights and you should land back near the population size N.\n\nThis is the same idea that made Module 5’s self-weighting design so clean. There, everyone shared one selection chance (n / Total), so everyone got the identical base weight — and a simple average already worked. Weighting starts to matter the moment selection chances differ: disproportionate stratification, oversampling a rare group, or unequal cluster sizes without PPS.\nTiny example. Population of 1,000, SRS of 100: each person’s chance is 100/1000 = 1/10, so every base weight is 10. Now suppose you deliberately oversample — 50 people from a 200-person rural stratum (chance 1/4, weight 4) and 50 from an 800-person urban stratum (chance 1/16, weight 16). A rural respondent stands for 4 people; an urban respondent stands for 16. If you forgot the weights and just averaged, rural voices would count four times too heavily.\n\n\n\nA weight is 1 / selection chance: it says how many people in the population each respondent represents.\n\n\nSelection chance turned into a weight\n\n\n\nSelection chance\nBase weight (1 / chance)\nReads as\n\n\n\n\n1 / 10\n10\nstands for 10 people\n\n\n1 / 4 (rural)\n4\nstands for 4 people\n\n\n1 / 16 (urban)\n16\nstands for 16 people\n\n\n\n\nIn your CHOP work. The hospital survey used a stratified design with proportionate allocation, so every hospital’s selection chance was almost identical (about 0.29) and the base (selection) weight was a nearly constant ~3.4 across all five regions. That is an almost self-weighting design — the same tidy situation as Module 5 — which is exactly what proportionate allocation buys you.\n\n\nCheck yourself (Piece 1). A respondent was selected with probability 1/25. What is their base weight, and in one line, what does that number mean?",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "6 · Weighting"
+    ]
+  },
+  {
+    "objectID": "06-weighting.html#piece-2-nonresponse-adjustment",
+    "href": "06-weighting.html#piece-2-nonresponse-adjustment",
+    "title": "Module 6: Weighting",
+    "section": "Piece 2 — Nonresponse adjustment",
+    "text": "Piece 2 — Nonresponse adjustment\nEven a perfectly drawn sample loses people: some selected units never respond. If the non-responders differ from the responders, simply dropping them biases your estimates. The fix is to let the responders who resemble the missing units carry a little extra weight.\n\nBuild weighting classes. Group all selected units — responders and non-responders alike — into cells from characteristics you know for everyone (region, size, ownership, …).\nBoost by 1 / response rate. Within each cell, multiply each responder’s base weight by 1 / (the cell’s response rate). Low-response cells get the biggest boost.\nThe modern equivalent. Instead of coarse cells, model the probability of responding (e.g. a logistic regression on known covariates), get each responder’s predicted response propensity, and multiply the base weight by 1 / propensity. Weighting classes are just this with a simple, cell-shaped model.\n\nWhy it is even possible: the adjustment variables must be known for the non-responders too. You never see a non-responder’s survey answers, but you do see their frame characteristics — and that is what lets you model who was likely to respond.\nTiny example. In one weighting class you selected 40 units and 30 responded, a response rate of 0.75. The nonresponse factor is 1/0.75 = 1.33. A responder whose base weight was 10 now carries 10 x 1.33 = 13.3 — covering themselves plus the 0.33 “share” of a similar unit that did not answer.\n\n\n\nWithin a weighting class, the responders’ weights are boosted by 1 / response rate to cover the non-responders.\n\n\nA weighting class, worked out\n\n\n\n\n\n\n\n\n\n\nClass\nSelected\nResponded\nResponse rate\nNR factor (1 / rate)\n\n\n\n\nA\n40\n30\n0.75\n1.33\n\n\nB\n60\n30\n0.50\n2.00\n\n\n\nClass B responded worse (0.50), so its responders each carry a larger boost (2.00) — they represent more of the missing.\n\nIn your CHOP work. You modeled response for all 977 selected hospitals with a logistic regression on pre-survey attributes known for every hospital (stratum, ED-volume category, total beds, ownership, psychiatric, critical-access, teaching). Each responding hospital’s nonresponse adjustment was 1 / its predicted response probability, so the hospitals least likely to respond carried the most weight. Overall response was 606 / 977 = 62%. Multiplying the two components gives the raw adjusted weight: w_raw = w_selection x w_nonresponse.\n\n\nCheck yourself (Piece 2). A weighting class had 50 selected and 40 responders. What is the nonresponse adjustment factor, and whom does that boost represent?",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "6 · Weighting"
+    ]
+  },
+  {
+    "objectID": "06-weighting.html#piece-3-post-stratification-matching-known-totals",
+    "href": "06-weighting.html#piece-3-post-stratification-matching-known-totals",
+    "title": "Module 6: Weighting",
+    "section": "Piece 3 — Post-stratification (matching known totals)",
+    "text": "Piece 3 — Post-stratification (matching known totals)\nAfter base weights and the nonresponse boost, your weighted sample can still be off from the population on characteristics you actually know for the whole population — from a census or an administrative frame. Post-stratification nudges the weights so the weighted counts hit those known totals exactly.\n\nForm post-strata. Cells built on variables whose population totals N_k you know (age band, region, …).\nScale to the control total. Within each cell, multiply every weight by N_k / (sum of the current weights in that cell). Now the cell’s weights sum to exactly N_k.\nTwo payoffs. It removes leftover imbalance from sampling and nonresponse on those variables, and it usually tightens estimates related to them (you are borrowing the known population structure).\n\nHow this differs from stratification (Module 3): stratification is a design choice made before you sample — you control how many units n_h to draw from each group. Post-stratification is a repair made after data collection — you adjust the weights so they match N_k. Same algebra, opposite ends of the study.\nRequirement: you need the population control totals, and enough responding sample in every cell — thin cells make the scaling unstable, a very common practical headache.\nTiny example. The population is 600 rural / 400 urban. After nonresponse weighting your weights happen to sum to 500 rural / 500 urban. Post-stratify: rural factor 600/500 = 1.2, urban factor 400/500 = 0.8. Now the weighted totals read 600 / 400 — matching the population.\n\n\n\nPost-stratification scales each cell’s weights so the weighted counts hit the known population totals.\n\n\nPost-stratification, worked out\n\n\n\n\n\n\n\n\n\n\nCell\nPop total N_k\nSum w before\nFactor\nSum w after\n\n\n\n\nrural\n600\n500\n1.20\n600\n\n\nurban\n400\n500\n0.80\n400\n\n\n\n\nIn your CHOP work. You post-stratified (calibrated) the raw adjusted weight to control totals defined by geography, teaching vs non-teaching, and critical-access status. Because some cross-class cells had too few responding hospitals, you manually collapsed them into 13 stable post-strata, then scaled each cell’s weights to its control total N_k. The final weights sum to the true population of 4,321 hospitals — the formula was w_calibrated = w_raw x N_k / (sum of w_raw in the post-stratum).\n\n\nCheck yourself (Piece 3). In a post-stratum the population total is 300 and your weights currently sum to 250. What factor do you apply, and what will the weights sum to afterward?",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "6 · Weighting"
+    ]
+  },
+  {
+    "objectID": "06-weighting.html#piece-4-calibration-and-raking-from-the-margins",
+    "href": "06-weighting.html#piece-4-calibration-and-raking-from-the-margins",
+    "title": "Module 6: Weighting",
+    "section": "Piece 4 — Calibration and raking (from the margins)",
+    "text": "Piece 4 — Calibration and raking (from the margins)\nPost-stratification needs the full joint population counts — the age-by-region table, every cell. Often you only know the margins: the age distribution and the region distribution separately, not how they cross. Calibration is the general family of methods that force weighted totals to match known control totals; raking (iterative proportional fitting) is the workhorse for the margins-only case.\n\nRaking, step by step. Post-stratify on the first margin (weights now match age); then on the second (weights match region, but age drifts slightly); then back to age, and so on — iterating until both margins hold at once. Each pass is just the Piece-3 scaling on one margin.\nPost-strat vs raking. Post-stratification calibrates to full joint cells; raking calibrates to the margins, one at a time, repeatedly.\nWhy raking wins in practice. Joint cell counts are often unknown or too thin, but margins are almost always available (the Census hands you age totals and region totals easily). Raking matches many variables without ever needing their joint distribution.\n\nCalibration is the umbrella term — post-stratification, raking, and regression (GREG) calibration are all members. The shared principle: change the weights as little as possible so that the weighted totals equal the known control totals.\nTiny example. A 2x2 table of age (young / old) by region (North / South). You know the margins — 60 young / 40 old, and 50 North / 50 South — but not the four inside cells. Raking: scale the rows so young/old sum to 60/40; then scale the columns so North/South sum to 50/50 (the rows drift a hair off); repeat. After a couple of passes both margins hold.\n\n\n\nRaking matches the known margins one at a time, iterating, when the joint cell totals are unknown.\n\n\nPost-stratification vs. raking\n\n\n\n\n\n\n\n\n\nPost-stratification\nRaking\n\n\n\n\nWhat you need\nfull joint cell totals\nonly the separate margins\n\n\nUse when\njoint counts known, cells full\nonly margins known / cells thin\n\n\nOne pass\nscale each cell to N_k once\nscale one margin, then the next, repeat\n\n\n\n\nIn your CHOP work. CHOP actually had the joint control totals (the 13 collapsed cross-class cells), so you post-stratified directly rather than raked. Raking is what you reach for when only the separate margins are available — for example, aligning a national poll to Census age, sex, region, and education totals that you have one at a time but not jointly.\n\n\nCheck yourself (Piece 4). You want your weights to match the population on both sex and region, but you only have each total separately (not the sex-by-region table). Which method do you use, and what does one “pass” of it do?",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "6 · Weighting"
+    ]
+  },
+  {
+    "objectID": "06-weighting.html#piece-5-why-weights-change-your-estimates",
+    "href": "06-weighting.html#piece-5-why-weights-change-your-estimates",
+    "title": "Module 6: Weighting",
+    "section": "Piece 5 — Why weights change your estimates",
+    "text": "Piece 5 — Why weights change your estimates\nWeighting fixes bias, but it is not free. Unequal weights inflate the variance of your estimates — wider confidence intervals and a smaller effective sample size. The more the weights vary, the higher the price.\n\nThe weighting design effect. deff_w = 1 + CV^2(w) = 1 + variance(w) / mean(w)^2. Equal weights give CV = 0 and deff_w = 1 (no penalty — the self-weighting case). Spread-out weights push deff_w above 1.\nThe “1 + L” statistic. This is the same quantity survey shops report, with L = CV^2 of the weights. deff_w = 1.10 means about 10% variance inflation from the weights.\nEffective sample size. n_eff = n / deff_w. Your respondents, with variable weights, “act like” fewer than their headcount for precision — the exact echo of Module 4’s cluster deff and effective n.\nTrimming. A few enormous weights (rare units standing for huge chunks of the population) blow up variance. Trimming caps them at a ceiling and redistributes the excess — trading a little bias for a lot of stability. It is a judgment call.\n\nThe underlying tension: every adjustment — nonresponse, post-stratification, raking — reduces bias but tends to spread the weights and lift deff_w. Good weighting keeps that balance in view.\nTiny example. Four respondents with weights 10, 10, 10, 10: CV = 0, so deff_w = 1 and n_eff = 4. Change them to 4, 4, 4, 28 (same total, 40): the mean is 10, the variance is 108, so CV^2 = 1.08, deff_w = 2.08, and n_eff = 4 / 2.08 = about 1.9. The same four people now carry the precision of only two.\n\n\n\nEqual weights carry no penalty (deff = 1); a few very large weights inflate variance and shrink the effective sample size.\n\n\nWeight spread turns into lost precision\n\n\n\nWeights (of 4)\nCV^2\ndeff_w\nn_eff\n\n\n\n\n10, 10, 10, 10\n0.00\n1.00\n4.0\n\n\n4, 4, 4, 28\n1.08\n2.08\n1.9\n\n\n\n\nIn your CHOP work. You tracked exactly this — the 1 + L statistic — before and after calibration: 1.02 before, 1.05 after. So calibration added only about three points of variance inflation in exchange for its bias correction, and the final weights inflate variance by at most ~5% (deff_w about 1.05, so n_eff is about 606 / 1.05 = 577 hospitals). A very mild, well-behaved price — which is what it means when the documentation says the weights “passed all the checks.”\n\n\nCheck yourself (Piece 5). If a set of weights has deff_w = 1.25 and you have 500 respondents, what is your effective sample size, and what is trimming trying to accomplish?",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "6 · Weighting"
+    ]
+  },
+  {
+    "objectID": "06-weighting.html#interview-angles",
+    "href": "06-weighting.html#interview-angles",
+    "title": "Module 6: Weighting",
+    "section": "Interview angles",
+    "text": "Interview angles\n\n“What is a survey weight?” 1 / the probability of selection — how many population units each respondent represents — then adjusted for nonresponse and calibrated to known population totals.\n“Base weight vs final weight?” Base = the design weight (1 / selection probability). Final = base x nonresponse adjustment x calibration / post-stratification factor.\n“Post-stratification vs raking?” Post-stratification matches the full joint cell totals; raking matches the margins one at a time, iterating, when the joint totals are not available.\n“Why not weight as hard as possible?” Unequal weights inflate variance (deff_w = 1 + CV^2) and shrink the effective sample size; trimming curbs extreme weights. You balance bias reduction against variance.\n“When does weighting barely matter?” When the design is self-weighting and the weights are uncorrelated with the outcome — then weighted and unweighted estimates nearly agree (a point your own CHOP documentation makes).",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "6 · Weighting"
+    ]
+  },
+  {
+    "objectID": "06-weighting.html#quick-check",
+    "href": "06-weighting.html#quick-check",
+    "title": "Module 6: Weighting",
+    "section": "Quick check",
+    "text": "Quick check\n\nA respondent’s selection probability was 1/20. What is the base weight, and what does it represent?\nA weighting class had 60 selected and 45 responders. What is the nonresponse adjustment factor?\nPost-stratification vs raking — which needs the full joint population cell counts, and which needs only the margins?\nWeights of 5, 5, 5, 25 (mean 10): does deff_w exceed 1, and what happens to the effective sample size?\nIn one line, name the three multiplicative pieces of a final survey weight.",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "6 · Weighting"
+    ]
+  },
+  {
+    "objectID": "06-weighting.html#module-6-in-one-breath",
+    "href": "06-weighting.html#module-6-in-one-breath",
+    "title": "Module 6: Weighting",
+    "section": "Module 6 in one breath",
+    "text": "Module 6 in one breath\n\nA weight = 1 / selection chance: how many people each respondent stands for.\nNonresponse adjustment boosts responders by 1 / response propensity to cover those who did not answer.\nPost-stratification scales weights to known joint population totals; raking does it from the margins alone, iterating.\nFinal weight = base x nonresponse x calibration.\nUnequal weights cost precision: deff_w = 1 + CV^2, and n_eff = n / deff_w — so watch the weight spread (and trim extremes).\n\nEnd of Module 6. Next up: Module 7 — Design-based analysis and variance estimation (getting correct standard errors out of these weights).",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "6 · Weighting"
+    ]
+  },
+  {
+    "objectID": "08-sample-size-allocation.html",
+    "href": "08-sample-size-allocation.html",
+    "title": "Module 8: Sample Size and Allocation in Practice",
+    "section": "",
+    "text": "Modules 0 through 7 taught you to draw a sample someone else specified, then analyze it honestly. Module 8 hands you the pencil. You are the designer now: given a precision target and a budget, you decide how many people to sample, split how, across how many clusters. This is where sampling stops being analysis and becomes engineering — every gain in precision has a price, and the whole craft is spending a fixed budget to buy the most precision you can. R’s PracTools package is built for exactly this. Six pieces of concept, then a hands-on seventh in R.",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "8 · Sample Size & Allocation"
+    ]
+  },
+  {
+    "objectID": "08-sample-size-allocation.html#piece-1-sample-size-for-a-target-precision",
+    "href": "08-sample-size-allocation.html#piece-1-sample-size-for-a-target-precision",
+    "title": "Module 8: Sample Size and Allocation in Practice",
+    "section": "Piece 1 — Sample size for a target precision",
+    "text": "Piece 1 — Sample size for a target precision\nEvery design starts with a promise about precision — a margin of error you will not exceed, at some confidence level. The sample-size question is that promise run backwards: the standard-error formulas from Modules 1 and 7 give the error for a chosen n; here we fix the error and solve for n.\n\nFor a proportion: n0 = z^2 x p(1 - p) / e^2, where e is the margin of error (the half-width) and z = 1.96 for 95%. The worst case p = 0.5 gives the largest, safest n.\nFor a mean: n0 = (z x S / e)^2, with S the standard deviation of the variable in the population.\nThen the finite population correction pulls it back: n = n0 / (1 + n0/N). It only bites when n0 is a large slice of N.\nThe signature fact: n depends on 1 / e^2. Halve the margin of error and you quadruple the sample. Precision gets expensive fast.\n\nTiny example. 95% confidence, margin +/-3 points, p unknown (so use 0.5): n0 = 1.96^2 x 0.25 / 0.03^2 = 0.9604 / 0.0009 = 1,067. In a population of N = 10,000, the fpc gives n = 1,067 / (1 + 1,067/10,000) = 964.\nWhat each margin of error costs (proportion, 95%, p = 0.5)\n\n\n\n\n\n\n\n\nMargin of error\nSample size n0\nvs. the +/-5% baseline\n\n\n\n\n+/- 5 points\n384\n1x\n\n\n+/- 3 points\n1,067\n~ 3x\n\n\n+/- 2 points\n2,401\n~ 6x\n\n\n+/- 1 point\n9,604\n25x\n\n\n\n\n\n\nBecause n grows as 1/e^2, precision has sharply diminishing returns: each extra digit of accuracy costs several times the sample.\n\n\n\nCheck yourself (Piece 1). You currently sample about 1,000 for a +/-3-point margin. A stakeholder now wants +/-1.5 points. Roughly how many will you need, and why?",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "8 · Sample Size & Allocation"
+    ]
+  },
+  {
+    "objectID": "08-sample-size-allocation.html#piece-2-inflate-for-the-real-design-the-number-to-release",
+    "href": "08-sample-size-allocation.html#piece-2-inflate-for-the-real-design-the-number-to-release",
+    "title": "Module 8: Sample Size and Allocation in Practice",
+    "section": "Piece 2 — Inflate for the real design (the number to release)",
+    "text": "Piece 2 — Inflate for the real design (the number to release)\nThe n from Piece 1 is an SRS number — it assumes independent, equal-chance draws and that everyone you pick answers. Neither holds in the field. Three adjustments turn that clean n into the count you actually put in the mail.\n\nDesign effect. A clustered or unequally weighted design carries less information per person (Modules 4, 6, 7). Multiply: n_design = n_SRS x deff. A deff of 1.5 means you need 50% more people to match the SRS precision.\nNonresponse. Only a fraction answer. Divide by the expected response rate: n_invite = n_design / RR.\nIneligibility. Some sampled records are out of scope (disconnected numbers, wrong ages). Divide by the eligibility rate: n_release = n_invite / eligibility.\n\nRead it as a chain: target → n_SRS → x deff → / response rate → / eligibility → the number to release.\nTiny example. From 964. A design effect of 1.5 → 964 x 1.5 = 1,446 completes needed. A 62% response rate → 1,446 / 0.62 = 2,332 to invite. A 90% eligibility rate → 2,332 / 0.90 = 2,591 to release. You mail about 2,600 records to end up with the precision of 964 clean draws.\n\n\n\nThe design inflates the sample (deff), then response and eligibility inflate it again: the release count is several times the tidy SRS number.\n\n\n\nIn your CHOP work. This is exactly the arithmetic behind the hospital survey’s field counts: 977 records released, 606 responding — a 62% response rate. Designing the study meant choosing that 977 before anyone answered, working from a completes target and an assumed response rate. Run the chain forward and those 606 completes, divided by any design effect above 1, are the effective sample your standard errors actually reflect.\n\n\nCheck yourself (Piece 2). You need 800 completes, expect a design effect of 1.25 and a 50% response rate. How many do you release (ignore eligibility)?",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "8 · Sample Size & Allocation"
+    ]
+  },
+  {
+    "objectID": "08-sample-size-allocation.html#piece-3-allocation-across-strata-now-with-cost",
+    "href": "08-sample-size-allocation.html#piece-3-allocation-across-strata-now-with-cost",
+    "title": "Module 8: Sample Size and Allocation in Practice",
+    "section": "Piece 3 — Allocation across strata (now with cost)",
+    "text": "Piece 3 — Allocation across strata (now with cost)\nOnce you know the total n and you are stratifying (Module 3), the next decision is how to split it among the strata. Four rules, in rising sophistication.\n\nEqual. The same n in every stratum. Best when you care about each stratum on its own (comparing regions), not the overall total.\nProportional. n_h proportional to N_h — each stratum’s share of the sample matches its share of the population. Self-weighting and simple.\nNeyman (optimal for precision). n_h proportional to N_h x S_h — send sample where the variability is. A small but heterogeneous stratum earns extra interviews.\nCost-based (optimal for precision per dollar). n_h proportional to N_h x S_h / sqrt(c_h) — Neyman, but discount strata that are expensive to sample. Cheap, variable strata get the most.\n\nTiny example. Two strata, A (N = 4,000, S = 5) and B (N = 1,000, S = 15), splitting n = 100.\n\nProportional: 80 / 20 (just the sizes).\nNeyman: N_h S_h = 20,000 vs 15,000 → 57 / 43. B’s high variability pulls sample toward it despite being a quarter the size.\nCost-based, if B costs 4x more per interview (c_A = 100, c_B = 400): N_h S_h / sqrt(c) = 2,000 vs 750 → 73 / 27. Cost pushes sample back toward the cheap stratum.\n\nThe four allocation rules\n\n\n\n\n\n\n\n\nRule\nn_h proportional to\nBest when…\n\n\n\n\nEqual\n1 (same each)\nyou compare strata one-to-one\n\n\nProportional\nN_h\nyou want a simple, self-weighting sample\n\n\nNeyman\nN_h x S_h\nyou want the most precise overall estimate\n\n\nCost-based\nN_h x S_h / sqrt(c_h)\nsampling costs differ across strata\n\n\n\n\n\n\nSame total of 100 interviews, three ways to split it: Neyman chases variance, cost-based allocation chases variance per dollar.\n\n\n\nCheck yourself (Piece 3). A tiny stratum has huge variance and is cheap to reach. Neyman already gives it a lot of sample; under cost-based allocation does it get even more, or less — and why?",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "8 · Sample Size & Allocation"
+    ]
+  },
+  {
+    "objectID": "08-sample-size-allocation.html#piece-4-cost-models-what-a-design-actually-costs",
+    "href": "08-sample-size-allocation.html#piece-4-cost-models-what-a-design-actually-costs",
+    "title": "Module 8: Sample Size and Allocation in Practice",
+    "section": "Piece 4 — Cost models (what a design actually costs)",
+    "text": "Piece 4 — Cost models (what a design actually costs)\nOptimization needs a budget equation, and the cost of a survey is not simply ‘dollars per interview.’ It splits into pieces that behave very differently.\n\nFixed cost, c0. Overhead that does not scale with sample size — questionnaire design, software, project management.\nPer-cluster cost, c1. The price of adding one more PSU — travel to a new area, listing its households, recruiting a local interviewer. Expensive.\nPer-element cost, c2. The price of one more interview inside a cluster you have already reached. Cheap by comparison.\n\nThe two-stage budget is then: C = c0 + c1 x a + c2 x (a x b), where a = number of PSUs and b = elements per PSU. The whole tension of clustered design lives in c1 versus c2: reaching a new cluster buys independent information but costs a lot; another interview in a cluster you have already reached is cheap but partly redundant (the intraclass correlation roh from Module 4).\nTiny example. c0 = $5,000 fixed, c1 = $400 per PSU, c2 = $25 per interview; with a = 40 PSUs and b = 17 each: C = 5,000 + 400 x 40 + 25 x 680 = 5,000 + 16,000 + 17,000 = $38,000.\nThe three cost components\n\n\n\n\n\n\n\n\n\nComponent\nSymbol\nScales with\nExample\n\n\n\n\nFixed / overhead\nc0\nnothing\ndesign, software, management\n\n\nPer cluster (PSU)\nc1\nnumber of PSUs, a\ntravel, listing, local hiring\n\n\nPer element\nc2\ntotal interviews, a x b\none more interview\n\n\n\n\nCheck yourself (Piece 4). Travel to a new village costs $500; one more household interview there costs $20. Which is c1 and which is c2 — and if roh is high, which would you rather add?",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "8 · Sample Size & Allocation"
+    ]
+  },
+  {
+    "objectID": "08-sample-size-allocation.html#piece-5-optimization-the-optimal-cluster-size",
+    "href": "08-sample-size-allocation.html#piece-5-optimization-the-optimal-cluster-size",
+    "title": "Module 8: Sample Size and Allocation in Practice",
+    "section": "Piece 5 — Optimization: the optimal cluster size",
+    "text": "Piece 5 — Optimization: the optimal cluster size\nNow put the cost model (Piece 4) and the design effect (Module 4) together, and something clean falls out: for a two-stage design there is a single best number of elements per cluster.\nSample too few per cluster and you waste money on travel — many expensive PSUs for a handful of interviews each. Sample too many and you pile up redundant, correlated interviews (roh bites, and each adds little). In between sits the sweet spot:\nb_opt = sqrt( (c1 / c2) x ((1 - roh) / roh) ).\nRead the formula: the cost ratio c1/c2 pushes b up (expensive clusters → grab many per visit to amortize the travel); the homogeneity roh pushes b down (redundant clusters → spread out and visit more of them). The optimum balances the two.\nTiny example. c1 = $400, c2 = $25, roh = 0.05: b_opt = sqrt((400/25) x (0.95/0.05)) = sqrt(16 x 19) = sqrt(304) = 17.4, so about 17 per cluster. With a field budget of $33,000 (the $38,000 total minus $5,000 fixed), the number of PSUs is a = 33,000 / (c1 + c2 x b) = 33,000 / (400 + 25 x 17) = 33,000 / 825 = 40. So: 40 clusters of 17 → 680 interviews.\n\n\n\nTotal variance is U-shaped in the cluster size: b_opt bottoms it out, balancing travel cost on the left against within-cluster redundancy on the right.\n\n\n\nCheck yourself (Piece 5). roh jumps from 0.05 to 0.20 (clusters much more homogeneous). Does the optimal cluster size b_opt rise or fall, and why intuitively?",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "8 · Sample Size & Allocation"
+    ]
+  },
+  {
+    "objectID": "08-sample-size-allocation.html#piece-6-the-design-workflow-bringing-it-together",
+    "href": "08-sample-size-allocation.html#piece-6-the-design-workflow-bringing-it-together",
+    "title": "Module 8: Sample Size and Allocation in Practice",
+    "section": "Piece 6 — The design workflow (bringing it together)",
+    "text": "Piece 6 — The design workflow (bringing it together)\nNo single formula spits out a survey design; you loop through a short workflow, trading precision against budget until both are acceptable.\n\nState the precision target → n under SRS (Piece 1).\nInflate for reality: x deff, / response rate, / eligibility → the release count (Piece 2).\nChoose an allocation across strata (Piece 3).\nWrite the cost model and check it against the budget (Piece 4).\nOptimize the cluster size and PSU count within the budget (Piece 5).\nCompute the precision you actually achieved — and if it misses the target or the budget, iterate.\n\n\n\n\nThe design loop: turn a target into a release count, allocate, cost it, optimize, then check and go round again.\n\n\nIn practice you rarely hit precision and budget exactly. You relax one — widen the margin a hair, or find more money — and go round again. That negotiation is the real job of a sampling statistician.\n\nCheck yourself (Piece 6). Your optimized design comes in $8,000 over budget but hits the precision target. Name two levers you could pull, and what each one costs you.",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "8 · Sample Size & Allocation"
+    ]
+  },
+  {
+    "objectID": "08-sample-size-allocation.html#piece-7-doing-it-in-r-practools",
+    "href": "08-sample-size-allocation.html#piece-7-doing-it-in-r-practools",
+    "title": "Module 8: Sample Size and Allocation in Practice",
+    "section": "Piece 7 — Doing it in R (PracTools)",
+    "text": "Piece 7 — Doing it in R (PracTools)\nEvery calculation in this module lives in one R package: PracTools, the companion to your 745 text (Valliant, Dever & Kreuter). It sizes samples, allocates them across strata, and solves for the optimal cluster split — the whole workflow of Piece 6.\n\nRead-along, not run. R is not yet installed on your machine, so treat this piece as a reference — every line is ready to run the moment we set R up.\n\n1. Install and load.\n\ninstall.packages(“PracTools”) library(PracTools)\n\n2. Sample size for a target precision (Piece 1). Give a target variance (or CV) for the estimate; deff folds the design in right here.\n\nnProp(V0 = (0.03/1.96)^2, pU = 0.5, N = 10000) # proportion, +/-3 pts at 95% nCont(CV0 = 0.05, S2 = 25, N = 10000, deff = 1.5) # mean, design-inflated\n\n3. Inflate to a release count (Piece 2). deff is an argument above; response and eligibility are a plain division.\n\nn_release &lt;- n_design / (RR * elig) # e.g. 1446 / (0.62 * 0.90)\n\n4. Allocate across strata (Piece 3). One call, switched by the alloc argument; add ch for cost-based.\n\nstrAlloc(Nh = c(4000,1000), Sh = c(5,15), n.tot = 100, alloc = “prop”) strAlloc(Nh = c(4000,1000), Sh = c(5,15), n.tot = 100, alloc = “neyman”) strAlloc(Nh = c(4000,1000), Sh = c(5,15), ch = c(100,400), ~n.tot = 100, alloc = “totcost”)\n\n5. Optimal cluster size (Piece 5). clusOpt2 returns the best elements-per-PSU and number of PSUs under a budget; delta is PracTools’ name for the homogeneity roh.\n\nclusOpt2(C1 = 400, C2 = 25, delta = 0.05, # per-PSU and per-element cost ~unit.rv = 1, tot.cost = 33000, cal.sw = 1) # roh = delta, field budget\n\n6. Estimate deff and roh from a pilot — so the numbers above are not guesses.\n\ndeffK(w) # Kish design effect from a weight vector BW2stageSRS(y, …) # between/within variance → delta (roh)\n\nEach concept, and the PracTools call that does it\n\n\n\n\n\n\n\nConcept (piece)\nPracTools call\n\n\n\n\nSample size for a target (P1)\nnProp() , nCont()\n\n\nInflate by deff (P2)\ndeff = argument in nCont()\n\n\nAllocation across strata (P3)\nstrAlloc(alloc = “prop”/“neyman”/“totcost”)\n\n\nOptimal cluster size (P5)\nclusOpt2() (clusOpt3() for 3 stages)\n\n\nEstimate deff / roh (P2, P5)\ndeffK() , BW2stageSRS()\n\n\n\n\nCheck yourself (Piece 7). You call strAlloc() with Nh and Sh but no ch. Which allocation are you asking for, and what would adding ch change?",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "8 · Sample Size & Allocation"
+    ]
+  },
+  {
+    "objectID": "08-sample-size-allocation.html#coursework-anchor-625-745",
+    "href": "08-sample-size-allocation.html#coursework-anchor-625-745",
+    "title": "Module 8: Sample Size and Allocation in Practice",
+    "section": "Coursework anchor (625 / 745)",
+    "text": "Coursework anchor (625 / 745)\nThis module is the design half of SURVMETH 745. The 745 text — Valliant, Dever & Kreuter, Practical Tools for Designing and Weighting Survey Samples — is exactly this material, and PracTools is its companion package. The homework where you set a precision target, inflated it into a release count, allocated across strata, and solved for the optimal cluster size is the whole of Pieces 1 through 5. The hands-on layer — running nCont, strAlloc, and clusOpt2 on a live budget — is the next time we open R.",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "8 · Sample Size & Allocation"
+    ]
+  },
+  {
+    "objectID": "08-sample-size-allocation.html#interview-angles",
+    "href": "08-sample-size-allocation.html#interview-angles",
+    "title": "Module 8: Sample Size and Allocation in Practice",
+    "section": "Interview angles",
+    "text": "Interview angles\n\nHow do you determine a sample size? Start from a precision target (a margin or CV at a confidence level), invert the SE formula for n under SRS, then inflate by the design effect and divide by the response and eligibility rates to get the release count.\nWhy does tighter precision cost so much? Because n grows as 1/e^2 — halving the margin of error quadruples the sample. Sharp diminishing returns.\nProportional vs. Neyman vs. optimal allocation? Proportional splits by size (self-weighting); Neyman adds a variability weight (N_h S_h); cost-optimal divides by sqrt(cost), so cheap, variable strata get the most sample.\nWhat is the optimal cluster size? b_opt = sqrt((c1/c2) x ((1-roh)/roh)) — it balances travel cost against within-cluster redundancy. High roh → smaller clusters; expensive PSUs → larger clusters.\nWalk me through designing a clustered survey on a budget. The workflow: target → SRS n → inflate for deff, response, eligibility → allocate → write the cost model → optimize b and a within budget → check the achieved precision → iterate.\nWhat is PracTools? The R package (companion to the 745 text) for sample-size, allocation, and optimal cluster-size calculations.",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "8 · Sample Size & Allocation"
+    ]
+  },
+  {
+    "objectID": "08-sample-size-allocation.html#quick-check",
+    "href": "08-sample-size-allocation.html#quick-check",
+    "title": "Module 8: Sample Size and Allocation in Practice",
+    "section": "Quick check",
+    "text": "Quick check\n\n95% confidence, margin +/-2 points, p unknown. What is the SRS sample size (use p = 0.5)?\nYou need 1,200 completes, expect a design effect of 1.6 and a 40% response rate. How many do you release (ignore eligibility)?\nTwo strata — A (N = 6,000, S = 4) and B (N = 2,000, S = 12). Split n = 200 by Neyman. What do you get, and what’s notable?\nPer-PSU cost $600, per-interview $24, roh = 0.04. What is the optimal cluster size b_opt?\nName the three multiplicative adjustments that turn an SRS sample size into a release count.",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "8 · Sample Size & Allocation"
+    ]
+  },
+  {
+    "objectID": "08-sample-size-allocation.html#module-8-in-one-breath",
+    "href": "08-sample-size-allocation.html#module-8-in-one-breath",
+    "title": "Module 8: Sample Size and Allocation in Practice",
+    "section": "Module 8 in one breath",
+    "text": "Module 8 in one breath\n\nSample size is the SE formula run backwards: n0 = z^2 p(1-p)/e^2 (proportion) or (zS/e)^2 (mean); n grows as 1/e^2, so precision is pricey.\nTurn the SRS n into a release count: x deff, / response rate, / eligibility.\nAllocate across strata: proportional (N_h), Neyman (N_h x S_h), or cost-based (N_h x S_h / sqrt(c_h)).\nCost splits into fixed + per-PSU (expensive) + per-element (cheap): C = c0 + c1 a + c2 a b.\nOptimal cluster size b_opt = sqrt((c1/c2) x ((1-roh)/roh)); fit the PSUs a into the budget — then iterate precision against cost.\nPracTools does it all: nCont / nProp, strAlloc, clusOpt2.",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "8 · Sample Size & Allocation"
+    ]
+  },
+  {
+    "objectID": "10-power-sample-size.html",
+    "href": "10-power-sample-size.html",
+    "title": "Module 10: Power and Sample Size",
+    "section": "",
+    "text": "Modules 0 through 9 taught you to draw a sample and analyze it honestly. This bonus module answers the question a study team asks before any of that: how many people do we actually need? That is a power calculation, and running it to get n is exactly what determining a sample size means. We anchor it to your AAMC internship task - comparing two response rates across invitation conditions - the calc you were handed but never got to fully learn. It is a cousin of Module 1”s “sample size for a target precision,” but here the target is a difference to detect, not a margin of error. 6 pieces of concept, then a hands-on seventh in R.",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "10 · Power & Sample Size"
+    ]
+  },
+  {
+    "objectID": "10-power-sample-size.html#piece-1-what-power-actually-means",
+    "href": "10-power-sample-size.html#piece-1-what-power-actually-means",
+    "title": "Module 10: Power and Sample Size",
+    "section": "Piece 1 — What power actually means",
+    "text": "Piece 1 — What power actually means\nEvery comparison is a bet against being fooled. When you test whether two response rates differ, two things can go wrong. You can cry wolf - declare a difference that is not real (Type I error, rate alpha). Or you can miss a real difference that is sitting right in front of you (Type II error, rate beta). Power is the good outcome on that second axis: power = 1 - beta, the probability you catch a real difference when one truly exists.\n\nAlpha (Type I): the false-alarm rate you set in advance - usually 0.05. It is the risk you accept of seeing an effect that is not there.\nBeta (Type II): the miss rate. You do not set it directly; it falls out of your design once you fix effect size, alpha, and n.\nPower = 1 - beta: your detection rate. Convention is 80% (sometimes 90%) - an 80%-powered study catches a real effect 4 times out of 5, and misses it 1 time out of 5.\n\n\n\n\nThe null bell (no difference) and the alternative bell (a real difference) overlap. The threshold splits each: alpha is the null”s tail past it, beta is the alternative”s tail short of it, and power is the alternative”s mass beyond it.\n\n\nThe picture is the whole idea. Two sampling distributions of your test statistic: one if there is no difference (navy), one if there is (teal). They overlap. Wherever you put the decision threshold, you trade one error for the other - push it right to shrink alpha and you grow beta. The only way to shrink both tails at once is to pull the bells apart or make them skinnier, which is exactly what a bigger effect or a bigger sample does. That is what the next piece unpacks.\nThe 2 x 2 of being right and wrong\n\n\n\n\n\n\n\n\n\nDecision: no difference\nDecision: difference\n\n\n\n\nTruth: no difference\nCorrect (1 - alpha)\nType I error (alpha)\n\n\nTruth: real difference\nType II error (beta)\nCorrect = POWER (1 - beta)\n\n\n\n\nCheck yourself. In plain words, what is the difference between alpha and beta - and which one does “power” come from?",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "10 · Power & Sample Size"
+    ]
+  },
+  {
+    "objectID": "10-power-sample-size.html#piece-2-the-four-levers",
+    "href": "10-power-sample-size.html#piece-2-the-four-levers",
+    "title": "Module 10: Power and Sample Size",
+    "section": "Piece 2 — The four levers",
+    "text": "Piece 2 — The four levers\nA power calculation is one equation tying together four quantities. Fix any three and the fourth is pinned down. That is the entire mental model - every power tool you will ever touch is just this equation solved for whichever slot you left blank.\n\nEffect size - the gap you want to catch (here, the difference between two response rates). Bigger gap → easier → less n.\nAlpha - your false-alarm tolerance. Smaller alpha (stricter) → harder → more n.\nPower - the detection rate you demand. Higher power → more n.\nSample size n - usually the unknown you solve for. Determining a sample size = running this equation with n as the blank.\n\n\n\n\nThe four levers wired into one equation. Pin any three and the fourth is determined - sample-size determination is simply leaving n as the blank.\n\n\nTwo directions of the same equation matter in practice. Leave power blank and you get the diagnostic question - “given the n I can afford, what power do I have?” Leave n blank and you get sample-size determination - “to hit 80% power, how many do I need?” It is the second one that a study team hands you, and the one Piece 4 works end to end.\nWhich way each lever pushes the sample size\n\n\n\nLever\nTurn it…\n…and n moves\n\n\n\n\nEffect size (gap)\nbigger\ndown (easier)\n\n\nAlpha\nsmaller / stricter\nup\n\n\nPower (1 - beta)\nhigher (80 → 90%)\nup\n\n\nVariability of outcome\nlarger\nup\n\n\n\n\nCheck yourself. If your budget shrinks and you can only afford half the sample, which of the other three levers must you relax - and what does that cost you?",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "10 · Power & Sample Size"
+    ]
+  },
+  {
+    "objectID": "10-power-sample-size.html#piece-3-effect-size-for-two-proportions",
+    "href": "10-power-sample-size.html#piece-3-effect-size-for-two-proportions",
+    "title": "Module 10: Power and Sample Size",
+    "section": "Piece 3 — Effect size for two proportions",
+    "text": "Piece 3 — Effect size for two proportions\nEffect size is where people stumble, because for proportions it is not just the gap - the baseline rate matters too. A proportion”s variability is p(1 - p), which is largest at 50% and shrinks toward 0% or 100%. So the same absolute gap is hardest to detect (needs the most n) near 50%, and easier out in the tails.\n\nDefine the minimum detectable effect (MDE): the smallest difference worth finding. You do not power for the gap you hope for - you power for the smallest gap that would still matter. Smaller MDE → much larger n (n grows like 1 / gap-squared).\nDetecting 50% vs 55% (a 5-point gap at the worst-case variance) needs ~1,565 per group. The same 5-point gap at 5% vs 10% needs only ~435 per group - 3-4x fewer, because variance is far smaller down there.\nCohen”s h is the standardized version for two proportions: h = |2·arcsinsqrtp2 - 2·arcsinsqrtp1|. For 40% vs 50%, h ~ 0.20 (a “small” effect by Cohen”s 0.2 / 0.5 / 0.8 rule of thumb). It lets a tool talk about “effect size” without you re-specifying the two rates.\n\n\n\n\nn per group to detect a fixed 5-point gap, as the baseline rate sweeps up. It peaks near 50% because p(1-p) - the variance - is largest there.\n\n\nThe takeaway for the AAMC setting: state the MDE first - the smallest response-rate improvement that would change a decision - and know that a modest baseline near 40-50% is the expensive zone. That single choice drives almost everything about the n you will report.\nSame-looking gaps, very different sample sizes\n\n\n\n\n\n\n\n\n\nComparison\nGap\nVariance zone\nn / group (80% power)\n\n\n\n\n5% vs 10%\n5 pts\nsmall (tail)\n~434\n\n\n40% vs 50%\n10 pts\nnear max\n~388\n\n\n50% vs 55%\n5 pts\nmaximum\n~1,565\n\n\n\n\nCheck yourself. Two designs both aim to detect a 5-point difference. One is around 10%, the other around 50%. Which needs the bigger sample, and why?",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "10 · Power & Sample Size"
+    ]
+  },
+  {
+    "objectID": "10-power-sample-size.html#piece-4-the-aamc-calc-worked-both-ways",
+    "href": "10-power-sample-size.html#piece-4-the-aamc-calc-worked-both-ways",
+    "title": "Module 10: Power and Sample Size",
+    "section": "Piece 4 — The AAMC calc, worked both ways",
+    "text": "Piece 4 — The AAMC calc, worked both ways\nNow the real task: at AAMC you compared response rates across invitation conditions. Suppose condition A runs at a 40% response rate and you want to detect an improvement to 50% under condition B - a 10-point MDE - at alpha = 0.05 two-sided and 80% power. The two-proportion sample-size formula (per group, equal n) is:\nn = ( z[a/2] * sqrt(2 p_bar q_bar) + z[b] * sqrt(p1 q1 + p2 q2) )^2 / (p1 - p2)^2\n\nPlug in: z[a/2] = 1.96, z[b] = 0.84, p_bar = 0.45, and (p1 - p2) = 0.10.\nNumerator = (1.96 x 0.704 + 0.84 x 0.700)^2 = (1.379 + 0.588)^2 = 3.87. Denominator = 0.10^2 = 0.01. So 3.87 / 0.01 = 387.3.\nAlways round a sample size up: n = 388 per group, about 776 total. That is your sample-size determination - the number you would hand the study team.\n\n\n\n\nThe power curve for 40% vs 50%. Read it either way: fix n and read off power, or fix 80% power and read off the n it requires.\n\n\nRun the same equation the other direction to sanity-check a budget. If you could only field 200 per group, plug n in and solve for power instead: you would land at just ~52% power - more likely to miss the effect than catch it. That is why the calc is worth doing before fielding, not after: 200/group feels substantial but is badly underpowered for a 10-point gap.\nOne equation, three ways to point it\n\n\n\nYou fix…\nYou solve for…\nResult\nReading\n\n\n\n\nMDE, alpha, power\nn\n~388 / group\nsample-size determination\n\n\nMDE, alpha, n = 200\npower\n~52%\nbudget diagnostic\n\n\nMDE, alpha, n = 100\npower\n~29%\nclearly underpowered\n\n\n\n\nInterview anchor (AAMC) “At AAMC I compared response rates across invitation conditions. To size the study I ran a two-proportion power calc - set the MDE at the smallest response-rate gap worth acting on, held alpha at 0.05 and power at 80%, and solved for n per arm. I also checked the reverse: what power our feasible n actually bought, so we knew going in whether we were powered to see the effect.” That sentence turns the task you were handed into something you can now explain and defend.\n\n\nCheck yourself. You solved for n at 80% power and got ~388/group. Without redoing the arithmetic, will demanding 90% power make that number go up or down?",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "10 · Power & Sample Size"
+    ]
+  },
+  {
+    "objectID": "10-power-sample-size.html#piece-5-what-eats-your-power-the-sampling-tie-in",
+    "href": "10-power-sample-size.html#piece-5-what-eats-your-power-the-sampling-tie-in",
+    "title": "Module 10: Power and Sample Size",
+    "section": "Piece 5 — What eats your power (the sampling tie-in)",
+    "text": "Piece 5 — What eats your power (the sampling tie-in)\nThe textbook formula assumes a clean, simple random sample with everyone responding. Real designs are messier, and each wrinkle eats power - meaning you need more raw n to keep the same detection rate. This is where the whole course comes back.\n\nDesign effect (deff). Clustering and unequal weights inflate variance by deff (Modules 4, 6, 7). You do not power on raw n - you power on effective n = n / deff. To keep 80% power under deff = 1.5, multiply your clean n by 1.5: ~388/group becomes ~582/group.\nNonresponse. Power depends on completed interviews, not invitations. If only 62% respond, divide the required completes by 0.62 to get the release count (Module 8”s inflation step). Your AAMC response-rate work is exactly this lever.\nOne- vs two-sided. A one-sided test spends all alpha on one tail and needs slightly less n - but only use it when the direction is genuinely fixed in advance. Defaulting to two-sided is the safe, expected choice.\nMultiple comparisons. Testing many invite conditions at once inflates the family-wise false-alarm rate; a Bonferroni-style smaller alpha per test protects it but costs power, so each test needs more n.\n\n\n\n\nDesign effect shifts the whole power curve right. Under deff = 1.5 you need ~1.5x the raw n to reach the same 80% power - you always power on effective n.\n\n\nThis piece is what makes it your module rather than a generic stats chapter: a defensible field sample size is the clean power-calc n, then inflated for deff, nonresponse, and eligibility - the same chain you built in Module 8, now driven by a detection target instead of a margin of error.\n\nCheck yourself. Your power calc says you need 400 completes per group. The design has deff = 1.4 and you expect a 60% response rate. Roughly how many people must you release per group?",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "10 · Power & Sample Size"
+    ]
+  },
+  {
+    "objectID": "10-power-sample-size.html#piece-6-the-planning-workflow",
+    "href": "10-power-sample-size.html#piece-6-the-planning-workflow",
+    "title": "Module 10: Power and Sample Size",
+    "section": "Piece 6 — The planning workflow",
+    "text": "Piece 6 — The planning workflow\nPutting it together, sizing a comparison study is a short, repeatable loop. It is a loop and not a line because the first n you get is often unaffordable - so you revise the MDE or the budget and go around again.\n\n1. State the hypotheses. What two rates, which direction, one- or two-sided.\n2. Pick the MDE. The smallest gap worth detecting - the single most consequential choice.\n3. Set alpha and target power. Usually 0.05 and 80% (or 90%).\n4. Solve for n. The power calc of Piece 4 - this is the sample-size determination.\n5. Inflate n. Multiply by deff, divide by response rate, divide by eligibility → a real release count.\n6. Sanity-check and iterate. Affordable? Reasonable MDE? If not, revise and loop.\n\n\n\n\nThe power-based design workflow. Solve-for-n (navy) is the hinge; the dashed arrow is the loop back when the first answer is unaffordable.\n\n\n\nIn one breath. Power is your chance of catching a real difference; a power calc is one equation linking effect size, alpha, power, and n; leave n blank and you have determined your sample size; then inflate that n for design effect, nonresponse, and eligibility to get the number you actually field.",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "10 · Power & Sample Size"
+    ]
+  },
+  {
+    "objectID": "10-power-sample-size.html#piece-7-doing-it-in-r-read-along-reference",
+    "href": "10-power-sample-size.html#piece-7-doing-it-in-r-read-along-reference",
+    "title": "Module 10: Power and Sample Size",
+    "section": "Piece 7 — Doing it in R (read-along reference)",
+    "text": "Piece 7 — Doing it in R (read-along reference)\nR is not installed on this machine yet, so treat this piece as read-along, not run. When you do have R, two base calls and the pwr package cover almost everything above. Here is the AAMC calc in code.\n\n# — — base R: two-proportion sample size, solve for n — — power.prop.test(p1 = 0.40, p2 = 0.50, sig.level = 0.05, power = 0.80) # → n = 387.3 (round up to 388) per group (two-sided by default)\n# reverse direction: fix n, solve for power power.prop.test(p1 = 0.40, p2 = 0.50, n = 200) # → power ~ 0.52\n# — — pwr package: effect-size (Cohen”s h) interface — — install.packages(“pwr”); library(pwr) h &lt;- ES.h(0.50, 0.40) # standardized effect size pwr.2p.test(h = h, sig.level = 0.05, power = 0.80)\n# unequal group sizes (e.g. more in one invite arm) pwr.2p2n.test(h = h, n1 = 300, n2 = 500, sig.level = 0.05)\n# — — inflate the clean n for a real field release — — n_clean &lt;- 388 deff &lt;- 1.5 ; rr &lt;- 0.62 ; elig &lt;- 0.90 release &lt;- ceiling(n_clean * deff / rr / elig) release # people to invite per arm\n# — — when no formula fits: simulate — — sim_power &lt;- function(n, p1, p2, reps = 5000) { hit &lt;- replicate(reps, { a &lt;- rbinom(1, n, p1); b &lt;- rbinom(1, n, p2) prop.test(c(a, b), c(n, n))$p.value &lt; 0.05 }) mean(hit) } sim_power(388, 0.40, 0.50) # ~ 0.80\n\nConcept → R call\n\n\n\nYou want…\nR call\n\n\n\n\nn for a two-proportion test\npower.prop.test(p1, p2, power=)\n\n\npower given n\npower.prop.test(p1, p2, n=)\n\n\neffect-size (Cohen”s h) interface\npwr.2p.test() / ES.h()\n\n\nunequal group sizes\npwr.2p2n.test()\n\n\nanything with no clean formula\nsimulate with rbinom + prop.test\n\n\n\n\nCheck yourself. Which single R function gives you both the sample-size answer and the power answer, just by changing which argument you leave out?",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "10 · Power & Sample Size"
+    ]
+  },
+  {
+    "objectID": "10-power-sample-size.html#quick-check-the-whole-module-in-five-questions",
+    "href": "10-power-sample-size.html#quick-check-the-whole-module-in-five-questions",
+    "title": "Module 10: Power and Sample Size",
+    "section": "Quick check — the whole module in five questions",
+    "text": "Quick check — the whole module in five questions\n\n\nDefine power in one sentence, using the word beta.\n\n\nName the four levers a power calc ties together. Which one do you usually solve for?\n\n\nWhy does a 5-point gap near 50% need more sample than a 5-point gap near 10%?\n\n\nYour clean power calc says 388/group. Deff is 1.5 and response is 62%. Roughly what release count do you report?\n\n\nIn R, which function did the AAMC two-proportion calc, and how do you flip it from “solve for n” to “solve for power”?",
+    "crumbs": [
+      "Home",
+      "Modules",
+      "10 · Power & Sample Size"
+    ]
+  }
+]

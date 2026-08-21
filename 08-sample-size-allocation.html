@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Module 8: Sample Size and Allocation in Practice – Sampling Refresher</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-e8ed365c7b7034f9f3f4ff1c177e9bdc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Sampling Refresher</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="./index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./00-foundations.html">Modules</a></li><li class="breadcrumb-item"><a href="./08-sample-size-allocation.html">8 · Sample Size &amp; Allocation</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Syllabus</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Modules</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./00-foundations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">0 · Foundations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-simple-random-sampling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1 · Simple Random Sampling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-systematic-sampling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2 · Systematic Sampling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-stratified-sampling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3 · Stratified Sampling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-cluster-sampling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4 · Cluster Sampling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-multistage-pps.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5 · Multistage &amp; PPS</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-weighting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6 · Weighting</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-design-based-analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7 · Design-Based Analysis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-sample-size-allocation.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">8 · Sample Size &amp; Allocation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-nonprobability-sampling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">9 · Nonprobability Sampling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-power-sample-size.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">10 · Power &amp; Sample Size</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#piece-1-sample-size-for-a-target-precision" id="toc-piece-1-sample-size-for-a-target-precision" class="nav-link active" data-scroll-target="#piece-1-sample-size-for-a-target-precision">Piece 1 — Sample size for a target precision</a></li>
+  <li><a href="#piece-2-inflate-for-the-real-design-the-number-to-release" id="toc-piece-2-inflate-for-the-real-design-the-number-to-release" class="nav-link" data-scroll-target="#piece-2-inflate-for-the-real-design-the-number-to-release">Piece 2 — Inflate for the real design (the number to release)</a></li>
+  <li><a href="#piece-3-allocation-across-strata-now-with-cost" id="toc-piece-3-allocation-across-strata-now-with-cost" class="nav-link" data-scroll-target="#piece-3-allocation-across-strata-now-with-cost">Piece 3 — Allocation across strata (now with cost)</a></li>
+  <li><a href="#piece-4-cost-models-what-a-design-actually-costs" id="toc-piece-4-cost-models-what-a-design-actually-costs" class="nav-link" data-scroll-target="#piece-4-cost-models-what-a-design-actually-costs">Piece 4 — Cost models (what a design actually costs)</a></li>
+  <li><a href="#piece-5-optimization-the-optimal-cluster-size" id="toc-piece-5-optimization-the-optimal-cluster-size" class="nav-link" data-scroll-target="#piece-5-optimization-the-optimal-cluster-size">Piece 5 — Optimization: the optimal cluster size</a></li>
+  <li><a href="#piece-6-the-design-workflow-bringing-it-together" id="toc-piece-6-the-design-workflow-bringing-it-together" class="nav-link" data-scroll-target="#piece-6-the-design-workflow-bringing-it-together">Piece 6 — The design workflow (bringing it together)</a></li>
+  <li><a href="#piece-7-doing-it-in-r-practools" id="toc-piece-7-doing-it-in-r-practools" class="nav-link" data-scroll-target="#piece-7-doing-it-in-r-practools">Piece 7 — Doing it in R (PracTools)</a></li>
+  <li><a href="#coursework-anchor-625-745" id="toc-coursework-anchor-625-745" class="nav-link" data-scroll-target="#coursework-anchor-625-745">Coursework anchor (625 / 745)</a></li>
+  <li><a href="#interview-angles" id="toc-interview-angles" class="nav-link" data-scroll-target="#interview-angles">Interview angles</a></li>
+  <li><a href="#quick-check" id="toc-quick-check" class="nav-link" data-scroll-target="#quick-check">Quick check</a></li>
+  <li><a href="#module-8-in-one-breath" id="toc-module-8-in-one-breath" class="nav-link" data-scroll-target="#module-8-in-one-breath">Module 8 in one breath</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./00-foundations.html">Modules</a></li><li class="breadcrumb-item"><a href="./08-sample-size-allocation.html">8 · Sample Size &amp; Allocation</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Module 8: Sample Size and Allocation in Practice</h1>
+<p class="subtitle lead">Sampling Refresher · spending a fixed budget to buy the most precision</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Modules 0 through 7 taught you to draw a sample someone else specified, then analyze it honestly. Module 8 hands you the pencil. <strong>You are the designer now:</strong> given a precision target and a budget, you decide how many people to sample, split how, across how many clusters. This is where sampling stops being analysis and becomes <strong>engineering</strong> — every gain in precision has a price, and the whole craft is spending a fixed budget to buy the most precision you can. R’s <strong>PracTools</strong> package is built for exactly this. Six pieces of concept, then a hands-on seventh in R.</p>
+<section id="piece-1-sample-size-for-a-target-precision" class="level2">
+<h2 class="anchored" data-anchor-id="piece-1-sample-size-for-a-target-precision">Piece 1 — Sample size for a target precision</h2>
+<p>Every design starts with a promise about precision — a <strong>margin of error</strong> you will not exceed, at some confidence level. The sample-size question is that promise run <strong>backwards</strong>: the standard-error formulas from Modules 1 and 7 give the error for a chosen n; here we fix the error and solve for n.</p>
+<ul>
+<li><strong>For a proportion:</strong> n0 = z^2 x p(1 - p) / e^2, where e is the margin of error (the half-width) and z = 1.96 for 95%. The worst case p = 0.5 gives the largest, safest n.</li>
+<li><strong>For a mean:</strong> n0 = (z x S / e)^2, with S the standard deviation of the variable in the population.</li>
+<li><strong>Then the finite population correction pulls it back:</strong> n = n0 / (1 + n0/N). It only bites when n0 is a large slice of N.</li>
+<li><strong>The signature fact:</strong> n depends on 1 / e^2. <strong>Halve</strong> the margin of error and you <strong>quadruple</strong> the sample. Precision gets expensive fast.</li>
+</ul>
+<p><strong>Tiny example.</strong> 95% confidence, margin +/-3 points, p unknown (so use 0.5): n0 = 1.96^2 x 0.25 / 0.03^2 = 0.9604 / 0.0009 = <strong>1,067</strong>. In a population of N = 10,000, the fpc gives n = 1,067 / (1 + 1,067/10,000) = <strong>964</strong>.</p>
+<p><strong>What each margin of error costs (proportion, 95%, p = 0.5)</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Margin of error</strong></th>
+<th><strong>Sample size n0</strong></th>
+<th><strong>vs.&nbsp;the +/-5% baseline</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>+/- 5 points</td>
+<td>384</td>
+<td>1x</td>
+</tr>
+<tr class="even">
+<td>+/- 3 points</td>
+<td>1,067</td>
+<td>~ 3x</td>
+</tr>
+<tr class="odd">
+<td>+/- 2 points</td>
+<td>2,401</td>
+<td>~ 6x</td>
+</tr>
+<tr class="even">
+<td>+/- 1 point</td>
+<td>9,604</td>
+<td>25x</td>
+</tr>
+</tbody>
+</table>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/08-sample-size-allocation-fig1.png" class="img-fluid figure-img"></p>
+<figcaption><em>Because n grows as 1/e^2, precision has sharply diminishing returns: each extra digit of accuracy costs several times the sample.</em></figcaption>
+</figure>
+</div>
+<div class="fieldnote">
+<p><strong>Check yourself (Piece 1).</strong> You currently sample about 1,000 for a +/-3-point margin. A stakeholder now wants +/-1.5 points. Roughly how many will you need, and why?</p>
+</div>
+</section>
+<section id="piece-2-inflate-for-the-real-design-the-number-to-release" class="level2">
+<h2 class="anchored" data-anchor-id="piece-2-inflate-for-the-real-design-the-number-to-release">Piece 2 — Inflate for the real design (the number to release)</h2>
+<p>The n from Piece 1 is an <strong>SRS</strong> number — it assumes independent, equal-chance draws and that everyone you pick answers. Neither holds in the field. Three adjustments turn that clean n into the count you actually put in the mail.</p>
+<ul>
+<li><strong>Design effect.</strong> A clustered or unequally weighted design carries less information per person (Modules 4, 6, 7). Multiply: n_design = n_SRS x deff. A deff of 1.5 means you need 50% more people to match the SRS precision.</li>
+<li><strong>Nonresponse.</strong> Only a fraction answer. Divide by the expected response rate: n_invite = n_design / RR.</li>
+<li><strong>Ineligibility.</strong> Some sampled records are out of scope (disconnected numbers, wrong ages). Divide by the eligibility rate: n_release = n_invite / eligibility.</li>
+</ul>
+<p>Read it as a chain: <strong>target → n_SRS → x deff → / response rate → / eligibility → the number to release.</strong></p>
+<p><strong>Tiny example.</strong> From 964. A design effect of 1.5 → 964 x 1.5 = <strong>1,446</strong> completes needed. A 62% response rate → 1,446 / 0.62 = <strong>2,332</strong> to invite. A 90% eligibility rate → 2,332 / 0.90 = <strong>2,591</strong> to release. You mail about 2,600 records to end up with the precision of 964 clean draws.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/08-sample-size-allocation-fig2.png" class="img-fluid figure-img"></p>
+<figcaption><em>The design inflates the sample (deff), then response and eligibility inflate it again: the release count is several times the tidy SRS number.</em></figcaption>
+</figure>
+</div>
+<div class="fieldnote">
+<p><strong>In your CHOP work.</strong> This is exactly the arithmetic behind the hospital survey’s field counts: <strong>977 records released, 606 responding — a 62% response rate.</strong> Designing the study meant choosing that 977 <em>before</em> anyone answered, working from a completes target and an assumed response rate. Run the chain forward and those 606 completes, divided by any design effect above 1, are the effective sample your standard errors actually reflect.</p>
+</div>
+<div class="fieldnote">
+<p><strong>Check yourself (Piece 2).</strong> You need 800 completes, expect a design effect of 1.25 and a 50% response rate. How many do you release (ignore eligibility)?</p>
+</div>
+</section>
+<section id="piece-3-allocation-across-strata-now-with-cost" class="level2">
+<h2 class="anchored" data-anchor-id="piece-3-allocation-across-strata-now-with-cost">Piece 3 — Allocation across strata (now with cost)</h2>
+<p>Once you know the total n and you are stratifying (Module 3), the next decision is <strong>how to split it</strong> among the strata. Four rules, in rising sophistication.</p>
+<ul>
+<li><strong>Equal.</strong> The same n in every stratum. Best when you care about each stratum on its own (comparing regions), not the overall total.</li>
+<li><strong>Proportional.</strong> n_h proportional to N_h — each stratum’s share of the sample matches its share of the population. Self-weighting and simple.</li>
+<li><strong>Neyman (optimal for precision).</strong> n_h proportional to N_h x S_h — send sample where the <strong>variability</strong> is. A small but heterogeneous stratum earns extra interviews.</li>
+<li><strong>Cost-based (optimal for precision per dollar).</strong> n_h proportional to N_h x S_h / sqrt(c_h) — Neyman, but discount strata that are <strong>expensive</strong> to sample. Cheap, variable strata get the most.</li>
+</ul>
+<p><strong>Tiny example.</strong> Two strata, A (N = 4,000, S = 5) and B (N = 1,000, S = 15), splitting n = 100.</p>
+<ul>
+<li><strong>Proportional:</strong> 80 / 20 (just the sizes).</li>
+<li><strong>Neyman:</strong> N_h S_h = 20,000 vs 15,000 → 57 / 43. B’s high variability pulls sample toward it despite being a quarter the size.</li>
+<li><strong>Cost-based</strong>, if B costs 4x more per interview (c_A = 100, c_B = 400): N_h S_h / sqrt(c) = 2,000 vs 750 → 73 / 27. Cost pushes sample back toward the cheap stratum.</li>
+</ul>
+<p><strong>The four allocation rules</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Rule</strong></th>
+<th><strong>n_h proportional to</strong></th>
+<th><strong>Best when…</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Equal</td>
+<td>1 (same each)</td>
+<td>you compare strata one-to-one</td>
+</tr>
+<tr class="even">
+<td>Proportional</td>
+<td>N_h</td>
+<td>you want a simple, self-weighting sample</td>
+</tr>
+<tr class="odd">
+<td>Neyman</td>
+<td>N_h x S_h</td>
+<td>you want the most precise overall estimate</td>
+</tr>
+<tr class="even">
+<td>Cost-based</td>
+<td>N_h x S_h / sqrt(c_h)</td>
+<td>sampling costs differ across strata</td>
+</tr>
+</tbody>
+</table>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/08-sample-size-allocation-fig3.png" class="img-fluid figure-img"></p>
+<figcaption><em>Same total of 100 interviews, three ways to split it: Neyman chases variance, cost-based allocation chases variance per dollar.</em></figcaption>
+</figure>
+</div>
+<div class="fieldnote">
+<p><strong>Check yourself (Piece 3).</strong> A tiny stratum has huge variance and is cheap to reach. Neyman already gives it a lot of sample; under cost-based allocation does it get even more, or less — and why?</p>
+</div>
+</section>
+<section id="piece-4-cost-models-what-a-design-actually-costs" class="level2">
+<h2 class="anchored" data-anchor-id="piece-4-cost-models-what-a-design-actually-costs">Piece 4 — Cost models (what a design actually costs)</h2>
+<p>Optimization needs a budget equation, and the cost of a survey is not simply ‘dollars per interview.’ It splits into pieces that behave very differently.</p>
+<ul>
+<li><strong>Fixed cost, c0.</strong> Overhead that does not scale with sample size — questionnaire design, software, project management.</li>
+<li><strong>Per-cluster cost, c1.</strong> The price of adding one more PSU — travel to a new area, listing its households, recruiting a local interviewer. <strong>Expensive.</strong></li>
+<li><strong>Per-element cost, c2.</strong> The price of one more interview inside a cluster you have <em>already</em> reached. <strong>Cheap</strong> by comparison.</li>
+</ul>
+<p>The two-stage budget is then: <strong>C = c0 + c1 x a + c2 x (a x b)</strong>, where a = number of PSUs and b = elements per PSU. The whole tension of clustered design lives in c1 versus c2: reaching a new cluster buys <strong>independent</strong> information but costs a lot; another interview in a cluster you have already reached is cheap but partly <strong>redundant</strong> (the intraclass correlation roh from Module 4).</p>
+<p><strong>Tiny example.</strong> c0 = $5,000 fixed, c1 = $400 per PSU, c2 = $25 per interview; with a = 40 PSUs and b = 17 each: C = 5,000 + 400 x 40 + 25 x 680 = 5,000 + 16,000 + 17,000 = <strong>$38,000</strong>.</p>
+<p><strong>The three cost components</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Component</strong></th>
+<th><strong>Symbol</strong></th>
+<th><strong>Scales with</strong></th>
+<th><strong>Example</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Fixed / overhead</td>
+<td>c0</td>
+<td>nothing</td>
+<td>design, software, management</td>
+</tr>
+<tr class="even">
+<td>Per cluster (PSU)</td>
+<td>c1</td>
+<td>number of PSUs, a</td>
+<td>travel, listing, local hiring</td>
+</tr>
+<tr class="odd">
+<td>Per element</td>
+<td>c2</td>
+<td>total interviews, a x b</td>
+<td>one more interview</td>
+</tr>
+</tbody>
+</table>
+<div class="fieldnote">
+<p><strong>Check yourself (Piece 4).</strong> Travel to a new village costs $500; one more household interview there costs $20. Which is c1 and which is c2 — and if roh is high, which would you rather add?</p>
+</div>
+</section>
+<section id="piece-5-optimization-the-optimal-cluster-size" class="level2">
+<h2 class="anchored" data-anchor-id="piece-5-optimization-the-optimal-cluster-size">Piece 5 — Optimization: the optimal cluster size</h2>
+<p>Now put the cost model (Piece 4) and the design effect (Module 4) together, and something clean falls out: for a two-stage design there is a single <strong>best number of elements per cluster.</strong></p>
+<p>Sample too <strong>few</strong> per cluster and you waste money on travel — many expensive PSUs for a handful of interviews each. Sample too <strong>many</strong> and you pile up redundant, correlated interviews (roh bites, and each adds little). In between sits the sweet spot:</p>
+<p><strong>b_opt = sqrt( (c1 / c2) x ((1 - roh) / roh) ).</strong></p>
+<p>Read the formula: the cost ratio c1/c2 pushes b <strong>up</strong> (expensive clusters → grab many per visit to amortize the travel); the homogeneity roh pushes b <strong>down</strong> (redundant clusters → spread out and visit more of them). The optimum balances the two.</p>
+<p><strong>Tiny example.</strong> c1 = $400, c2 = $25, roh = 0.05: b_opt = sqrt((400/25) x (0.95/0.05)) = sqrt(16 x 19) = sqrt(304) = 17.4, so about <strong>17 per cluster</strong>. With a field budget of $33,000 (the $38,000 total minus $5,000 fixed), the number of PSUs is a = 33,000 / (c1 + c2 x b) = 33,000 / (400 + 25 x 17) = 33,000 / 825 = <strong>40</strong>. So: 40 clusters of 17 → 680 interviews.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/08-sample-size-allocation-fig4.png" class="img-fluid figure-img"></p>
+<figcaption><em>Total variance is U-shaped in the cluster size: b_opt bottoms it out, balancing travel cost on the left against within-cluster redundancy on the right.</em></figcaption>
+</figure>
+</div>
+<div class="fieldnote">
+<p><strong>Check yourself (Piece 5).</strong> roh jumps from 0.05 to 0.20 (clusters much more homogeneous). Does the optimal cluster size b_opt rise or fall, and why intuitively?</p>
+</div>
+</section>
+<section id="piece-6-the-design-workflow-bringing-it-together" class="level2">
+<h2 class="anchored" data-anchor-id="piece-6-the-design-workflow-bringing-it-together">Piece 6 — The design workflow (bringing it together)</h2>
+<p>No single formula spits out a survey design; you loop through a short workflow, trading precision against budget until both are acceptable.</p>
+<ol type="1">
+<li>State the <strong>precision target</strong> → n under SRS (Piece 1).</li>
+<li><strong>Inflate for reality:</strong> x deff, / response rate, / eligibility → the release count (Piece 2).</li>
+<li>Choose an <strong>allocation</strong> across strata (Piece 3).</li>
+<li>Write the <strong>cost model</strong> and check it against the budget (Piece 4).</li>
+<li><strong>Optimize</strong> the cluster size and PSU count within the budget (Piece 5).</li>
+<li>Compute the precision you <strong>actually</strong> achieved — and if it misses the target or the budget, <strong>iterate</strong>.</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/08-sample-size-allocation-fig5.png" class="img-fluid figure-img"></p>
+<figcaption><em>The design loop: turn a target into a release count, allocate, cost it, optimize, then check and go round again.</em></figcaption>
+</figure>
+</div>
+<p>In practice you rarely hit precision and budget exactly. You relax one — widen the margin a hair, or find more money — and go round again. That negotiation is the real job of a sampling statistician.</p>
+<div class="fieldnote">
+<p><strong>Check yourself (Piece 6).</strong> Your optimized design comes in $8,000 over budget but hits the precision target. Name two levers you could pull, and what each one costs you.</p>
+</div>
+</section>
+<section id="piece-7-doing-it-in-r-practools" class="level2">
+<h2 class="anchored" data-anchor-id="piece-7-doing-it-in-r-practools">Piece 7 — Doing it in R (PracTools)</h2>
+<p>Every calculation in this module lives in one R package: <strong>PracTools</strong>, the companion to your 745 text (Valliant, Dever &amp; Kreuter). It sizes samples, allocates them across strata, and solves for the optimal cluster split — the whole workflow of Piece 6.</p>
+<div class="fieldnote">
+<p><strong>Read-along, not run.</strong> R is not yet installed on your machine, so treat this piece as a reference — every line is ready to run the moment we set R up.</p>
+</div>
+<p><strong>1. Install and load.</strong></p>
+<div class="fieldnote">
+<p>install.packages(“PracTools”) library(PracTools)</p>
+</div>
+<p><strong>2. Sample size for a target precision (Piece 1).</strong> Give a target variance (or CV) for the estimate; deff folds the design in right here.</p>
+<div class="fieldnote">
+<p>nProp(V0 = (0.03/1.96)^2, pU = 0.5, N = 10000) # proportion, +/-3 pts at 95% nCont(CV0 = 0.05, S2 = 25, N = 10000, deff = 1.5) # mean, design-inflated</p>
+</div>
+<p><strong>3. Inflate to a release count (Piece 2).</strong> deff is an argument above; response and eligibility are a plain division.</p>
+<div class="fieldnote">
+<p>n_release &lt;- n_design / (RR * elig) # e.g.&nbsp;1446 / (0.62 * 0.90)</p>
+</div>
+<p><strong>4. Allocate across strata (Piece 3).</strong> One call, switched by the alloc argument; add ch for cost-based.</p>
+<div class="fieldnote">
+<p>strAlloc(Nh = c(4000,1000), Sh = c(5,15), n.tot = 100, alloc = “prop”) strAlloc(Nh = c(4000,1000), Sh = c(5,15), n.tot = 100, alloc = “neyman”) strAlloc(Nh = c(4000,1000), Sh = c(5,15), ch = c(100,400), <sub></sub>~n.tot = 100, alloc = “totcost”)</p>
+</div>
+<p><strong>5. Optimal cluster size (Piece 5).</strong> clusOpt2 returns the best elements-per-PSU and number of PSUs under a budget; delta is PracTools’ name for the homogeneity roh.</p>
+<div class="fieldnote">
+<p>clusOpt2(C1 = 400, C2 = 25, delta = 0.05, # per-PSU and per-element cost <sub></sub>~unit.rv = 1, tot.cost = 33000, cal.sw = 1) # roh = delta, field budget</p>
+</div>
+<p><strong>6. Estimate deff and roh from a pilot</strong> — so the numbers above are not guesses.</p>
+<div class="fieldnote">
+<p>deffK(w) # Kish design effect from a weight vector BW2stageSRS(y, …) # between/within variance → delta (roh)</p>
+</div>
+<p><strong>Each concept, and the PracTools call that does it</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Concept (piece)</strong></th>
+<th><strong>PracTools call</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Sample size for a target (P1)</td>
+<td>nProp() , nCont()</td>
+</tr>
+<tr class="even">
+<td>Inflate by deff (P2)</td>
+<td>deff = argument in nCont()</td>
+</tr>
+<tr class="odd">
+<td>Allocation across strata (P3)</td>
+<td>strAlloc(alloc = “prop”/“neyman”/“totcost”)</td>
+</tr>
+<tr class="even">
+<td>Optimal cluster size (P5)</td>
+<td>clusOpt2() (clusOpt3() for 3 stages)</td>
+</tr>
+<tr class="odd">
+<td>Estimate deff / roh (P2, P5)</td>
+<td>deffK() , BW2stageSRS()</td>
+</tr>
+</tbody>
+</table>
+<div class="fieldnote">
+<p><strong>Check yourself (Piece 7).</strong> You call strAlloc() with Nh and Sh but no ch.&nbsp;Which allocation are you asking for, and what would adding ch change?</p>
+</div>
+</section>
+<section id="coursework-anchor-625-745" class="level2">
+<h2 class="anchored" data-anchor-id="coursework-anchor-625-745">Coursework anchor (625 / 745)</h2>
+<p>This module <strong>is</strong> the design half of SURVMETH 745. The 745 text — Valliant, Dever &amp; Kreuter, <em>Practical Tools for Designing and Weighting Survey Samples</em> — is exactly this material, and <strong>PracTools</strong> is its companion package. The homework where you set a precision target, inflated it into a release count, allocated across strata, and solved for the optimal cluster size is the whole of Pieces 1 through 5. The hands-on layer — running nCont, strAlloc, and clusOpt2 on a live budget — is the next time we open R.</p>
+</section>
+<section id="interview-angles" class="level2">
+<h2 class="anchored" data-anchor-id="interview-angles">Interview angles</h2>
+<ul>
+<li><strong>How do you determine a sample size?</strong> Start from a precision target (a margin or CV at a confidence level), invert the SE formula for n under SRS, then inflate by the design effect and divide by the response and eligibility rates to get the release count.</li>
+<li><strong>Why does tighter precision cost so much?</strong> Because n grows as 1/e^2 — halving the margin of error quadruples the sample. Sharp diminishing returns.</li>
+<li><strong>Proportional vs.&nbsp;Neyman vs.&nbsp;optimal allocation?</strong> Proportional splits by size (self-weighting); Neyman adds a variability weight (N_h S_h); cost-optimal divides by sqrt(cost), so cheap, variable strata get the most sample.</li>
+<li><strong>What is the optimal cluster size?</strong> b_opt = sqrt((c1/c2) x ((1-roh)/roh)) — it balances travel cost against within-cluster redundancy. High roh → smaller clusters; expensive PSUs → larger clusters.</li>
+<li><strong>Walk me through designing a clustered survey on a budget.</strong> The workflow: target → SRS n → inflate for deff, response, eligibility → allocate → write the cost model → optimize b and a within budget → check the achieved precision → iterate.</li>
+<li><strong>What is PracTools?</strong> The R package (companion to the 745 text) for sample-size, allocation, and optimal cluster-size calculations.</li>
+</ul>
+</section>
+<section id="quick-check" class="level2">
+<h2 class="anchored" data-anchor-id="quick-check">Quick check</h2>
+<ol type="1">
+<li>95% confidence, margin +/-2 points, p unknown. What is the SRS sample size (use p = 0.5)?</li>
+<li>You need 1,200 completes, expect a design effect of 1.6 and a 40% response rate. How many do you release (ignore eligibility)?</li>
+<li>Two strata — A (N = 6,000, S = 4) and B (N = 2,000, S = 12). Split n = 200 by Neyman. What do you get, and what’s notable?</li>
+<li>Per-PSU cost $600, per-interview $24, roh = 0.04. What is the optimal cluster size b_opt?</li>
+<li>Name the three multiplicative adjustments that turn an SRS sample size into a release count.</li>
+</ol>
+</section>
+<section id="module-8-in-one-breath" class="level2">
+<h2 class="anchored" data-anchor-id="module-8-in-one-breath">Module 8 in one breath</h2>
+<ul>
+<li>Sample size is the SE formula run backwards: n0 = z^2 p(1-p)/e^2 (proportion) or (zS/e)^2 (mean); n grows as 1/e^2, so precision is pricey.</li>
+<li>Turn the SRS n into a release count: <strong>x deff, / response rate, / eligibility.</strong></li>
+<li>Allocate across strata: proportional (N_h), Neyman (N_h x S_h), or cost-based (N_h x S_h / sqrt(c_h)).</li>
+<li>Cost splits into fixed + per-PSU (expensive) + per-element (cheap): C = c0 + c1 a + c2 a b.</li>
+<li>Optimal cluster size b_opt = sqrt((c1/c2) x ((1-roh)/roh)); fit the PSUs a into the budget — then iterate precision against cost.</li>
+<li><strong>PracTools</strong> does it all: nCont / nProp, strAlloc, clusOpt2.</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/ilmuljahan\.github\.io\/sampling-refresher\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Sampling Refresher · rebuilt from SURVMETH 625 &amp; 745</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

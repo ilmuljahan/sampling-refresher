@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Module 5 — Multistage &amp; PPS/PPeS – Sampling Refresher</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-e8ed365c7b7034f9f3f4ff1c177e9bdc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Sampling Refresher</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="./index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./00-foundations.html">Modules</a></li><li class="breadcrumb-item"><a href="./05-multistage-pps.html">5 · Multistage &amp; PPS</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Syllabus</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Modules</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./00-foundations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">0 · Foundations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-simple-random-sampling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1 · Simple Random Sampling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-systematic-sampling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2 · Systematic Sampling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-stratified-sampling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3 · Stratified Sampling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-cluster-sampling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4 · Cluster Sampling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-multistage-pps.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">5 · Multistage &amp; PPS</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-weighting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6 · Weighting</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-design-based-analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7 · Design-Based Analysis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-sample-size-allocation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">8 · Sample Size &amp; Allocation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-nonprobability-sampling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">9 · Nonprobability Sampling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-power-sample-size.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">10 · Power &amp; Sample Size</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#piece-1-what-multistage-means-psus-and-ssus" id="toc-piece-1-what-multistage-means-psus-and-ssus" class="nav-link active" data-scroll-target="#piece-1-what-multistage-means-psus-and-ssus">Piece 1 — What “multistage” means (PSUs and SSUs)</a></li>
+  <li><a href="#a-quick-aside-pps-vs.-ppes-the-e" id="toc-a-quick-aside-pps-vs.-ppes-the-e" class="nav-link" data-scroll-target="#a-quick-aside-pps-vs.-ppes-the-e">A quick aside — PPS vs.&nbsp;PPeS (the “e”)</a></li>
+  <li><a href="#piece-2-why-equal-chance-for-schools-is-unfair-to-students" id="toc-piece-2-why-equal-chance-for-schools-is-unfair-to-students" class="nav-link" data-scroll-target="#piece-2-why-equal-chance-for-schools-is-unfair-to-students">Piece 2 — Why equal chance for schools is unfair to students</a></li>
+  <li><a href="#piece-3-pps-probability-proportional-to-size" id="toc-piece-3-pps-probability-proportional-to-size" class="nav-link" data-scroll-target="#piece-3-pps-probability-proportional-to-size">Piece 3 — PPS: probability proportional to size</a></li>
+  <li><a href="#piece-4-self-weighting-designs-and-where-ppes-lands" id="toc-piece-4-self-weighting-designs-and-where-ppes-lands" class="nav-link" data-scroll-target="#piece-4-self-weighting-designs-and-where-ppes-lands">Piece 4 — Self-weighting designs (and where PPeS lands)</a></li>
+  <li><a href="#module-5-in-one-breath" id="toc-module-5-in-one-breath" class="nav-link" data-scroll-target="#module-5-in-one-breath">Module 5 in one breath</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./00-foundations.html">Modules</a></li><li class="breadcrumb-item"><a href="./05-multistage-pps.html">5 · Multistage &amp; PPS</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Module 5 — Multistage &amp; PPS/PPeS</h1>
+<p class="subtitle lead">Sampling Refresher · SURVMETH 625 / 745 · Probability proportional to size • self-weighting designs • PSUs and SSUs</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>In cluster sampling you took whole groups and measured everyone in them. Multistage keeps the cost savings of clustering but samples <em>within</em> the chosen groups too — and PPS is the trick that keeps everyone’s chance of selection equal. This module builds those ideas one small piece at a time, the same way we walked through them together.</p>
+<section id="piece-1-what-multistage-means-psus-and-ssus" class="level2">
+<h2 class="anchored" data-anchor-id="piece-1-what-multistage-means-psus-and-ssus">Piece 1 — What “multistage” means (PSUs and SSUs)</h2>
+<p>In <strong>cluster sampling</strong> (Module 4), once you picked a school you measured <strong>everyone</strong> in it. That’s fine when clusters are small, but real schools have hundreds of kids — you can’t survey all of them in every school you land on.</p>
+<p><strong>Multistage sampling</strong> fixes that by sampling in <em>steps</em>:</p>
+<ul>
+<li><strong>Stage 1:</strong> from the full list of schools, randomly pick a <strong>few schools</strong>.</li>
+<li><strong>Stage 2:</strong> inside each chosen school, don’t take everyone — randomly pick a <strong>handful of students</strong>.</li>
+</ul>
+<p>That’s a <strong>two-stage</strong> design. You could keep going (schools, then classrooms, then students = three stages), which is where the “multi” comes from.</p>
+<p>The vocabulary just names the units at each stage:</p>
+<ul>
+<li><strong>PSU — Primary Sampling Unit</strong> = what you pick <em>first</em>. Here, the <strong>school</strong>.</li>
+<li><strong>SSU — Secondary Sampling Unit</strong> = what you pick <em>second</em>, inside a PSU. Here, the <strong>student</strong> (or the classroom, if there’s a stage in between).</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/05-multistage-pps-fig1.png" class="img-fluid figure-img"></p>
+<figcaption><em>Figure 1. Two-stage sampling: pick a few schools (PSUs), then subsample a few students (SSUs) inside each.</em></figcaption>
+</figure>
+</div>
+<div class="fieldnote">
+<p><strong>Cluster = pick groups, take everyone. Multistage = pick groups, then sample</strong> <strong><em>within</em></strong> <strong>them too.</strong></p>
+</div>
+<p>The big practical payoff: you get the <strong>cost savings</strong> of clustering (your fieldworker only visits a few schools) <strong>without</strong> being forced to interview every single person in those schools.</p>
+<p><strong>Cluster vs.&nbsp;multistage at a glance</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th><strong>Cluster sampling</strong></th>
+<th><strong>Multistage sampling</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Inside a chosen group</strong></td>
+<td>measure everyone</td>
+<td>subsample — take only some</td>
+</tr>
+<tr class="even">
+<td><strong>Stages of selection</strong></td>
+<td>one (pick clusters)</td>
+<td>two or more (PSUs, then SSUs, …)</td>
+</tr>
+<tr class="odd">
+<td><strong>Cost per group visited</strong></td>
+<td>higher (interview all)</td>
+<td>lower (interview a few)</td>
+</tr>
+<tr class="even">
+<td><strong>Watch out for</strong></td>
+<td>big design effect if roh is high</td>
+<td>unequal selection chances (see Piece 2)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>One thing to keep straight:</strong> don’t mix up the <strong>cluster</strong> (the group, e.g., the school) with the <strong>element</strong> (the unit, e.g., the child). The mantra from Module 4 still holds — <em>sample clusters, measure elements</em> — and now we add: <em>… but in multistage you sample the elements too.</em></p>
+<div class="fieldnote">
+<p><strong>Check yourself (Piece 1).</strong> Can you tell me, in your own words, the difference between what happens <em>inside a chosen cluster</em> under plain cluster sampling vs.&nbsp;under multistage?</p>
+</div>
+</section>
+<section id="a-quick-aside-pps-vs.-ppes-the-e" class="level2">
+<h2 class="anchored" data-anchor-id="a-quick-aside-pps-vs.-ppes-the-e">A quick aside — PPS vs.&nbsp;PPeS (the “e”)</h2>
+<p>You asked what PPeS is, so let’s pin down the pair before we build up to it.</p>
+<ul>
+<li><strong>PPS = Probability Proportional to Size.</strong> When you pick your PSUs (schools), you give <strong>bigger schools a proportionally bigger chance</strong> of being selected. A school with 800 kids is twice as likely to be picked as one with 400. (This is Piece 3 — the fix for the problem in Piece 2.)</li>
+<li><strong>PPeS = Probability Proportional to</strong> <strong><em>estimated</em></strong> <strong>Size.</strong> Same idea, but with a catch: in the real world you often <strong>don’t know each school’s exact current enrollment</strong> when you draw the sample. So you use the <strong>best available estimate</strong> — last year’s census, an old administrative file — as your “measure of size.”</li>
+</ul>
+<p>The only difference is the <strong>“e”</strong>:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th><strong>Measure of size used</strong></th>
+<th><strong>When to use it</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>PPS</strong></td>
+<td>the <em>true, exact</em> size</td>
+<td>you actually have current counts</td>
+</tr>
+<tr class="even">
+<td><strong>PPeS</strong></td>
+<td>an <em>estimate / proxy</em> of size</td>
+<td>true size is unknown or outdated (the usual real-world case)</td>
+</tr>
+</tbody>
+</table>
+<p>The consequence: with PPS you can make the design <strong>perfectly self-weighting</strong> (every person has an identical overall chance). With PP<strong>e</strong>S, because your sizes are a little off, it comes out <em>almost</em> self-weighting, and weighting tidies up the rest (Module 6). We’ll see exactly why in Piece 4.</p>
+</section>
+<section id="piece-2-why-equal-chance-for-schools-is-unfair-to-students" class="level2">
+<h2 class="anchored" data-anchor-id="piece-2-why-equal-chance-for-schools-is-unfair-to-students">Piece 2 — Why equal chance for schools is unfair to students</h2>
+<p>Here’s the wrinkle multistage introduces. Keep it as simple as possible: <strong>2 schools</strong>, we pick <strong>1 of them</strong> (each 50%), then survey <strong>2 students</strong> in whichever we picked. One school is <strong>small</strong> (4 students), the other <strong>big</strong> (16 students).</p>
+<p>Work out a single student’s <strong>overall</strong> chance of being surveyed — multiply the two stages together:</p>
+<ul>
+<li>In the <strong>small</strong> school: P(school picked) × P(student picked | picked) = 1/2 × 2/4 = 1/4.</li>
+<li>In the <strong>big</strong> school: 1/2 × 2/16 = 1/16.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/05-multistage-pps-fig2.png" class="img-fluid figure-img"></p>
+<figcaption><em>Figure 2. Give the two schools an equal chance and a small-school student is four times as likely to be sampled as a big-school student.</em></figcaption>
+</figure>
+</div>
+<p>So a student in the small school is <strong>four times</strong> as likely to end up in the sample as a student in the big school — even though we did nothing “unfair” on purpose. <strong>Equal chance for the clusters produced very unequal chances for the elements.</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>School</strong></th>
+<th><strong>Students</strong></th>
+<th><strong>P(school picked)</strong></th>
+<th><strong>Take</strong></th>
+<th><strong>P(student|picked)</strong></th>
+<th><strong>Overall</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Small</strong></td>
+<td>4</td>
+<td>1/2</td>
+<td>2</td>
+<td>2/4</td>
+<td><strong>1/4</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Big</strong></td>
+<td>16</td>
+<td>1/2</td>
+<td>2</td>
+<td>2/16</td>
+<td><strong>1/16</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Why it matters:</strong> if small-school students are over-represented and small schools differ from big ones (rural vs.&nbsp;urban, say), your estimates are <strong>biased</strong> unless you fix it. Two ways to fix it: <strong>(a)</strong> weight afterward (Module 6), or <strong>(b)</strong> design it away up front by making a school’s selection chance depend on its size — that’s PPS.</p>
+<div class="fieldnote">
+<p><strong>The root cause: every school had the same chance, but schools hold different numbers of students. Equal chance for unequal-sized groups = unequal chance for individuals.</strong></p>
+</div>
+<div class="fieldnote">
+<p><strong>Check yourself (Piece 2).</strong> Suppose the big school had <strong>40</strong> students instead of 16 (still pick 1 of the 2 schools, still survey 2). What’s a student’s chance in the big school now — and how many times over-represented are the small-school students?</p>
+</div>
+</section>
+<section id="piece-3-pps-probability-proportional-to-size" class="level2">
+<h2 class="anchored" data-anchor-id="piece-3-pps-probability-proportional-to-size">Piece 3 — PPS: probability proportional to size</h2>
+<p>The fix is elegant. Instead of giving every school the <strong>same</strong> chance, give each school a chance <strong>proportional to how many students it has</strong>. Big schools are more likely to be drawn; small schools less likely — in exact proportion to size.</p>
+<p>Concretely: <strong>20 students</strong> across the two schools. School A has 4 (that’s 4/20 = 20% of all students); School B has 16 (16/20 = 80%). Under PPS, School A is drawn 20% of the time and School B 80% of the time.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/05-multistage-pps-fig3.png" class="img-fluid figure-img"></p>
+<figcaption><em>Figure 3. Each school’s slice of the bar — its share of all students — is its chance of being selected.</em></figcaption>
+</figure>
+</div>
+<p>Then — and this is the second half of the trick — you take a <strong>fixed number</strong> of students (say 2) from whichever school is drawn. Notice the tug-of-war this sets up:</p>
+<ul>
+<li>A <strong>big</strong> school is much more likely to be visited (good chance for its students)… but once visited, its 2 sampled students are drawn from a big pool, so each individual is <em>diluted</em>.</li>
+<li>A <strong>small</strong> school is rarely visited… but if it is, its 2 students come from a tiny pool, so each is <em>concentrated</em>.</li>
+</ul>
+<p>These two forces pull in opposite directions. In Piece 4 we’ll see they cancel <strong>exactly</strong>.</p>
+<div class="fieldnote">
+<p><strong>PPS trades an equal chance of picking the</strong> <strong><em>school</em></strong> <strong>for a fair chance of picking the</strong> <strong><em>person</em>.</strong></p>
+</div>
+<div class="fieldnote">
+<p><strong>Check yourself (Piece 3).</strong> Under PPS, School B (size 16) is visited 80% of the time but we still survey only 2 of its students. Compared with the old equal-chance design (50%), is a Big-school student now <strong>more</strong> or <strong>less</strong> likely to be surveyed — and why?</p>
+</div>
+</section>
+<section id="piece-4-self-weighting-designs-and-where-ppes-lands" class="level2">
+<h2 class="anchored" data-anchor-id="piece-4-self-weighting-designs-and-where-ppes-lands">Piece 4 — Self-weighting designs (and where PPeS lands)</h2>
+<p>Now put the two halves together and watch the magic. A student’s overall chance is still P(school picked) × P(student | picked). Under PPS:</p>
+<ul>
+<li><strong>Big</strong> school: (16/20) × (2/16) = 2/20 = 1/10.</li>
+<li><strong>Small</strong> school: (4/20) × (2/4) = 2/20 = 1/10.</li>
+</ul>
+<p>The school’s <strong>size</strong> appears once on <em>top</em> (in the selection chance) and once on the <em>bottom</em> (in the within-school chance), so it <strong>cancels</strong>. Every student — big school or small — ends up with the same overall chance, 1/10.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/05-multistage-pps-fig4.png" class="img-fluid figure-img"></p>
+<figcaption><em>Figure 4. The size term cancels, so every student shares the same overall selection probability.</em></figcaption>
+</figure>
+</div>
+<p>A design where every element has the <strong>same overall probability</strong> of selection is called <strong>self-weighting</strong>. The name says it: because everyone’s chance is equal, no unequal weights are needed to correct the estimate — you can (roughly) just take a simple average.</p>
+<p><strong>The general rule:</strong> if you draw PSUs with probability proportional to size and then take a <strong>fixed number</strong> <em>n</em> of elements from each drawn PSU, every element’s chance = n / (total elements). Constant, by construction.</p>
+<p><strong>The same two schools, now under PPS</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>School</strong></th>
+<th><strong>Size</strong></th>
+<th><strong>P(picked) — PPS</strong></th>
+<th><strong>Take</strong></th>
+<th><strong>P(student|picked)</strong></th>
+<th><strong>Overall</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Small</strong></td>
+<td>4</td>
+<td>4/20</td>
+<td>2</td>
+<td>2/4</td>
+<td><strong>1/10</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Big</strong></td>
+<td>16</td>
+<td>16/20</td>
+<td>2</td>
+<td>2/16</td>
+<td><strong>1/10</strong></td>
+</tr>
+</tbody>
+</table>
+<p><em>Every overall chance is the same (1/10) — the mark of a self-weighting design. Compare with Piece 2, where the same two schools gave 1/4 vs.&nbsp;1/16.</em></p>
+<p><strong>Where PPeS comes in:</strong> all of this assumed we knew each school’s <em>exact</em> size. In practice we use <strong>estimated</strong> sizes (PPeS). If last year’s enrollment is a little off from today’s, the sizes don’t cancel <em>perfectly</em>, so the design is <strong>almost</strong> self-weighting. That small leftover imbalance is mopped up with weights in Module 6 — which is exactly why weighting is the next module.</p>
+<div class="fieldnote">
+<p><strong>Self-weighting = every element has the same overall chance of selection. PPS at stage 1 + a fixed take at stage 2 gets you there; PPeS gets you close.</strong></p>
+</div>
+<div class="fieldnote">
+<p><strong>Check yourself (Piece 4).</strong> In your own words, why does making a school’s selection chance proportional to its size make the whole design self-weighting? What exactly cancels?</p>
+</div>
+</section>
+<section id="module-5-in-one-breath" class="level2">
+<h2 class="anchored" data-anchor-id="module-5-in-one-breath">Module 5 in one breath</h2>
+<ul>
+<li><strong>Multistage</strong> = sample groups, then subsample <em>within</em> them (PSUs, then SSUs).</li>
+<li><strong>Equal chance for groups</strong> makes <strong>unequal chance for people</strong>, because groups differ in size.</li>
+<li><strong>PPS</strong> fixes it by giving each group a selection chance proportional to its size.</li>
+<li><strong>PPS + a fixed take per group = self-weighting</strong>: everyone shares one overall chance, n/Total.</li>
+<li><strong>PPeS</strong> uses estimated sizes when true sizes are unknown: almost self-weighting, with weighting to finish (Module 6).</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/ilmuljahan\.github\.io\/sampling-refresher\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Sampling Refresher · rebuilt from SURVMETH 625 &amp; 745</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

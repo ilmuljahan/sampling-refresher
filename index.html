@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.18">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,13 +12,10 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
+code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: 1.5em;}
-div.column{flex: auto;}
-@media screen {
-div.columns{gap: min(4vw, 1.5em);}
-div.column{overflow-x: auto;}
-}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -42,10 +39,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-e8ed365c7b7034f9f3f4ff1c177e9bdc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-e8d91532b558204ec916bde7de9fbf8c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -250,16 +247,16 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>A private, self-paced course to rebuild survey sampling from the very beginning, mapped onto the curriculum of <strong>SURVMETH 625 (Applied Sampling)</strong> and <strong>SURVMETH 745 (Practical Sampling Design)</strong>. The goal: turn a shaky, anxious relationship with sampling into a confident, interview-ready command of it, one small step at a time.</p>
+<p>A self-paced rebuild of survey sampling from the ground up, mapped onto the curriculum of <strong>Applied Sampling</strong> and <strong>Practical Sampling Design</strong>. One module per topic: intuition first, then the math on small numbers, then the R.</p>
 <section id="how-this-course-works" class="level2">
 <h2 class="anchored" data-anchor-id="how-this-course-works">How this course works</h2>
 <ul>
-<li><strong>Go slow.</strong> One small piece per exchange. We never move on until the current idea feels comfortable.</li>
+<li><strong>One topic at a time.</strong> Each module isolates a single idea and stays with it until it is solid.</li>
 <li><strong>Plain language first.</strong> Every idea starts as an everyday story (rice pots, blood tests, lotteries) before any symbol appears.</li>
 <li><strong>Examples and visuals.</strong> Diagrams and worked mini-examples wherever they help the idea land.</li>
-<li><strong>Interactive.</strong> A conversation, not a lecture. You answer little checks; I give warm, specific feedback.</li>
-<li><strong>Layered depth.</strong> Intuition first, then the math on tiny numbers, and later hands-on in R. Concept-first for now; code is deferred until you ask.</li>
-<li><strong>Kept in writing.</strong> Every module becomes a formatted, illustrated Word-ready note in this folder.</li>
+<li><strong>Layered depth.</strong> Intuition first, then the math on tiny numbers, then hands-on in R.</li>
+<li><strong>Checks along the way.</strong> Short questions at the end of each piece, so you can test the idea rather than just read it.</li>
+<li><strong>Written to last.</strong> Every module is a formatted, illustrated reference you can come back to.</li>
 </ul>
 </section>
 <section id="the-rhythm-of-each-module" class="level2">
@@ -268,9 +265,9 @@ ul.task-list li input[type="checkbox"] {
 <li><strong>1.</strong> <strong>Intuition + a visual</strong> - see the idea before any math.</li>
 <li><strong>2.</strong> <strong>The math on tiny numbers</strong> - one traceable example.</li>
 <li><strong>3.</strong> <strong>Hands-on in R</strong> - deferred until you are ready.</li>
-<li><strong>4.</strong> <strong>Coursework anchor</strong> - revisit the matching 625/745 homework.</li>
-<li><strong>5.</strong> <strong>Interview angle</strong> - questions a hiring manager might ask.</li>
-<li><strong>6.</strong> <strong>Quick check</strong> - a couple of practice problems; you try, I give feedback.</li>
+<li><strong>4.</strong> <strong>Coursework anchor</strong> - where the topic sits in the graduate curriculum.</li>
+<li><strong>5.</strong> <strong>How this comes up in practice</strong> - the questions this material has to answer.</li>
+<li><strong>6.</strong> <strong>Quick check</strong> - a couple of practice problems to work through.</li>
 </ul>
 </section>
 <section id="the-modules" class="level2">
@@ -295,8 +292,8 @@ ul.task-list li input[type="checkbox"] {
 <p>Turning precision and budget targets into a design with PracTools; cost models; optimization.</p>
 <p><strong><a href="./09-nonprobability-sampling.html">Module 9 — Nonprobability Sampling</a></strong></p>
 <p>When probability sampling is not feasible; quasi-randomization and pseudo-weights; MRP; assessing bias.</p>
-<p><strong>Capstone — The 745 Final Exam</strong></p>
-<p>Work through the real 745 final exam as a full design problem, tying everything together.</p>
+<p><strong>Capstone — A Full Design Problem</strong></p>
+<p>Work through an end-to-end design problem, tying everything together.</p>
 <p><strong><a href="./10-power-sample-size.html">Module 10 (Bonus) — Power and Sample Size</a></strong></p>
 <p>What statistical power means (Type I/II errors); the four levers — effect size, significance, power, n; effect size for two proportions; the AAMC two-proportion calc worked both ways (solve for n = sample-size determination); what eats power (deff, nonresponse); the design workflow; plus a hands-on seventh piece in R. Concept-first.</p>
 </section>
@@ -724,7 +721,7 @@ ul.task-list li input[type="checkbox"] {
       &nbsp;
     </div>   
     <div class="nav-footer-center">
-<p>Sampling Refresher · rebuilt from SURVMETH 625 &amp; 745</p>
+<p>Sampling Refresher · Applied Sampling &amp; Practical Sampling Design</p>
 </div>
     <div class="nav-footer-right">
       &nbsp;

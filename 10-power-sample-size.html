@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.18">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,13 +12,10 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
+code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: 1.5em;}
-div.column{flex: auto;}
-@media screen {
-div.columns{gap: min(4vw, 1.5em);}
-div.column{overflow-x: auto;}
-}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -42,10 +39,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-e8ed365c7b7034f9f3f4ff1c177e9bdc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-e8d91532b558204ec916bde7de9fbf8c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -254,7 +251,7 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Modules 0 through 9 taught you to <strong>draw</strong> a sample and <strong>analyze</strong> it honestly. This bonus module answers the question a study team asks <strong>before</strong> any of that: <strong>how many people do we actually need?</strong> That is a <strong>power calculation</strong>, and running it to get n is exactly what <strong>determining a sample size</strong> means. We anchor it to your <strong>AAMC internship</strong> task - comparing <strong>two response rates</strong> across invitation conditions - the calc you were handed but never got to fully learn. It is a cousin of Module 1”s “sample size for a target precision,” but here the target is a <strong>difference to detect</strong>, not a margin of error. 6 pieces of concept, then a hands-on seventh in R.</p>
+<p>Modules 0 through 9 taught you to <strong>draw</strong> a sample and <strong>analyze</strong> it honestly. This bonus module answers the question a study team asks <strong>before</strong> any of that: <strong>how many people do we actually need?</strong> That is a <strong>power calculation</strong>, and running it to get n is exactly what <strong>determining a sample size</strong> means. We anchor it to your <strong>AAMC internship</strong> task - comparing <strong>two response rates</strong> across invitation conditions. It is a cousin of Module 1’s “sample size for a target precision,” but here the target is a <strong>difference to detect</strong>, not a margin of error. 6 pieces of concept, then a hands-on seventh in R.</p>
 <section id="piece-1-what-power-actually-means" class="level2">
 <h2 class="anchored" data-anchor-id="piece-1-what-power-actually-means">Piece 1 — What power actually means</h2>
 <p>Every comparison is a bet against being fooled. When you test whether two response rates differ, two things can go wrong. You can <strong>cry wolf</strong> - declare a difference that is not real (<strong>Type I error</strong>, rate <strong>alpha</strong>). Or you can <strong>miss a real difference</strong> that is sitting right in front of you (<strong>Type II error</strong>, rate <strong>beta</strong>). <strong>Power</strong> is the good outcome on that second axis: <strong>power = 1 - beta</strong>, the probability you <strong>catch</strong> a real difference when one truly exists.</p>
@@ -266,7 +263,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="figures/10-power-sample-size-fig1.png" class="img-fluid figure-img"></p>
-<figcaption><em>The null bell (no difference) and the alternative bell (a real difference) overlap. The threshold splits each: alpha is the null”s tail past it, beta is the alternative”s tail short of it, and power is the alternative”s mass beyond it.</em></figcaption>
+<figcaption><em>The null bell (no difference) and the alternative bell (a real difference) overlap. The threshold splits each: alpha is the null’s tail past it, beta is the alternative’s tail short of it, and power is the alternative’s mass beyond it.</em></figcaption>
 </figure>
 </div>
 <p>The picture is the whole idea. Two sampling distributions of your test statistic: one if there is <strong>no</strong> difference (navy), one if there <strong>is</strong> (teal). They <strong>overlap</strong>. Wherever you put the decision threshold, you trade one error for the other - push it right to shrink alpha and you grow beta. The only way to shrink <strong>both</strong> tails at once is to <strong>pull the bells apart</strong> or <strong>make them skinnier</strong>, which is exactly what a bigger effect or a bigger sample does. That is what the next piece unpacks.</p>
@@ -355,11 +352,11 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="piece-3-effect-size-for-two-proportions" class="level2">
 <h2 class="anchored" data-anchor-id="piece-3-effect-size-for-two-proportions">Piece 3 — Effect size for two proportions</h2>
-<p>Effect size is where people stumble, because for proportions it is <strong>not just the gap</strong> - the <strong>baseline rate matters too</strong>. A proportion”s variability is <strong>p(1 - p)</strong>, which is <strong>largest at 50%</strong> and shrinks toward 0% or 100%. So the <strong>same</strong> absolute gap is <strong>hardest to detect (needs the most n) near 50%</strong>, and easier out in the tails.</p>
+<p>Effect size is where people stumble, because for proportions it is <strong>not just the gap</strong> - the <strong>baseline rate matters too</strong>. A proportion’s variability is <strong>p(1 - p)</strong>, which is <strong>largest at 50%</strong> and shrinks toward 0% or 100%. So the <strong>same</strong> absolute gap is <strong>hardest to detect (needs the most n) near 50%</strong>, and easier out in the tails.</p>
 <ul>
 <li>Define the <strong>minimum detectable effect (MDE)</strong>: the <strong>smallest</strong> difference worth finding. You do not power for the gap you hope for - you power for the smallest gap that would still matter. Smaller MDE → much larger n (n grows like 1 / gap-squared).</li>
 <li>Detecting <strong>50% vs 55%</strong> (a 5-point gap at the worst-case variance) needs <strong>~1,565 per group</strong>. The <strong>same</strong> 5-point gap at <strong>5% vs 10%</strong> needs only <strong>~435 per group</strong> - 3-4x fewer, because variance is far smaller down there.</li>
-<li><strong>Cohen”s h</strong> is the standardized version for two proportions: h = |2·arcsinsqrtp2 - 2·arcsinsqrtp1|. For 40% vs 50%, h ~ 0.20 (a “small” effect by Cohen”s 0.2 / 0.5 / 0.8 rule of thumb). It lets a tool talk about “effect size” without you re-specifying the two rates.</li>
+<li><strong>Cohen’s h</strong> is the standardized version for two proportions: h = |2·arcsinsqrtp2 - 2·arcsinsqrtp1|. For 40% vs 50%, h ~ 0.20 (a “small” effect by Cohen’s 0.2 / 0.5 / 0.8 rule of thumb). It lets a tool talk about “effect size” without you re-specifying the two rates.</li>
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -457,7 +454,7 @@ ul.task-list li input[type="checkbox"] {
 </tbody>
 </table>
 <div class="fieldnote">
-<p><strong>Interview anchor (AAMC)</strong> “At AAMC I compared response rates across invitation conditions. To size the study I ran a two-proportion power calc - set the MDE at the smallest response-rate gap worth acting on, held alpha at 0.05 and power at 80%, and solved for n per arm. I also checked the reverse: what power our feasible n actually bought, so we knew going in whether we were powered to see the effect.” That sentence turns the task you were handed into something you can now <strong>explain and defend</strong>.</p>
+<p><strong>How this plays out end to end</strong> Sizing a study like this means setting the MDE at the smallest response-rate gap worth acting on, holding alpha at 0.05 and power at 80%, and solving for n per arm - then checking the reverse: what power the feasible n actually buys, so the team knows going in whether the study is powered to see the effect. Reporting both directions is what separates a sample size that was chosen from one that was assumed.</p>
 </div>
 <div class="fieldnote">
 <p><strong>Check yourself.</strong> You solved for n at 80% power and got ~388/group. Without redoing the arithmetic, will demanding <strong>90%</strong> power make that number go up or down?</p>
@@ -468,7 +465,7 @@ ul.task-list li input[type="checkbox"] {
 <p>The textbook formula assumes a clean, simple random sample with everyone responding. Real designs are messier, and each wrinkle <strong>eats power</strong> - meaning you need <strong>more</strong> raw n to keep the same detection rate. This is where the whole course comes back.</p>
 <ul>
 <li><strong>Design effect (deff).</strong> Clustering and unequal weights inflate variance by deff (Modules 4, 6, 7). You do not power on raw n - you power on <strong>effective n = n / deff</strong>. To keep 80% power under deff = 1.5, multiply your clean n by 1.5: ~388/group becomes ~582/group.</li>
-<li><strong>Nonresponse.</strong> Power depends on <strong>completed</strong> interviews, not invitations. If only 62% respond, divide the required completes by 0.62 to get the <strong>release</strong> count (Module 8”s inflation step). Your AAMC response-rate work is exactly this lever.</li>
+<li><strong>Nonresponse.</strong> Power depends on <strong>completed</strong> interviews, not invitations. If only 62% respond, divide the required completes by 0.62 to get the <strong>release</strong> count (Module 8’s inflation step). Your AAMC response-rate work is exactly this lever.</li>
 <li><strong>One- vs two-sided.</strong> A one-sided test spends all alpha on one tail and needs slightly less n - but only use it when the direction is genuinely fixed in advance. Defaulting to two-sided is the safe, expected choice.</li>
 <li><strong>Multiple comparisons.</strong> Testing many invite conditions at once inflates the family-wise false-alarm rate; a Bonferroni-style smaller alpha per test protects it but <strong>costs power</strong>, so each test needs more n.</li>
 </ul>
@@ -506,11 +503,11 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="piece-7-doing-it-in-r-read-along-reference" class="level2">
 <h2 class="anchored" data-anchor-id="piece-7-doing-it-in-r-read-along-reference">Piece 7 — Doing it in R (read-along reference)</h2>
-<p><strong>R is not installed on this machine yet, so treat this piece as read-along, not run.</strong> When you do have R, two base calls and the <strong>pwr</strong> package cover almost everything above. Here is the AAMC calc in code.</p>
+<p>Two base calls and the <strong>pwr</strong> package cover almost everything above. Here is the same calc in code.</p>
 <div class="fieldnote">
 <p># — — base R: two-proportion sample size, solve for n — — power.prop.test(p1 = 0.40, p2 = 0.50, sig.level = 0.05, power = 0.80) # → n = 387.3 (round up to 388) per group (two-sided by default)</p>
 <p># reverse direction: fix n, solve for power power.prop.test(p1 = 0.40, p2 = 0.50, n = 200) # → power ~ 0.52</p>
-<p># — — pwr package: effect-size (Cohen”s h) interface — — install.packages(“pwr”); library(pwr) h &lt;- ES.h(0.50, 0.40) # standardized effect size pwr.2p.test(h = h, sig.level = 0.05, power = 0.80)</p>
+<p># — — pwr package: effect-size (Cohen’s h) interface — — install.packages(“pwr”); library(pwr) h &lt;- ES.h(0.50, 0.40) # standardized effect size pwr.2p.test(h = h, sig.level = 0.05, power = 0.80)</p>
 <p># unequal group sizes (e.g.&nbsp;more in one invite arm) pwr.2p2n.test(h = h, n1 = 300, n2 = 500, sig.level = 0.05)</p>
 <p># — — inflate the clean n for a real field release — — n_clean &lt;- 388 deff &lt;- 1.5 ; rr &lt;- 0.62 ; elig &lt;- 0.90 release &lt;- ceiling(n_clean * deff / rr / elig) release # people to invite per arm</p>
 <p># — — when no formula fits: simulate — — sim_power &lt;- function(n, p1, p2, reps = 5000) { hit &lt;- replicate(reps, { a &lt;- rbinom(1, n, p1); b &lt;- rbinom(1, n, p2) prop.test(c(a, b), c(n, n))$p.value &lt; 0.05 }) mean(hit) } sim_power(388, 0.40, 0.50) # ~ 0.80</p>
@@ -533,7 +530,7 @@ ul.task-list li input[type="checkbox"] {
 <td>power.prop.test(p1, p2, n=)</td>
 </tr>
 <tr class="odd">
-<td>effect-size (Cohen”s h) interface</td>
+<td>effect-size (Cohen’s h) interface</td>
 <td>pwr.2p.test() / ES.h()</td>
 </tr>
 <tr class="even">
@@ -986,7 +983,7 @@ ul.task-list li input[type="checkbox"] {
       &nbsp;
     </div>   
     <div class="nav-footer-center">
-<p>Sampling Refresher · rebuilt from SURVMETH 625 &amp; 745</p>
+<p>Sampling Refresher · Applied Sampling &amp; Practical Sampling Design</p>
 </div>
     <div class="nav-footer-right">
       &nbsp;

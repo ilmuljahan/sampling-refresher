@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.18">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,13 +12,10 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
+code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: 1.5em;}
-div.column{flex: auto;}
-@media screen {
-div.columns{gap: min(4vw, 1.5em);}
-div.column{overflow-x: auto;}
-}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -42,10 +39,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-e8ed365c7b7034f9f3f4ff1c177e9bdc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-e8d91532b558204ec916bde7de9fbf8c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -225,7 +222,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#piece-3-post-stratification-matching-known-totals" id="toc-piece-3-post-stratification-matching-known-totals" class="nav-link" data-scroll-target="#piece-3-post-stratification-matching-known-totals">Piece 3 — Post-stratification (matching known totals)</a></li>
   <li><a href="#piece-4-calibration-and-raking-from-the-margins" id="toc-piece-4-calibration-and-raking-from-the-margins" class="nav-link" data-scroll-target="#piece-4-calibration-and-raking-from-the-margins">Piece 4 — Calibration and raking (from the margins)</a></li>
   <li><a href="#piece-5-why-weights-change-your-estimates" id="toc-piece-5-why-weights-change-your-estimates" class="nav-link" data-scroll-target="#piece-5-why-weights-change-your-estimates">Piece 5 — Why weights change your estimates</a></li>
-  <li><a href="#interview-angles" id="toc-interview-angles" class="nav-link" data-scroll-target="#interview-angles">Interview angles</a></li>
+  <li><a href="#how-this-comes-up-in-practice" id="toc-how-this-comes-up-in-practice" class="nav-link" data-scroll-target="#how-this-comes-up-in-practice">How this comes up in practice</a></li>
   <li><a href="#quick-check" id="toc-quick-check" class="nav-link" data-scroll-target="#quick-check">Quick check</a></li>
   <li><a href="#module-6-in-one-breath" id="toc-module-6-in-one-breath" class="nav-link" data-scroll-target="#module-6-in-one-breath">Module 6 in one breath</a></li>
   </ul>
@@ -254,7 +251,7 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Module 5 ended on a happy accident: PPS made every person share one selection chance, so a plain average worked — a <strong>self-weighting</strong> design. Most real surveys are not that tidy. People are sampled with <strong>different</strong> probabilities, some invited people <strong>never answer</strong>, and the responding sample rarely matches the population on things like age, region, or size. <strong>Weighting</strong> is how we repair all three so the sample speaks for the whole population again. It is the workhorse step between drawing a sample and analyzing it — and it is exactly what you did on the CHOP hospital survey. Five pieces.</p>
+<p>Module 5 ended on a happy accident: PPS made every person share one selection chance, so a plain average worked — a <strong>self-weighting</strong> design. Most real surveys are not that tidy. People are sampled with <strong>different</strong> probabilities, some invited people <strong>never answer</strong>, and the responding sample rarely matches the population on things like age, region, or size. <strong>Weighting</strong> is how we repair all three so the sample speaks for the whole population again. It is the workhorse step between drawing a sample and analyzing it — and it is exactly the sequence behind the stratified hospital survey used as the running example below. Five pieces.</p>
 <section id="piece-1-what-a-weight-is-the-base-weight" class="level2">
 <h2 class="anchored" data-anchor-id="piece-1-what-a-weight-is-the-base-weight">Piece 1 — What a weight is (the base weight)</h2>
 <p>A weight tells you <strong>how many population units each sampled unit stands for</strong>. The starting point is the <strong>base weight</strong> (also called the <em>design weight</em>): the inverse of the unit’s probability of selection.</p>
@@ -299,7 +296,7 @@ ul.task-list li input[type="checkbox"] {
 </tbody>
 </table>
 <div class="fieldnote">
-<p><strong>In your CHOP work.</strong> The hospital survey used a stratified design with proportionate allocation, so every hospital’s selection chance was almost identical (about 0.29) and the base (selection) weight was a nearly constant ~3.4 across all five regions. That is an <em>almost self-weighting</em> design — the same tidy situation as Module 5 — which is exactly what proportionate allocation buys you.</p>
+<p><strong>In practice — a stratified facility survey.</strong> A national survey of hospital emergency departments used a stratified design with proportionate allocation, so every hospital’s selection chance was almost identical and the base (selection) weight was nearly constant across all five strata. That is an <em>almost self-weighting</em> design — the same tidy situation as Module 5 — which is exactly what proportionate allocation buys you.</p>
 </div>
 <div class="fieldnote">
 <p><strong>Check yourself (Piece 1).</strong> A respondent was selected with probability 1/25. What is their base weight, and in one line, what does that number mean?</p>
@@ -358,7 +355,7 @@ ul.task-list li input[type="checkbox"] {
 </table>
 <p>Class B responded worse (0.50), so its responders each carry a larger boost (2.00) — they represent more of the missing.</p>
 <div class="fieldnote">
-<p><strong>In your CHOP work.</strong> You modeled response for all 977 selected hospitals with a logistic regression on pre-survey attributes known for <em>every</em> hospital (stratum, ED-volume category, total beds, ownership, psychiatric, critical-access, teaching). Each responding hospital’s nonresponse adjustment was 1 / its predicted response probability, so the hospitals least likely to respond carried the most weight. Overall response was 606 / 977 = 62%. Multiplying the two components gives the raw adjusted weight: w_raw = w_selection x w_nonresponse.</p>
+<p><strong>In practice — a stratified facility survey.</strong> Response was modeled for all 977 selected hospitals with a logistic regression on pre-survey attributes known for <em>every</em> hospital — stratum, facility size, and service-mix indicators carried on the sampling frame. Each responding hospital’s nonresponse adjustment was 1 / its predicted response probability, so the hospitals least likely to respond carried the most weight. Overall response was 606 / 977 = 62%. Multiplying the two components gives the raw adjusted weight: w_raw = w_selection x w_nonresponse.</p>
 </div>
 <div class="fieldnote">
 <p><strong>Check yourself (Piece 2).</strong> A weighting class had 50 selected and 40 responders. What is the nonresponse adjustment factor, and whom does that boost represent?</p>
@@ -417,7 +414,7 @@ ul.task-list li input[type="checkbox"] {
 </tbody>
 </table>
 <div class="fieldnote">
-<p><strong>In your CHOP work.</strong> You post-stratified (calibrated) the raw adjusted weight to control totals defined by geography, teaching vs non-teaching, and critical-access status. Because some cross-class cells had too few responding hospitals, you manually collapsed them into <strong>13 stable post-strata</strong>, then scaled each cell’s weights to its control total N_k. The final weights sum to the true population of 4,321 hospitals — the formula was w_calibrated = w_raw x N_k / (sum of w_raw in the post-stratum).</p>
+<p><strong>In practice — a stratified facility survey.</strong> The raw adjusted weight was post-stratified (calibrated) to control totals defined by geography and facility characteristics. Because some cross-class cells held too few responding hospitals, the thin cells were collapsed into a smaller set of stable post-strata, and each cell’s weights were then scaled to its control total N_k. The final weights sum to the true population of 4,321 hospitals — the formula was w_calibrated = w_raw x N_k / (sum of w_raw in the post-stratum).</p>
 </div>
 <div class="fieldnote">
 <p><strong>Check yourself (Piece 3).</strong> In a post-stratum the population total is 300 and your weights currently sum to 250. What factor do you apply, and what will the weights sum to afterward?</p>
@@ -472,7 +469,7 @@ ul.task-list li input[type="checkbox"] {
 </tbody>
 </table>
 <div class="fieldnote">
-<p><strong>In your CHOP work.</strong> CHOP actually had the <em>joint</em> control totals (the 13 collapsed cross-class cells), so you post-stratified directly rather than raked. Raking is what you reach for when only the <em>separate</em> margins are available — for example, aligning a national poll to Census age, sex, region, and education totals that you have one at a time but not jointly.</p>
+<p><strong>In practice — a stratified facility survey.</strong> That study had the <em>joint</em> control totals, so it post-stratified directly rather than raking. Raking is what you reach for when only the <em>separate</em> margins are available — for example, aligning a national poll to Census age, sex, region, and education totals that you have one at a time but not jointly.</p>
 </div>
 <div class="fieldnote">
 <p><strong>Check yourself (Piece 4).</strong> You want your weights to match the population on both sex and region, but you only have each total separately (not the sex-by-region table). Which method do you use, and what does one “pass” of it do?</p>
@@ -521,20 +518,20 @@ ul.task-list li input[type="checkbox"] {
 </tbody>
 </table>
 <div class="fieldnote">
-<p><strong>In your CHOP work.</strong> You tracked exactly this — the 1 + L statistic — before and after calibration: <strong>1.02 before, 1.05 after</strong>. So calibration added only about three points of variance inflation in exchange for its bias correction, and the final weights inflate variance by at most ~5% (deff_w about 1.05, so n_eff is about 606 / 1.05 = 577 hospitals). A very mild, well-behaved price — which is what it means when the documentation says the weights “passed all the checks.”</p>
+<p><strong>In practice — a stratified facility survey.</strong> The 1 + L statistic was tracked before and after calibration, and it barely moved. Calibration bought its bias correction for only a few points of variance inflation — a very mild, well-behaved price, and the sort of result that lets weighting documentation report that the weights passed their checks. When that statistic jumps instead, it is the signal to look at trimming.</p>
 </div>
 <div class="fieldnote">
 <p><strong>Check yourself (Piece 5).</strong> If a set of weights has deff_w = 1.25 and you have 500 respondents, what is your effective sample size, and what is trimming trying to accomplish?</p>
 </div>
 </section>
-<section id="interview-angles" class="level2">
-<h2 class="anchored" data-anchor-id="interview-angles">Interview angles</h2>
+<section id="how-this-comes-up-in-practice" class="level2">
+<h2 class="anchored" data-anchor-id="how-this-comes-up-in-practice">How this comes up in practice</h2>
 <ul>
 <li><strong>“What is a survey weight?”</strong> 1 / the probability of selection — how many population units each respondent represents — then adjusted for nonresponse and calibrated to known population totals.</li>
 <li><strong>“Base weight vs final weight?”</strong> Base = the design weight (1 / selection probability). Final = base x nonresponse adjustment x calibration / post-stratification factor.</li>
 <li><strong>“Post-stratification vs raking?”</strong> Post-stratification matches the full joint cell totals; raking matches the margins one at a time, iterating, when the joint totals are not available.</li>
 <li><strong>“Why not weight as hard as possible?”</strong> Unequal weights inflate variance (deff_w = 1 + CV^2) and shrink the effective sample size; trimming curbs extreme weights. You balance bias reduction against variance.</li>
-<li><strong>“When does weighting barely matter?”</strong> When the design is self-weighting and the weights are uncorrelated with the outcome — then weighted and unweighted estimates nearly agree (a point your own CHOP documentation makes).</li>
+<li><strong>“When does weighting barely matter?”</strong> When the design is self-weighting and the weights are uncorrelated with the outcome — then weighted and unweighted estimates nearly agree.</li>
 </ul>
 </section>
 <section id="quick-check" class="level2">
@@ -974,7 +971,7 @@ ul.task-list li input[type="checkbox"] {
       &nbsp;
     </div>   
     <div class="nav-footer-center">
-<p>Sampling Refresher · rebuilt from SURVMETH 625 &amp; 745</p>
+<p>Sampling Refresher · Applied Sampling &amp; Practical Sampling Design</p>
 </div>
     <div class="nav-footer-right">
       &nbsp;

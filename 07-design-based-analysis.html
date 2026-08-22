@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.18">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,13 +12,10 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
+code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: 1.5em;}
-div.column{flex: auto;}
-@media screen {
-div.columns{gap: min(4vw, 1.5em);}
-div.column{overflow-x: auto;}
-}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -42,10 +39,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-e8ed365c7b7034f9f3f4ff1c177e9bdc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-e8d91532b558204ec916bde7de9fbf8c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -228,8 +225,8 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#piece-6-linearization-vs.-replication-which-and-when" id="toc-piece-6-linearization-vs.-replication-which-and-when" class="nav-link" data-scroll-target="#piece-6-linearization-vs.-replication-which-and-when">Piece 6 — Linearization vs.&nbsp;replication: which, and when</a></li>
   <li><a href="#piece-7-the-four-ingredients-and-the-lonely-psu-snag" id="toc-piece-7-the-four-ingredients-and-the-lonely-psu-snag" class="nav-link" data-scroll-target="#piece-7-the-four-ingredients-and-the-lonely-psu-snag">Piece 7 — The four ingredients (and the lonely-PSU snag)</a></li>
   <li><a href="#piece-8-doing-it-in-r-the-survey-package" id="toc-piece-8-doing-it-in-r-the-survey-package" class="nav-link" data-scroll-target="#piece-8-doing-it-in-r-the-survey-package">Piece 8 — Doing it in R (the survey package)</a></li>
-  <li><a href="#coursework-anchor-625-745" id="toc-coursework-anchor-625-745" class="nav-link" data-scroll-target="#coursework-anchor-625-745">Coursework anchor (625 / 745)</a></li>
-  <li><a href="#interview-angles" id="toc-interview-angles" class="nav-link" data-scroll-target="#interview-angles">Interview angles</a></li>
+  <li><a href="#coursework-anchor" id="toc-coursework-anchor" class="nav-link" data-scroll-target="#coursework-anchor">Coursework anchor</a></li>
+  <li><a href="#how-this-comes-up-in-practice" id="toc-how-this-comes-up-in-practice" class="nav-link" data-scroll-target="#how-this-comes-up-in-practice">How this comes up in practice</a></li>
   <li><a href="#quick-check" id="toc-quick-check" class="nav-link" data-scroll-target="#quick-check">Quick check</a></li>
   <li><a href="#module-7-in-one-breath" id="toc-module-7-in-one-breath" class="nav-link" data-scroll-target="#module-7-in-one-breath">Module 7 in one breath</a></li>
   </ul>
@@ -334,7 +331,7 @@ ul.task-list li input[type="checkbox"] {
 </figure>
 </div>
 <div class="fieldnote">
-<p><strong>In your CHOP work.</strong> The hospital survey was stratified by region with a nearly constant weight (~3.4) — an almost self-weighting design, so its design effect sits just <em>below</em> 1. Handed to an ordinary statistics package as though it were an SRS, the standard errors would come out slightly <strong>too large</strong>; declared properly as a stratified design, the intervals tighten to their honest width. Ignoring the design would not have fooled you here (it errs safe), but it would have cost you real precision you had already earned through stratification.</p>
+<p><strong>In practice — a stratified facility survey.</strong> That hospital survey was stratified by region with nearly constant weights — an almost self-weighting design, so its design effect sits just <em>below</em> 1. Handed to an ordinary statistics package as though it were an SRS, the standard errors would come out slightly <strong>too large</strong>; declared properly as a stratified design, the intervals tighten to their honest width. Ignoring the design would not fool you here (it errs safe), but it would cost you real precision already earned through stratification.</p>
 </div>
 </section>
 <section id="piece-3-design-based-thinking-where-the-uncertainty-lives" class="level2">
@@ -520,12 +517,12 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>Check yourself (Piece 8).</strong> You call svydesign() but leave out weights=. Which of the four ingredients is missing — and will that spoil only your standard errors, or the point estimates too?</p>
 </div>
 </section>
-<section id="coursework-anchor-625-745" class="level2">
-<h2 class="anchored" data-anchor-id="coursework-anchor-625-745">Coursework anchor (625 / 745)</h2>
-<p>This is the leap from <strong>computing</strong> an estimate to <strong>trusting</strong> it. In the 625/745 material it is the moment you stopped writing s / sqrt(n) and started <strong>declaring the design</strong> — strata, PSUs, weights, fpc — before asking for any standard error, then reading a design effect off the output to see what the design cost you. The 745 track leans specifically on <strong>replicate weights</strong> and the design-based tools that consume them; that hands-on layer — building the design object, asking for a design-correct mean, and pulling out standard errors and confidence intervals — is the next time we open R.</p>
+<section id="coursework-anchor" class="level2">
+<h2 class="anchored" data-anchor-id="coursework-anchor">Coursework anchor</h2>
+<p>This is the leap from <strong>computing</strong> an estimate to <strong>trusting</strong> it. In the Applied Sampling and Practical Sampling Design material it is the moment you stopped writing s / sqrt(n) and started <strong>declaring the design</strong> — strata, PSUs, weights, fpc — before asking for any standard error, then reading a design effect off the output to see what the design cost you. The Practical Sampling Design track leans specifically on <strong>replicate weights</strong> and the design-based tools that consume them; that hands-on layer — building the design object, asking for a design-correct mean, and pulling out standard errors and confidence intervals — is the R section at the end of this module.</p>
 </section>
-<section id="interview-angles" class="level2">
-<h2 class="anchored" data-anchor-id="interview-angles">Interview angles</h2>
+<section id="how-this-comes-up-in-practice" class="level2">
+<h2 class="anchored" data-anchor-id="how-this-comes-up-in-practice">How this comes up in practice</h2>
 <ul>
 <li><strong>Why not just use SD over root-n on survey data?</strong> Because that formula assumes a simple random sample. Clustering and unequal weights make the true error larger, so the SRS formula leaves you _ overconfident — intervals too narrow, p-values too small.</li>
 <li><strong>What is a design effect?</strong> The ratio of your design’s variance to an SRS of the same size. deff &gt; 1 means lost precision (clustering, unequal weights); deff &lt; 1 means gained (stratification). Honest error = SRS error x sqrt(deff), and n_eff = n / deff.</li>
@@ -972,7 +969,7 @@ ul.task-list li input[type="checkbox"] {
       &nbsp;
     </div>   
     <div class="nav-footer-center">
-<p>Sampling Refresher · rebuilt from SURVMETH 625 &amp; 745</p>
+<p>Sampling Refresher · Applied Sampling &amp; Practical Sampling Design</p>
 </div>
     <div class="nav-footer-right">
       &nbsp;

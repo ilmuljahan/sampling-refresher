@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.18">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,13 +12,10 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
+code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: 1.5em;}
-div.column{flex: auto;}
-@media screen {
-div.columns{gap: min(4vw, 1.5em);}
-div.column{overflow-x: auto;}
-}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -42,10 +39,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-e8ed365c7b7034f9f3f4ff1c177e9bdc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-e8d91532b558204ec916bde7de9fbf8c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -226,7 +223,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#piece-4-how-good-is-the-estimate-standard-error-and-fpc" id="toc-piece-4-how-good-is-the-estimate-standard-error-and-fpc" class="nav-link" data-scroll-target="#piece-4-how-good-is-the-estimate-standard-error-and-fpc">Piece 4 — How good is the estimate? (standard error and FPC)</a></li>
   <li><a href="#piece-5-the-give-or-take-confidence-intervals" id="toc-piece-5-the-give-or-take-confidence-intervals" class="nav-link" data-scroll-target="#piece-5-the-give-or-take-confidence-intervals">Piece 5 — The give-or-take (confidence intervals)</a></li>
   <li><a href="#piece-6-how-big-should-the-sample-be" id="toc-piece-6-how-big-should-the-sample-be" class="nav-link" data-scroll-target="#piece-6-how-big-should-the-sample-be">Piece 6 — How big should the sample be?</a></li>
-  <li><a href="#interview-angles" id="toc-interview-angles" class="nav-link" data-scroll-target="#interview-angles">Interview angles</a></li>
+  <li><a href="#how-this-comes-up-in-practice" id="toc-how-this-comes-up-in-practice" class="nav-link" data-scroll-target="#how-this-comes-up-in-practice">How this comes up in practice</a></li>
   <li><a href="#quick-check" id="toc-quick-check" class="nav-link" data-scroll-target="#quick-check">Quick check</a></li>
   </ul>
 </nav>
@@ -378,8 +375,8 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <p><strong>Tiny example.</strong> Want a margin of e = 0.03 (3 points). n0 = 3.8416 * 0.25 / 0.0009 = about 1,067. If the population is N = 1,000, adjust: n = 1,067 / (1 + 1,067/1,000) = about 516. The FPC roughly halves the requirement here because we are sampling a big slice.</p>
 </section>
-<section id="interview-angles" class="level2">
-<h2 class="anchored" data-anchor-id="interview-angles">Interview angles</h2>
+<section id="how-this-comes-up-in-practice" class="level2">
+<h2 class="anchored" data-anchor-id="how-this-comes-up-in-practice">How this comes up in practice</h2>
 <ul>
 <li><em>“What is a simple random sample?”</em> A design where every unit — and every possible sample of size n — has an equal chance of selection, giving unbiased estimates and a clean basis for standard errors.</li>
 <li><em>“What is the finite population correction and when does it matter?”</em> The factor (1 - f) that reduces variance when you sample a large fraction; negligible when n is small relative to N (f &lt; 0.05).</li>
@@ -811,7 +808,7 @@ ul.task-list li input[type="checkbox"] {
       &nbsp;
     </div>   
     <div class="nav-footer-center">
-<p>Sampling Refresher · rebuilt from SURVMETH 625 &amp; 745</p>
+<p>Sampling Refresher · Applied Sampling &amp; Practical Sampling Design</p>
 </div>
     <div class="nav-footer-right">
       &nbsp;

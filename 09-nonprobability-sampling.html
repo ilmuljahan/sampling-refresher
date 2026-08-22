@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.18">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,13 +12,10 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
+code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: 1.5em;}
-div.column{flex: auto;}
-@media screen {
-div.columns{gap: min(4vw, 1.5em);}
-div.column{overflow-x: auto;}
-}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -42,10 +39,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-e8ed365c7b7034f9f3f4ff1c177e9bdc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-e8d91532b558204ec916bde7de9fbf8c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -227,8 +224,8 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#piece-5-assessing-the-bias-how-do-you-know-it-worked" id="toc-piece-5-assessing-the-bias-how-do-you-know-it-worked" class="nav-link" data-scroll-target="#piece-5-assessing-the-bias-how-do-you-know-it-worked">Piece 5 — Assessing the bias (how do you know it worked?)</a></li>
   <li><a href="#piece-6-choosing-an-approach" id="toc-piece-6-choosing-an-approach" class="nav-link" data-scroll-target="#piece-6-choosing-an-approach">Piece 6 — Choosing an approach</a></li>
   <li><a href="#piece-7-doing-it-in-r" id="toc-piece-7-doing-it-in-r" class="nav-link" data-scroll-target="#piece-7-doing-it-in-r">Piece 7 — Doing it in R</a></li>
-  <li><a href="#coursework-anchor-625-745" id="toc-coursework-anchor-625-745" class="nav-link" data-scroll-target="#coursework-anchor-625-745">Coursework anchor (625 / 745)</a></li>
-  <li><a href="#interview-angles" id="toc-interview-angles" class="nav-link" data-scroll-target="#interview-angles">Interview angles</a></li>
+  <li><a href="#coursework-anchor" id="toc-coursework-anchor" class="nav-link" data-scroll-target="#coursework-anchor">Coursework anchor</a></li>
+  <li><a href="#how-this-comes-up-in-practice" id="toc-how-this-comes-up-in-practice" class="nav-link" data-scroll-target="#how-this-comes-up-in-practice">How this comes up in practice</a></li>
   <li><a href="#quick-check" id="toc-quick-check" class="nav-link" data-scroll-target="#quick-check">Quick check</a></li>
   <li><a href="#module-9-in-one-breath" id="toc-module-9-in-one-breath" class="nav-link" data-scroll-target="#module-9-in-one-breath">Module 9 in one breath</a></li>
   </ul>
@@ -354,7 +351,7 @@ ul.task-list li input[type="checkbox"] {
 </figure>
 </div>
 <div class="fieldnote">
-<p><strong>Interview anchor (Pew).</strong> This is home turf for the roles you are targeting. Pew Research Center runs its <strong>American Trends Panel</strong> as a <strong>probability-based</strong> online panel — recruited by national random sampling of addresses — precisely to sidestep the self-selection problem in this module. And Pew’s own published evaluations of <strong>online opt-in</strong> samples found that weighting <em>narrowed</em> the gap to known benchmarks but did <strong>not</strong> close it, with residual bias uneven across subgroups — a real-world version of this piece. Expect to be asked how you would judge whether an opt-in sample is fit for purpose.</p>
+<p><strong>In practice — a probability panel.</strong> Pew Research Center runs its <strong>American Trends Panel</strong> as a <strong>probability-based</strong> online panel — recruited by national random sampling of addresses — precisely to sidestep the self-selection problem in this module. And Pew’s own published evaluations of <strong>online opt-in</strong> samples found that weighting <em>narrowed</em> the gap to known benchmarks but did <strong>not</strong> close it, with residual bias uneven across subgroups — a real-world version of this piece. The practical question this leaves is how to judge whether a given opt-in sample is fit for purpose.</p>
 </div>
 <div class="fieldnote">
 <p><strong>Check yourself (Piece 5).</strong> Your adjusted opt-in estimate matches the census on age, sex, and education, but you never measured political interest. What can benchmarking tell you here, and what can it never tell you?</p>
@@ -472,12 +469,12 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>Check yourself (Piece 7).</strong> In the MRP code, what does allow.new.levels = TRUE let the model do, and why is that the whole point of the multilevel step?</p>
 </div>
 </section>
-<section id="coursework-anchor-625-745" class="level2">
-<h2 class="anchored" data-anchor-id="coursework-anchor-625-745">Coursework anchor (625 / 745)</h2>
-<p>Nonprobability inference is the frontier of the Survey &amp; Data Science world — the material that appears the moment a client cannot afford a full probability sample but still wants a population number. It leans on every earlier module at once: weighting (6), design-based variance (7), and the honest accounting of bias versus variance (0). It is also the methodological heart of the applied roles you are targeting, where opt-in panels, voter files, and modeled audiences are everyday inputs. The hands-on layer — fitting the propensity and multilevel models in R — is the next time we open it.</p>
+<section id="coursework-anchor" class="level2">
+<h2 class="anchored" data-anchor-id="coursework-anchor">Coursework anchor</h2>
+<p>Nonprobability inference is the frontier of the Survey &amp; Data Science world — the material that appears the moment a client cannot afford a full probability sample but still wants a population number. It leans on every earlier module at once: weighting (6), design-based variance (7), and the honest accounting of bias versus variance (0). It is also the methodological heart of applied survey practice, where opt-in panels, voter files, and modeled audiences are everyday inputs. The hands-on layer — fitting the propensity and multilevel models in R — is the R section at the end of this module.</p>
 </section>
-<section id="interview-angles" class="level2">
-<h2 class="anchored" data-anchor-id="interview-angles">Interview angles</h2>
+<section id="how-this-comes-up-in-practice" class="level2">
+<h2 class="anchored" data-anchor-id="how-this-comes-up-in-practice">How this comes up in practice</h2>
 <ul>
 <li><strong>Can you trust an opt-in online poll?</strong> Only under an ignorability assumption — selection unrelated to the outcome given measured covariates — plus good covariates and a benchmark. Big n doesn’t help; it just makes the bias precise (the big-data paradox).</li>
 <li><strong>Pseudo-weights vs.&nbsp;MRP?</strong> Pseudo-weights model selection (propensity of being in the sample, via a reference probability sample); MRP models the outcome and poststratifies to census cells. Complementary — combine for double robustness.</li>
@@ -923,7 +920,7 @@ ul.task-list li input[type="checkbox"] {
       &nbsp;
     </div>   
     <div class="nav-footer-center">
-<p>Sampling Refresher · rebuilt from SURVMETH 625 &amp; 745</p>
+<p>Sampling Refresher · Applied Sampling &amp; Practical Sampling Design</p>
 </div>
     <div class="nav-footer-right">
       &nbsp;

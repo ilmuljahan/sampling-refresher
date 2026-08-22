@@ -47,7 +47,7 @@ Read it as a chain: **target → n\_SRS → x deff → / response rate → / eli
 ![*The design inflates the sample (deff), then response and eligibility inflate it again: the release count is several times the tidy SRS number.*](figures/08-sample-size-allocation-fig2.png){fig-align="center"}
 
 ::: {.fieldnote}
-**In your CHOP work.** This is exactly the arithmetic behind the hospital survey's field counts: **977 records released, 606 responding — a 62% response rate.** Designing the study meant choosing that 977 *before* anyone answered, working from a completes target and an assumed response rate. Run the chain forward and those 606 completes, divided by any design effect above 1, are the effective sample your standard errors actually reflect.
+**In practice — a stratified facility survey.** This is exactly the arithmetic behind that hospital survey's field counts: **977 records released, 606 responding — a 62% response rate.** Designing the study meant choosing that 977 *before* anyone answered, working from a completes target and an assumed response rate. Run the chain forward and those 606 completes, divided by any design effect above 1, are the effective sample the standard errors actually reflect.
 :::
 
 ::: {.fieldnote}
@@ -147,7 +147,7 @@ In practice you rarely hit precision and budget exactly. You relax one — widen
 
 ## Piece 7 — Doing it in R (PracTools)
 
-Every calculation in this module lives in one R package: **PracTools**, the companion to your 745 text (Valliant, Dever & Kreuter). It sizes samples, allocates them across strata, and solves for the optimal cluster split — the whole workflow of Piece 6.
+Every calculation in this module lives in one R package: **PracTools**, the companion to Valliant, Dever & Kreuter's *Practical Tools for Designing and Weighting Survey Samples*. It sizes samples, allocates them across strata, and solves for the optimal cluster split — the whole workflow of Piece 6.
 
 ::: {.fieldnote}
 **Read-along, not run.** R is not yet installed on your machine, so treat this piece as a reference — every line is ready to run the moment we set R up.
@@ -210,18 +210,18 @@ BW2stageSRS(y, ...) \# between/within variance → delta (roh)
 **Check yourself (Piece 7).** You call strAlloc() with Nh and Sh but no ch. Which allocation are you asking for, and what would adding ch change?
 :::
 
-## Coursework anchor (625 / 745)
+## Coursework anchor
 
-This module **is** the design half of SURVMETH 745. The 745 text — Valliant, Dever & Kreuter, *Practical Tools for Designing and Weighting Survey Samples* — is exactly this material, and **PracTools** is its companion package. The homework where you set a precision target, inflated it into a release count, allocated across strata, and solved for the optimal cluster size is the whole of Pieces 1 through 5. The hands-on layer — running nCont, strAlloc, and clusOpt2 on a live budget — is the next time we open R.
+This module **is** the design half of Practical Sampling Design. Its text — Valliant, Dever & Kreuter, *Practical Tools for Designing and Weighting Survey Samples* — is exactly this material, and **PracTools** is its companion package. The homework where you set a precision target, inflated it into a release count, allocated across strata, and solved for the optimal cluster size is the whole of Pieces 1 through 5. The hands-on layer — running nCont, strAlloc, and clusOpt2 on a live budget — is the R section at the end of this module.
 
-## Interview angles
+## How this comes up in practice
 
 - **How do you determine a sample size?** Start from a precision target (a margin or CV at a confidence level), invert the SE formula for n under SRS, then inflate by the design effect and divide by the response and eligibility rates to get the release count.
 - **Why does tighter precision cost so much?** Because n grows as 1/e^2 — halving the margin of error quadruples the sample. Sharp diminishing returns.
 - **Proportional vs. Neyman vs. optimal allocation?** Proportional splits by size (self-weighting); Neyman adds a variability weight (N\_h S\_h); cost-optimal divides by sqrt(cost), so cheap, variable strata get the most sample.
 - **What is the optimal cluster size?** b\_opt = sqrt((c1/c2) x ((1-roh)/roh)) — it balances travel cost against within-cluster redundancy. High roh → smaller clusters; expensive PSUs → larger clusters.
 - **Walk me through designing a clustered survey on a budget.** The workflow: target → SRS n → inflate for deff, response, eligibility → allocate → write the cost model → optimize b and a within budget → check the achieved precision → iterate.
-- **What is PracTools?** The R package (companion to the 745 text) for sample-size, allocation, and optimal cluster-size calculations.
+- **What is PracTools?** The R package (companion to Valliant, Dever & Kreuter) for sample-size, allocation, and optimal cluster-size calculations.
 
 ## Quick check
 

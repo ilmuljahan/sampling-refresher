@@ -4,7 +4,7 @@ project:
 
 website:
   title: "Sampling Refresher"
-  description: "A ground-up refresher in survey sampling, rebuilt from SURVMETH 625 & 745."
+  description: "A ground-up refresher in survey sampling, rebuilt from graduate coursework in Applied Sampling and Practical Sampling Design."
   search:
     location: sidebar
     type: textbox
@@ -44,7 +44,7 @@ website:
           - href: 10-power-sample-size.qmd
             text: "10 · Power & Sample Size"
   page-footer:
-    center: "Sampling Refresher · rebuilt from SURVMETH 625 & 745"
+    center: "Sampling Refresher · Applied Sampling & Practical Sampling Design"
 
 format:
   html:

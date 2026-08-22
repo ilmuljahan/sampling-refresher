@@ -88,7 +88,7 @@ Here is the humbling part. A probability sample certifies its own precision from
 ![*You can benchmark only what you know: adjustment moves the estimate toward the truth on measured variables, but says nothing certain about the unmeasured ones.*](figures/09-nonprobability-sampling-fig5.png){fig-align="center"}
 
 ::: {.fieldnote}
-**Interview anchor (Pew).** This is home turf for the roles you are targeting. Pew Research Center runs its **American Trends Panel** as a **probability-based** online panel — recruited by national random sampling of addresses — precisely to sidestep the self-selection problem in this module. And Pew's own published evaluations of **online opt-in** samples found that weighting *narrowed* the gap to known benchmarks but did **not** close it, with residual bias uneven across subgroups — a real-world version of this piece. Expect to be asked how you would judge whether an opt-in sample is fit for purpose.
+**In practice — a probability panel.** Pew Research Center runs its **American Trends Panel** as a **probability-based** online panel — recruited by national random sampling of addresses — precisely to sidestep the self-selection problem in this module. And Pew's own published evaluations of **online opt-in** samples found that weighting *narrowed* the gap to known benchmarks but did **not** close it, with residual bias uneven across subgroups — a real-world version of this piece. The practical question this leaves is how to judge whether a given opt-in sample is fit for purpose.
 :::
 
 ::: {.fieldnote}
@@ -174,11 +174,11 @@ bal.tab(inNP ~ age + educ + region, data = pooled, weights = "psw")
 **Check yourself (Piece 7).** In the MRP code, what does allow.new.levels = TRUE let the model do, and why is that the whole point of the multilevel step?
 :::
 
-## Coursework anchor (625 / 745)
+## Coursework anchor
 
-Nonprobability inference is the frontier of the Survey & Data Science world — the material that appears the moment a client cannot afford a full probability sample but still wants a population number. It leans on every earlier module at once: weighting (6), design-based variance (7), and the honest accounting of bias versus variance (0). It is also the methodological heart of the applied roles you are targeting, where opt-in panels, voter files, and modeled audiences are everyday inputs. The hands-on layer — fitting the propensity and multilevel models in R — is the next time we open it.
+Nonprobability inference is the frontier of the Survey & Data Science world — the material that appears the moment a client cannot afford a full probability sample but still wants a population number. It leans on every earlier module at once: weighting (6), design-based variance (7), and the honest accounting of bias versus variance (0). It is also the methodological heart of applied survey practice, where opt-in panels, voter files, and modeled audiences are everyday inputs. The hands-on layer — fitting the propensity and multilevel models in R — is the R section at the end of this module.
 
-## Interview angles
+## How this comes up in practice
 
 - **Can you trust an opt-in online poll?** Only under an ignorability assumption — selection unrelated to the outcome given measured covariates — plus good covariates and a benchmark. Big n doesn't help; it just makes the bias precise (the big-data paradox).
 - **Pseudo-weights vs. MRP?** Pseudo-weights model selection (propensity of being in the sample, via a reference probability sample); MRP models the outcome and poststratifies to census cells. Complementary — combine for double robustness.

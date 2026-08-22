@@ -4,25 +4,25 @@ subtitle: "A ground-up course in survey sampling · Course Syllabus"
 order: 0
 ---
 
-A private, self-paced course to rebuild survey sampling from the very beginning, mapped onto the curriculum of **SURVMETH 625 (Applied Sampling)** and **SURVMETH 745 (Practical Sampling Design)**. The goal: turn a shaky, anxious relationship with sampling into a confident, interview-ready command of it, one small step at a time.
+A self-paced rebuild of survey sampling from the ground up, mapped onto the curriculum of **Applied Sampling** and **Practical Sampling Design**. One module per topic: intuition first, then the math on small numbers, then the R.
 
 ## How this course works
 
-- **Go slow.** One small piece per exchange. We never move on until the current idea feels comfortable.
+- **One topic at a time.** Each module isolates a single idea and stays with it until it is solid.
 - **Plain language first.** Every idea starts as an everyday story (rice pots, blood tests, lotteries) before any symbol appears.
 - **Examples and visuals.** Diagrams and worked mini-examples wherever they help the idea land.
-- **Interactive.** A conversation, not a lecture. You answer little checks; I give warm, specific feedback.
-- **Layered depth.** Intuition first, then the math on tiny numbers, and later hands-on in R. Concept-first for now; code is deferred until you ask.
-- **Kept in writing.** Every module becomes a formatted, illustrated Word-ready note in this folder.
+- **Layered depth.** Intuition first, then the math on tiny numbers, then hands-on in R.
+- **Checks along the way.** Short questions at the end of each piece, so you can test the idea rather than just read it.
+- **Written to last.** Every module is a formatted, illustrated reference you can come back to.
 
 ## The rhythm of each module
 
 - **1.** **Intuition + a visual** - see the idea before any math.
 - **2.** **The math on tiny numbers** - one traceable example.
 - **3.** **Hands-on in R** - deferred until you are ready.
-- **4.** **Coursework anchor** - revisit the matching 625/745 homework.
-- **5.** **Interview angle** - questions a hiring manager might ask.
-- **6.** **Quick check** - a couple of practice problems; you try, I give feedback.
+- **4.** **Coursework anchor** - where the topic sits in the graduate curriculum.
+- **5.** **How this comes up in practice** - the questions this material has to answer.
+- **6.** **Quick check** - a couple of practice problems to work through.
 
 ## The modules
 
@@ -66,9 +66,9 @@ Turning precision and budget targets into a design with PracTools; cost models; 
 
 When probability sampling is not feasible; quasi-randomization and pseudo-weights; MRP; assessing bias.
 
-**Capstone — The 745 Final Exam**
+**Capstone — A Full Design Problem**
 
-Work through the real 745 final exam as a full design problem, tying everything together.
+Work through an end-to-end design problem, tying everything together.
 
 **[Module 10 (Bonus) — Power and Sample Size](10-power-sample-size.qmd)**
 

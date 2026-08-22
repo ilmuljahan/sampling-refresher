@@ -47,7 +47,7 @@ The overall estimate is a **weighted average** of the stratum means, with weight
 
 So the more your strata **differ** from each other (and the more homogeneous each is inside), the bigger the gain. The size of that gain is captured by the **design effect** (Module 4): a value below 1 means "better than SRS." With proportional allocation, stratified sampling is essentially **never worse** than SRS — a rare free lunch, as long as you have a good stratifying variable known for the whole frame.
 
-## Interview angles
+## How this comes up in practice
 
 - *"Why stratify?"* Guaranteed representation of every group (and subgroup estimates), plus better precision when strata differ.
 - *"Proportional vs. Neyman allocation?"* Proportional splits n by stratum size; Neyman also weights by variability, putting more sample where a stratum is both big and variable.

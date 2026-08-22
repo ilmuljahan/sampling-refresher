@@ -4,7 +4,7 @@ subtitle: "Sampling Refresher · making the sample speak for the whole populatio
 order: 7
 ---
 
-Module 5 ended on a happy accident: PPS made every person share one selection chance, so a plain average worked — a **self-weighting** design. Most real surveys are not that tidy. People are sampled with **different** probabilities, some invited people **never answer**, and the responding sample rarely matches the population on things like age, region, or size. **Weighting** is how we repair all three so the sample speaks for the whole population again. It is the workhorse step between drawing a sample and analyzing it — and it is exactly what you did on the CHOP hospital survey. Five pieces.
+Module 5 ended on a happy accident: PPS made every person share one selection chance, so a plain average worked — a **self-weighting** design. Most real surveys are not that tidy. People are sampled with **different** probabilities, some invited people **never answer**, and the responding sample rarely matches the population on things like age, region, or size. **Weighting** is how we repair all three so the sample speaks for the whole population again. It is the workhorse step between drawing a sample and analyzing it — and it is exactly the sequence behind the stratified hospital survey used as the running example below. Five pieces.
 
 ## Piece 1 — What a weight is (the base weight)
 
@@ -29,7 +29,7 @@ This is the same idea that made Module 5's self-weighting design so clean. There
 | 1 / 16 (urban) | 16 | stands for 16 people |
 
 ::: {.fieldnote}
-**In your CHOP work.** The hospital survey used a stratified design with proportionate allocation, so every hospital's selection chance was almost identical (about 0.29) and the base (selection) weight was a nearly constant ~3.4 across all five regions. That is an *almost self-weighting* design — the same tidy situation as Module 5 — which is exactly what proportionate allocation buys you.
+**In practice — a stratified facility survey.** A national survey of hospital emergency departments used a stratified design with proportionate allocation, so every hospital's selection chance was almost identical and the base (selection) weight was nearly constant across all five strata. That is an *almost self-weighting* design — the same tidy situation as Module 5 — which is exactly what proportionate allocation buys you.
 :::
 
 ::: {.fieldnote}
@@ -60,7 +60,7 @@ Even a perfectly drawn sample loses people: some selected units never respond. I
 Class B responded worse (0.50), so its responders each carry a larger boost (2.00) — they represent more of the missing.
 
 ::: {.fieldnote}
-**In your CHOP work.** You modeled response for all 977 selected hospitals with a logistic regression on pre-survey attributes known for *every* hospital (stratum, ED-volume category, total beds, ownership, psychiatric, critical-access, teaching). Each responding hospital's nonresponse adjustment was 1 / its predicted response probability, so the hospitals least likely to respond carried the most weight. Overall response was 606 / 977 = 62%. Multiplying the two components gives the raw adjusted weight: w\_raw = w\_selection x w\_nonresponse.
+**In practice — a stratified facility survey.** Response was modeled for all 977 selected hospitals with a logistic regression on pre-survey attributes known for *every* hospital — stratum, facility size, and service-mix indicators carried on the sampling frame. Each responding hospital's nonresponse adjustment was 1 / its predicted response probability, so the hospitals least likely to respond carried the most weight. Overall response was 606 / 977 = 62%. Multiplying the two components gives the raw adjusted weight: w\_raw = w\_selection x w\_nonresponse.
 :::
 
 ::: {.fieldnote}
@@ -91,7 +91,7 @@ After base weights and the nonresponse boost, your weighted sample can still be 
 | urban | 400 | 500 | 0.80 | 400 |
 
 ::: {.fieldnote}
-**In your CHOP work.** You post-stratified (calibrated) the raw adjusted weight to control totals defined by geography, teaching vs non-teaching, and critical-access status. Because some cross-class cells had too few responding hospitals, you manually collapsed them into **13 stable post-strata**, then scaled each cell's weights to its control total N\_k. The final weights sum to the true population of 4,321 hospitals — the formula was w\_calibrated = w\_raw x N\_k / (sum of w\_raw in the post-stratum).
+**In practice — a stratified facility survey.** The raw adjusted weight was post-stratified (calibrated) to control totals defined by geography and facility characteristics. Because some cross-class cells held too few responding hospitals, the thin cells were collapsed into a smaller set of stable post-strata, and each cell's weights were then scaled to its control total N\_k. The final weights sum to the true population of 4,321 hospitals — the formula was w\_calibrated = w\_raw x N\_k / (sum of w\_raw in the post-stratum).
 :::
 
 ::: {.fieldnote}
@@ -121,7 +121,7 @@ Post-stratification needs the **full joint** population counts — the age-by-re
 | **One pass** | scale each cell to N\_k once | scale one margin, then the next, repeat |
 
 ::: {.fieldnote}
-**In your CHOP work.** CHOP actually had the *joint* control totals (the 13 collapsed cross-class cells), so you post-stratified directly rather than raked. Raking is what you reach for when only the *separate* margins are available — for example, aligning a national poll to Census age, sex, region, and education totals that you have one at a time but not jointly.
+**In practice — a stratified facility survey.** That study had the *joint* control totals, so it post-stratified directly rather than raking. Raking is what you reach for when only the *separate* margins are available — for example, aligning a national poll to Census age, sex, region, and education totals that you have one at a time but not jointly.
 :::
 
 ::: {.fieldnote}
@@ -151,20 +151,20 @@ The underlying tension: **every adjustment** — nonresponse, post-stratificatio
 | 4, 4, 4, 28 | 1.08 | 2.08 | 1.9 |
 
 ::: {.fieldnote}
-**In your CHOP work.** You tracked exactly this — the 1 + L statistic — before and after calibration: **1.02 before, 1.05 after**. So calibration added only about three points of variance inflation in exchange for its bias correction, and the final weights inflate variance by at most ~5% (deff\_w about 1.05, so n\_eff is about 606 / 1.05 = 577 hospitals). A very mild, well-behaved price — which is what it means when the documentation says the weights "passed all the checks."
+**In practice — a stratified facility survey.** The 1 + L statistic was tracked before and after calibration, and it barely moved. Calibration bought its bias correction for only a few points of variance inflation — a very mild, well-behaved price, and the sort of result that lets weighting documentation report that the weights passed their checks. When that statistic jumps instead, it is the signal to look at trimming.
 :::
 
 ::: {.fieldnote}
 **Check yourself (Piece 5).** If a set of weights has deff\_w = 1.25 and you have 500 respondents, what is your effective sample size, and what is trimming trying to accomplish?
 :::
 
-## Interview angles
+## How this comes up in practice
 
 - **"What is a survey weight?"** 1 / the probability of selection — how many population units each respondent represents — then adjusted for nonresponse and calibrated to known population totals.
 - **"Base weight vs final weight?"** Base = the design weight (1 / selection probability). Final = base x nonresponse adjustment x calibration / post-stratification factor.
 - **"Post-stratification vs raking?"** Post-stratification matches the full joint cell totals; raking matches the margins one at a time, iterating, when the joint totals are not available.
 - **"Why not weight as hard as possible?"** Unequal weights inflate variance (deff\_w = 1 + CV^2) and shrink the effective sample size; trimming curbs extreme weights. You balance bias reduction against variance.
-- **"When does weighting barely matter?"** When the design is self-weighting and the weights are uncorrelated with the outcome — then weighted and unweighted estimates nearly agree (a point your own CHOP documentation makes).
+- **"When does weighting barely matter?"** When the design is self-weighting and the weights are uncorrelated with the outcome — then weighted and unweighted estimates nearly agree.
 
 ## Quick check
 

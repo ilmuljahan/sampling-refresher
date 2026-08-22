@@ -1,6 +1,6 @@
 ---
 title: "Module 5 — Multistage & PPS/PPeS"
-subtitle: "Sampling Refresher · SURVMETH 625 / 745 · Probability proportional to size • self-weighting designs • PSUs and SSUs"
+subtitle: "Sampling Refresher · Probability proportional to size • self-weighting designs • PSUs and SSUs"
 order: 6
 ---
 

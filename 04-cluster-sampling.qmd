@@ -68,7 +68,7 @@ Stratified and cluster sit on **opposite sides of 1** — say that in an intervi
 
 **The tradeoff.** Each interview is cheaper under clustering, but each is "worth less." The design lever is cluster size: **fewer, bigger clusters** are cheap but have high deff (lots of redundancy); **more, smaller clusters** cost more travel but give lower deff (better precision). Good cluster design balances cost against the design effect.
 
-## Interview angles
+## How this comes up in practice
 
 - *"Why use cluster sampling?"* Cost and frame practicality — you may only have a list of clusters, and concentrating fieldwork is cheap.
 - *"What is the design effect?"* The ratio of your design's variance to an SRS of the same size; deff \> 1 means you need a larger sample to match SRS precision.

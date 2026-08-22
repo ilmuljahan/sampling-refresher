@@ -112,7 +112,7 @@ For a proportion with target margin e (worst case p = 0.5):
 
 **Tiny example.** Want a margin of e = 0.03 (3 points). n0 = 3.8416 \* 0.25 / 0.0009 = about 1,067. If the population is N = 1,000, adjust: n = 1,067 / (1 + 1,067/1,000) = about 516. The FPC roughly halves the requirement here because we are sampling a big slice.
 
-## Interview angles
+## How this comes up in practice
 
 - *"What is a simple random sample?"* A design where every unit — and every possible sample of size n — has an equal chance of selection, giving unbiased estimates and a clean basis for standard errors.
 - *"What is the finite population correction and when does it matter?"* The factor (1 - f) that reduces variance when you sample a large fraction; negligible when n is small relative to N (f \< 0.05).

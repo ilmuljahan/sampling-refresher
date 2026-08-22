@@ -56,7 +56,7 @@ Whether systematic sampling beats, matches, or loses to SRS depends entirely on 
 
 **One technical catch:** with a single systematic sample you cannot cleanly estimate the variance (you only made one random choice — the start). In practice analysts treat it like an SRS for variance, which is a reasonable approximation when there is no periodicity. Bottom line: systematic sampling is excellent and widely used — just check the ordering first.
 
-## Interview angles
+## How this comes up in practice
 
 - *"When is systematic sampling better than SRS?"* When the list is ordered by a variable related to the outcome — the even coverage acts like implicit stratification.
 - *"What is the main risk?"* Periodicity — a repeating cycle in the list matching k, which biases the sample.

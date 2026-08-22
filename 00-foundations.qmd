@@ -1,6 +1,6 @@
 ---
 title: "Module 0: Foundations and Vocabulary"
-subtitle: "Sampling Refresher · rebuilt from SURVMETH 625 and 745"
+subtitle: "Sampling Refresher · rebuilt from graduate coursework in Applied Sampling and Practical Sampling Design"
 order: 1
 ---
 
@@ -99,7 +99,7 @@ The trick is the pattern you already found: **population = parameter** (Greek, f
 - **mu** (or Y-bar) = population mean (parameter); **x-bar** = sample estimate of the mean.
 - **pi-sub-i** = inclusion probability of element i; **w-sub-i = 1 / (pi-sub-i)** = its weight.
 
-## Interview angles
+## How this comes up in practice
 
 - *"Sampling vs. non-sampling error?"* Sampling error is random draw-to-draw variation; it shrinks with n and is quantifiable. Non-sampling error (coverage, nonresponse, measurement) does not shrink with n and often matters more.
 - *"Why probability sampling?"* Known non-zero inclusion probabilities give unbiased estimates, valid standard errors, and weights — so you can defensibly generalize.

@@ -50,7 +50,7 @@ And the design effect converts straight into an **effective sample size**: n\_ef
 ![*The design effect turns nominal sample size into effective sample size: n\_eff = n / deff. Clustering costs you people; good stratification gives them back.*](figures/07-design-based-analysis-fig2.png){fig-align="center"}
 
 ::: {.fieldnote}
-**In your CHOP work.** The hospital survey was stratified by region with a nearly constant weight (~3.4) — an almost self-weighting design, so its design effect sits just *below* 1. Handed to an ordinary statistics package as though it were an SRS, the standard errors would come out slightly **too large**; declared properly as a stratified design, the intervals tighten to their honest width. Ignoring the design would not have fooled you here (it errs safe), but it would have cost you real precision you had already earned through stratification.
+**In practice — a stratified facility survey.** That hospital survey was stratified by region with nearly constant weights — an almost self-weighting design, so its design effect sits just *below* 1. Handed to an ordinary statistics package as though it were an SRS, the standard errors would come out slightly **too large**; declared properly as a stratified design, the intervals tighten to their honest width. Ignoring the design would not fool you here (it errs safe), but it would cost you real precision already earned through stratification.
 :::
 
 ## Piece 3 — Design-based thinking (where the uncertainty lives)
@@ -191,11 +191,11 @@ options(survey.lonely.psu = "adjust") \# or "average"
 **Check yourself (Piece 8).** You call svydesign() but leave out weights=. Which of the four ingredients is missing — and will that spoil only your standard errors, or the point estimates too?
 :::
 
-## Coursework anchor (625 / 745)
+## Coursework anchor
 
-This is the leap from **computing** an estimate to **trusting** it. In the 625/745 material it is the moment you stopped writing s / sqrt(n) and started **declaring the design** — strata, PSUs, weights, fpc — before asking for any standard error, then reading a design effect off the output to see what the design cost you. The 745 track leans specifically on **replicate weights** and the design-based tools that consume them; that hands-on layer — building the design object, asking for a design-correct mean, and pulling out standard errors and confidence intervals — is the next time we open R.
+This is the leap from **computing** an estimate to **trusting** it. In the Applied Sampling and Practical Sampling Design material it is the moment you stopped writing s / sqrt(n) and started **declaring the design** — strata, PSUs, weights, fpc — before asking for any standard error, then reading a design effect off the output to see what the design cost you. The Practical Sampling Design track leans specifically on **replicate weights** and the design-based tools that consume them; that hands-on layer — building the design object, asking for a design-correct mean, and pulling out standard errors and confidence intervals — is the R section at the end of this module.
 
-## Interview angles
+## How this comes up in practice
 
 - **Why not just use SD over root-n on survey data?** Because that formula assumes a simple random sample. Clustering and unequal weights make the true error larger, so the SRS formula leaves you \_ overconfident — intervals too narrow, p-values too small.
 - **What is a design effect?** The ratio of your design's variance to an SRS of the same size. deff \> 1 means lost precision (clustering, unequal weights); deff \< 1 means gained (stratification). Honest error = SRS error x sqrt(deff), and n\_eff = n / deff.

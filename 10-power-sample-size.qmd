@@ -4,7 +4,7 @@ subtitle: "Bonus module · the calculation that answers 'how many people do we n
 order: 11
 ---
 
-Modules 0 through 9 taught you to **draw** a sample and **analyze** it honestly. This bonus module answers the question a study team asks **before** any of that: **how many people do we actually need?** That is a **power calculation**, and running it to get n is exactly what **determining a sample size** means. We anchor it to your **AAMC internship** task - comparing **two response rates** across invitation conditions - the calc you were handed but never got to fully learn. It is a cousin of Module 1"s "sample size for a target precision," but here the target is a **difference to detect**, not a margin of error. 6 pieces of concept, then a hands-on seventh in R.
+Modules 0 through 9 taught you to **draw** a sample and **analyze** it honestly. This bonus module answers the question a study team asks **before** any of that: **how many people do we actually need?** That is a **power calculation**, and running it to get n is exactly what **determining a sample size** means. We anchor it to your **AAMC internship** task - comparing **two response rates** across invitation conditions. It is a cousin of Module 1's "sample size for a target precision," but here the target is a **difference to detect**, not a margin of error. 6 pieces of concept, then a hands-on seventh in R.
 
 ## Piece 1 — What power actually means
 
@@ -14,7 +14,7 @@ Every comparison is a bet against being fooled. When you test whether two respon
 - **Beta** (Type II): the miss rate. You do not set it directly; it falls out of your design once you fix effect size, alpha, and n.
 - **Power = 1 - beta**: your detection rate. Convention is **80%** (sometimes 90%) - an 80%-powered study catches a real effect 4 times out of 5, and misses it 1 time out of 5.
 
-![*The null bell (no difference) and the alternative bell (a real difference) overlap. The threshold splits each: alpha is the null"s tail past it, beta is the alternative"s tail short of it, and power is the alternative"s mass beyond it.*](figures/10-power-sample-size-fig1.png){fig-align="center"}
+![*The null bell (no difference) and the alternative bell (a real difference) overlap. The threshold splits each: alpha is the null's tail past it, beta is the alternative's tail short of it, and power is the alternative's mass beyond it.*](figures/10-power-sample-size-fig1.png){fig-align="center"}
 
 The picture is the whole idea. Two sampling distributions of your test statistic: one if there is **no** difference (navy), one if there **is** (teal). They **overlap**. Wherever you put the decision threshold, you trade one error for the other - push it right to shrink alpha and you grow beta. The only way to shrink **both** tails at once is to **pull the bells apart** or **make them skinnier**, which is exactly what a bigger effect or a bigger sample does. That is what the next piece unpacks.
 
@@ -57,11 +57,11 @@ Two directions of the **same** equation matter in practice. Leave **power** blan
 
 ## Piece 3 — Effect size for two proportions
 
-Effect size is where people stumble, because for proportions it is **not just the gap** - the **baseline rate matters too**. A proportion"s variability is **p(1 - p)**, which is **largest at 50%** and shrinks toward 0% or 100%. So the **same** absolute gap is **hardest to detect (needs the most n) near 50%**, and easier out in the tails.
+Effect size is where people stumble, because for proportions it is **not just the gap** - the **baseline rate matters too**. A proportion's variability is **p(1 - p)**, which is **largest at 50%** and shrinks toward 0% or 100%. So the **same** absolute gap is **hardest to detect (needs the most n) near 50%**, and easier out in the tails.
 
 - Define the **minimum detectable effect (MDE)**: the **smallest** difference worth finding. You do not power for the gap you hope for - you power for the smallest gap that would still matter. Smaller MDE → much larger n (n grows like 1 / gap-squared).
 - Detecting **50% vs 55%** (a 5-point gap at the worst-case variance) needs **~1,565 per group**. The **same** 5-point gap at **5% vs 10%** needs only **~435 per group** - 3-4x fewer, because variance is far smaller down there.
-- **Cohen"s h** is the standardized version for two proportions: h = \|2·arcsinsqrtp2 - 2·arcsinsqrtp1\|. For 40% vs 50%, h ~ 0.20 (a "small" effect by Cohen"s 0.2 / 0.5 / 0.8 rule of thumb). It lets a tool talk about "effect size" without you re-specifying the two rates.
+- **Cohen's h** is the standardized version for two proportions: h = \|2·arcsinsqrtp2 - 2·arcsinsqrtp1\|. For 40% vs 50%, h ~ 0.20 (a "small" effect by Cohen's 0.2 / 0.5 / 0.8 rule of thumb). It lets a tool talk about "effect size" without you re-specifying the two rates.
 
 ![*n per group to detect a fixed 5-point gap, as the baseline rate sweeps up. It peaks near 50% because p(1-p) - the variance - is largest there.*](figures/10-power-sample-size-fig3.png){fig-align="center"}
 
@@ -102,8 +102,8 @@ Run the **same** equation the **other** direction to sanity-check a budget. If y
 | MDE, alpha, n = 100 | power | ~29% | clearly underpowered |
 
 ::: {.fieldnote}
-**Interview anchor (AAMC)**
-"At AAMC I compared response rates across invitation conditions. To size the study I ran a two-proportion power calc - set the MDE at the smallest response-rate gap worth acting on, held alpha at 0.05 and power at 80%, and solved for n per arm. I also checked the reverse: what power our feasible n actually bought, so we knew going in whether we were powered to see the effect." That sentence turns the task you were handed into something you can now **explain and defend**.
+**How this plays out end to end**
+Sizing a study like this means setting the MDE at the smallest response-rate gap worth acting on, holding alpha at 0.05 and power at 80%, and solving for n per arm - then checking the reverse: what power the feasible n actually buys, so the team knows going in whether the study is powered to see the effect. Reporting both directions is what separates a sample size that was chosen from one that was assumed.
 :::
 
 ::: {.fieldnote}
@@ -115,7 +115,7 @@ Run the **same** equation the **other** direction to sanity-check a budget. If y
 The textbook formula assumes a clean, simple random sample with everyone responding. Real designs are messier, and each wrinkle **eats power** - meaning you need **more** raw n to keep the same detection rate. This is where the whole course comes back.
 
 - **Design effect (deff).** Clustering and unequal weights inflate variance by deff (Modules 4, 6, 7). You do not power on raw n - you power on **effective n = n / deff**. To keep 80% power under deff = 1.5, multiply your clean n by 1.5: ~388/group becomes ~582/group.
-- **Nonresponse.** Power depends on **completed** interviews, not invitations. If only 62% respond, divide the required completes by 0.62 to get the **release** count (Module 8"s inflation step). Your AAMC response-rate work is exactly this lever.
+- **Nonresponse.** Power depends on **completed** interviews, not invitations. If only 62% respond, divide the required completes by 0.62 to get the **release** count (Module 8's inflation step). Your AAMC response-rate work is exactly this lever.
 - **One- vs two-sided.** A one-sided test spends all alpha on one tail and needs slightly less n - but only use it when the direction is genuinely fixed in advance. Defaulting to two-sided is the safe, expected choice.
 - **Multiple comparisons.** Testing many invite conditions at once inflates the family-wise false-alarm rate; a Bonferroni-style smaller alpha per test protects it but **costs power**, so each test needs more n.
 
@@ -146,7 +146,7 @@ Putting it together, sizing a comparison study is a short, repeatable **loop**. 
 
 ## Piece 7 — Doing it in R (read-along reference)
 
-**R is not installed on this machine yet, so treat this piece as read-along, not run.** When you do have R, two base calls and the **pwr** package cover almost everything above. Here is the AAMC calc in code.
+Two base calls and the **pwr** package cover almost everything above. Here is the same calc in code.
 
 ::: {.fieldnote}
 \# — — base R: two-proportion sample size, solve for n — — 
@@ -158,7 +158,7 @@ power.prop.test(p1 = 0.40, p2 = 0.50,
 power.prop.test(p1 = 0.40, p2 = 0.50, n = 200)
 \# → power ~ 0.52
 
-\# — — pwr package: effect-size (Cohen"s h) interface — — 
+\# — — pwr package: effect-size (Cohen's h) interface — — 
 install.packages("pwr"); library(pwr)
 h \<- ES.h(0.50, 0.40) \# standardized effect size
 pwr.2p.test(h = h, sig.level = 0.05, power = 0.80)
@@ -187,7 +187,7 @@ sim\_power(388, 0.40, 0.50) \# ~ 0.80
 |---|---|
 | n for a two-proportion test | power.prop.test(p1, p2, power=) |
 | power given n | power.prop.test(p1, p2, n=) |
-| effect-size (Cohen"s h) interface | pwr.2p.test() / ES.h() |
+| effect-size (Cohen's h) interface | pwr.2p.test() / ES.h() |
 | unequal group sizes | pwr.2p2n.test() |
 | anything with no clean formula | simulate with rbinom + prop.test |
 
